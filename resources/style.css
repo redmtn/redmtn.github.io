@@ -548,7 +548,7 @@ a:hover {
   margin-right: 150px;
   margin-top: 50px;
   border: 7px solid #757575;
-  border-radius: 20px;
+  border-radius: 50px;
   text-align: center;
   background-color: #999999;
 }
@@ -659,7 +659,6 @@ a:hover {
   font-family: prime;
   margin-bottom: 1rem;
   font-weight: normal;
-  color: #6497b1
 }
 
 .main-content p {
@@ -670,7 +669,6 @@ a:hover {
   padding: 2px 4px;
   font-family: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 0.9rem;
-  color: #567482;
   background-color: #f3f6fa;
   border-radius: 0.3rem
 }
