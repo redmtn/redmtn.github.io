@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 
+
+
+
 @font-face {
   font-family: "oxygen";
   src: url(./font/Quark-Light.otf) format("opentype");
@@ -541,9 +544,13 @@ a:hover {
 
 .page-header {
   color: #fff;
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-top: 50px;
+  border: 7px solid #757575;
+  border-radius: 20px;
   text-align: center;
-  background-color: #5ab9ea;
-  background-image: linear-gradient(120deg, #74a7b1, #005b96)
+  background-color: #999999;
 }
 
 @media screen and (min-width: 64em) {
