@@ -1,1 +1,369 @@
-var _0x10bc=['\x47\x42\x67\x79\x6a','\x65\x6e\x43\x6a\x68','\x67\x65\x74\x54\x69\x6d\x65','\x72\x6f\x75\x6e\x64','\x6f\x6e\x6c\x6f\x61\x64','\x68\x61\x73\x68','\x23\x74\x65\x73\x74','\x23\x64\x65\x62\x75\x67','\x69\x6e\x73\x65\x72\x74\x41\x64\x6a\x61\x63\x65\x6e\x74\x48\x54\x4d\x4c','\x3c\x63\x65\x6e\x74\x65\x72\x3e\x3c\x64\x69\x76\x20\x63\x6c\x61\x73\x73\x3d\x22\x64\x61\x74\x65\x70\x69\x63\x6b\x65\x72\x2d\x68\x65\x72\x65\x22\x20\x69\x64\x3d\x22\x64\x61\x74\x65\x70\x69\x63\x6b\x65\x72\x22\x20\x64\x61\x74\x61\x2d\x6c\x61\x6e\x67\x75\x61\x67\x65\x3d\x22\x65\x6e\x22\x3e\x3c\x2f\x64\x69\x76\x3e\x3c\x62\x72\x2f\x3e\x3c\x68\x34\x3e\x49\x74\x20\x6c\x6f\x6f\x6b\x73\x20\x6c\x69\x6b\x65\x20\x79\x6f\x75\x20\x66\x6f\x75\x6e\x64\x20\x74\x68\x65\x20\x44\x65\x62\x75\x67\x20\x50\x61\x67\x65\x21\x20\x49\x66\x20\x79\x6f\x75\x20\x77\x6f\x75\x6c\x64\x20\x6c\x69\x6b\x65\x20\x74\x6f\x20\x67\x6f\x20\x62\x61\x63\x6b\x20\x74\x6f\x20\x74\x68\x65\x20\x72\x65\x67\x75\x6c\x61\x72\x20\x73\x69\x74\x65\x2c\x20\x63\x6c\x69\x63\x6b\x20\x3c\x61\x20\x68\x72\x65\x66\x3d\x22','\x6c\x6f\x67','\x69\x6e\x64\x65\x78\x2e\x6a\x73\x20\x6c\x6f\x61\x64\x65\x64','\x6e\x6d\x44\x51\x71','\x48\x52\x79\x5a\x64','\x67\x65\x74\x46\x75\x6c\x6c\x59\x65\x61\x72','\x67\x65\x74\x4d\x6f\x6e\x74\x68','\x67\x65\x74\x44\x61\x74\x65','\x67\x65\x74\x48\x6f\x75\x72\x73','\x67\x65\x74\x44\x61\x79','\x53\x75\x6e\x64\x61\x79','\x4d\x6f\x6e\x64\x61\x79','\x72\x66\x52\x63\x45','\x54\x75\x65\x73\x64\x61\x79','\x68\x43\x4a\x4b\x41','\x57\x65\x64\x6e\x65\x73\x64\x61\x79','\x20\x44\x61\x79\x73\x2c\x20','\x20\x4d\x69\x6e\x75\x74\x65\x73\x20\x61\x6e\x64\x20','\x4e\x46\x4b\x76\x78','\x54\x68\x75\x72\x73\x64\x61\x79','\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64','\x63\x6f\x75\x6e\x74\x64\x6f\x77\x6e','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x20\x55\x6e\x74\x69\x6c\x20\x53\x69\x78\x74\x68\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x46\x72\x69\x64\x61\x79','\x53\x61\x74\x75\x72\x64\x61\x79','\x71\x79\x6b\x6d\x4a','\x46\x69\x66\x74\x68\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x20\x55\x6e\x74\x69\x6c\x20\x46\x69\x66\x74\x68\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x67\x65\x74\x4d\x69\x6e\x75\x74\x65\x73','\x74\x6f\x53\x74\x72\x69\x6e\x67','\x67\x65\x74\x53\x65\x63\x6f\x6e\x64\x73','\x5a\x5a\x76\x62\x7a','\x77\x65\x64\x6e\x65\x73\x64\x61\x79','\x79\x56\x55\x78\x6e','\x73\x65\x74\x48\x6f\x75\x72\x73','\x73\x65\x74\x53\x65\x63\x6f\x6e\x64\x73','\x72\x6c\x48\x77\x50','\x77\x46\x72\x77\x44','\x47\x63\x61\x52\x58','\x72\x4a\x4d\x69\x49','\x44\x66\x68\x67\x4e','\x6e\x79\x68\x62\x44','\x73\x53\x69\x45\x71','\x41\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x20\x55\x6e\x74\x69\x6c\x20\x41\x20\x48\x6f\x75\x72','\x46\x6f\x75\x72\x74\x68\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x20\x55\x6e\x74\x69\x6c\x20\x46\x6f\x75\x72\x74\x68\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x72\x6d\x68\x73','\x64\x65\x66\x61\x75\x6c\x74','\x54\x77\x7a\x4b\x52','\x58\x7a\x4e\x54\x78','\x73\x69\x78\x74\x68\x45','\x73\x65\x74\x4d\x69\x6e\x75\x74\x65\x73','\x73\x65\x74\x44\x61\x74\x65','\x73\x65\x63\x6f\x6e\x64\x53','\x41\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73\x20\x54\x6f\x6d\x6f\x72\x72\x6f\x77','\x47\x74\x5a\x43\x6b','\x54\x68\x69\x72\x64\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x20\x55\x6e\x74\x69\x6c\x20\x54\x68\x69\x72\x64\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x74\x69\x6d\x65','\x20\x2d\x20','\x3c\x62\x72\x2f\x3e\x3c\x62\x72\x2f\x3e','\x41\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x66\x69\x72\x73\x74\x53','\x62\x4c\x74\x44\x6f','\x72\x4f\x41\x63\x74','\x53\x65\x63\x6f\x6e\x64\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x20\x55\x6e\x74\x69\x6c\x20\x53\x65\x63\x6f\x6e\x64\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x20\x55\x6e\x74\x69\x6c\x20\x46\x69\x72\x73\x74\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x66\x69\x72\x73\x74\x45','\x55\x4c\x4b\x45\x73','\x56\x54\x67\x68\x61','\x46\x69\x72\x73\x74\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x6a\x76\x73\x59\x4b','\x73\x65\x63\x6f\x6e\x64\x45','\x53\x65\x63\x6f\x6e\x64\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x74\x68\x69\x72\x64\x53','\x72\x47\x64\x64\x44','\x47\x47\x6c\x47\x47','\x74\x68\x69\x72\x64\x45','\x54\x68\x69\x72\x64\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x20\x55\x6e\x74\x69\x6c\x20\x54\x68\x69\x72\x64\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x66\x6f\x75\x72\x74\x68\x53','\x52\x56\x67\x73\x79','\x65\x63\x52\x4a\x72','\x66\x6f\x75\x72\x74\x68\x45','\x46\x6f\x75\x72\x74\x68\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x20\x55\x6e\x74\x69\x6c\x20\x46\x6f\x75\x72\x74\x68\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x66\x69\x66\x74\x68\x53','\x63\x47\x67\x71\x41','\x66\x69\x66\x74\x68\x45','\x20\x55\x6e\x74\x69\x6c\x20\x46\x69\x66\x74\x68\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x73\x69\x78\x74\x68\x53','\x53\x69\x78\x74\x68\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x20\x55\x6e\x74\x69\x6c\x20\x53\x69\x78\x74\x68\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73','\x53\x69\x78\x74\x68\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73','\x72\x6f\x69\x44\x54','\x4f\x67\x69\x51\x51','\x6a\x4c\x6a\x65\x45','\x52\x54\x4c\x69\x42','\x62\x67\x78\x46\x43','\x66\x6c\x6f\x6f\x72','\x70\x51\x61\x47\x45','\x20\x48\x6f\x75\x72\x73\x2c\x20','\x4e\x47\x65\x52\x4e','\x64\x65\x62\x75\x67\x20\x6d\x6f\x64\x65','\x63\x6f\x6e\x74\x65\x6e\x74','\x62\x65\x66\x6f\x72\x65\x65\x6e\x64','\x6c\x6f\x63\x61\x74\x69\x6f\x6e','\x6f\x72\x69\x67\x69\x6e','\x22\x3e\x68\x65\x72\x65\x3c\x2f\x61\x3e\x2e\x20\x49\x66\x20\x79\x6f\x75\x20\x61\x72\x65\x20\x6a\x75\x73\x74\x20\x77\x6f\x75\x6e\x64\x65\x72\x69\x6e\x67\x20\x68\x6f\x77\x20\x74\x68\x69\x73\x20\x73\x69\x74\x65\x20\x77\x6f\x72\x6b\x73\x2c\x20\x66\x65\x65\x6c\x20\x66\x72\x65\x65\x20\x74\x6f\x20\x6c\x6f\x6f\x6b\x20\x61\x72\x6f\x75\x6e\x64\x21\x3c\x2f\x68\x34\x3e\x3c\x2f\x63\x65\x6e\x74\x65\x72\x3e','\x23\x64\x61\x74\x65\x70\x69\x63\x6b\x65\x72','\x64\x61\x74\x65\x70\x69\x63\x6b\x65\x72','\x64\x61\x74\x61','\x20\x53\x65\x63\x6f\x6e\x64\x73'];(function(_0x2699a9,_0x501e82){var _0x5b6c40=function(_0xa3de42){while(--_0xa3de42){_0x2699a9['push'](_0x2699a9['shift']());}};_0x5b6c40(++_0x501e82);}(_0x10bc,0x104));var _0x3074=function(_0x4bd822,_0x2bd6f7){_0x4bd822=_0x4bd822-0x0;var _0xb4bdb3=_0x10bc[_0x4bd822];return _0xb4bdb3;};console[_0x3074('0x0')](_0x3074('0x1'));console['\x6c\x6f\x67'](jsonData);var _0x329f7d=![];var _0x21e940;var _0x588e22;var _0x100c5f;var _0x13d42f;var _0x4f1c8e;var _0x4aa160;var _0x22ae46;var _0x472932;var _0x10c2fb;var _0x24a13c;var _0x1d642a;var _0x481855;var _0x30ca33;var _0x2d8a77;function _0x21c4e6(){var _0x1d45bd;if(_0x329f7d===!![]){if(_0x3074('0x2')===_0x3074('0x3')){_0x22ae46=0xc;_0x2d8a77='\x41\x4d';}else{_0x1d45bd=_0x5269f6;}}else{_0x1d45bd=new Date();}_0x21e940=_0x1d45bd[_0x3074('0x4')]();_0x588e22=_0x1d45bd[_0x3074('0x5')]();_0x100c5f=_0x1d45bd[_0x3074('0x6')]();var _0x4c2223=_0x1d45bd[_0x3074('0x7')]();var _0x11e582=_0x4c2223;var _0x554255='\x41\x4d';_0x13d42f=_0x1d45bd[_0x3074('0x8')]();var _0xb717f6=_0x3074('0x9');if(_0x13d42f===0x1){_0xb717f6=_0x3074('0xa');}else if(_0x13d42f===0x2){if(_0x3074('0xb')===_0x3074('0xb')){_0xb717f6=_0x3074('0xc');}else{_0xb717f6='\x53\x61\x74\x75\x72\x64\x61\x79';}}else if(_0x13d42f===0x3){if('\x68\x43\x4a\x4b\x41'===_0x3074('0xd')){_0xb717f6=_0x3074('0xe');}else{return fm[0x0]+_0x3074('0xf')+fm[0x1]+'\x20\x48\x6f\x75\x72\x73\x2c\x20'+fm[0x2]+_0x3074('0x10')+fm[0x3]+'\x20\x53\x65\x63\x6f\x6e\x64\x73';}}else if(_0x13d42f===0x4){if(_0x3074('0x11')==='\x4e\x46\x4b\x76\x78'){_0xb717f6=_0x3074('0x12');}else{var _0x143587=_0x15b065(_0x4d6e25(_0x1d45bd,_0x481855));_0x30ca33='\x53\x69\x78\x74\x68\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73';document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x143587+_0x3074('0x16');}}else if(_0x13d42f===0x5){_0xb717f6=_0x3074('0x17');}else if(_0x13d42f===0x6){_0xb717f6=_0x3074('0x18');}if(_0x11e582>0xc){if(_0x3074('0x19')===_0x3074('0x19')){_0x11e582=_0x11e582-0xc;_0x554255='\x50\x4d';}else{var _0x54fb29=_0x15b065(_0x4d6e25(_0x1d45bd,_0x481855));_0x30ca33=_0x3074('0x1a');document[_0x3074('0x13')]('\x63\x6f\x75\x6e\x74\x64\x6f\x77\x6e')[_0x3074('0x15')]=_0x54fb29+_0x3074('0x1b');}}else if(_0x11e582===0x0){_0x11e582=0xc;_0x554255='\x41\x4d';}var _0x10b9a2=_0x1d45bd[_0x3074('0x1c')]();var _0x3217db=_0x10b9a2[_0x3074('0x1d')]();var _0xbdb426=_0x1d45bd[_0x3074('0x1e')]();var _0x20f079=_0xbdb426['\x74\x6f\x53\x74\x72\x69\x6e\x67']();if(_0x3217db==='\x30'||_0x3217db==='\x31'||_0x3217db==='\x32'||_0x3217db==='\x33'||_0x3217db==='\x34'||_0x3217db==='\x35'||_0x3217db==='\x36'||_0x3217db==='\x37'||_0x3217db==='\x38'||_0x3217db==='\x39'){if(_0x3074('0x1f')===_0x3074('0x1f')){_0x3217db='\x30'+_0x3217db;}else{_0xb717f6=_0x3074('0xe');}}if(_0x20f079==='\x30'||_0x20f079==='\x31'||_0x20f079==='\x32'||_0x20f079==='\x33'||_0x20f079==='\x34'||_0x20f079==='\x35'||_0x20f079==='\x36'||_0x20f079==='\x37'||_0x20f079==='\x38'||_0x20f079==='\x39'){_0x20f079='\x30'+_0x20f079;}if(_0x13d42f===0x3){var _0x10868a=jsonData['\x72\x6d\x68\x73'][_0x3074('0x20')];_0x58efa9(_0x10868a,_0x1d45bd);}else if(_0x13d42f===0x6||_0x13d42f===0x0){if('\x55\x6d\x6c\x74\x43'!==_0x3074('0x21')){var _0x10868a=jsonData['\x72\x6d\x68\x73']['\x64\x65\x66\x61\x75\x6c\x74'];if(_0x13d42f===0x6){_0x481855=new Date(_0x21e940,_0x588e22,_0x100c5f+0x2);}else{_0x481855=new Date(_0x21e940,_0x588e22,_0x100c5f+0x1);}_0x481855[_0x3074('0x22')](_0x10868a['\x61\x53'][0x0]);_0x481855['\x73\x65\x74\x4d\x69\x6e\x75\x74\x65\x73'](_0x10868a['\x61\x53'][0x1]);_0x481855[_0x3074('0x23')](_0x10868a['\x61\x53'][0x2]);var _0xa1fb8=_0x15b065(_0x4d6e25(_0x1d45bd,_0x481855));_0x4f1c8e=_0x481855[_0x3074('0x8')]();_0x4aa160;if(_0x4f1c8e===0x1){_0x4aa160=_0x3074('0xa');}else if(_0x4f1c8e===0x2){if(_0x3074('0x24')!==_0x3074('0x24')){_0x4aa160='\x46\x72\x69\x64\x61\x79';}else{_0x4aa160='\x54\x75\x65\x73\x64\x61\x79';}}else if(_0x4f1c8e===0x3){if(_0x3074('0x25')===_0x3074('0x26')){_0x22ae46=_0x22ae46-0xc;_0x2d8a77='\x50\x4d';}else{_0x4aa160='\x57\x65\x64\x6e\x65\x73\x64\x61\x79';}}else if(_0x4f1c8e===0x4){if(_0x3074('0x27')!==_0x3074('0x27')){return![];}else{_0x4aa160=_0x3074('0x12');}}else if(_0x4f1c8e===0x5){if(_0x3074('0x28')===_0x3074('0x28')){_0x4aa160='\x46\x72\x69\x64\x61\x79';}else{_0x11e582=0xc;_0x554255='\x41\x4d';}}else if(_0x4f1c8e===0x6){if(_0x3074('0x29')===_0x3074('0x2a')){_0x20f079='\x30'+_0x20f079;}else{_0xb717f6=_0x3074('0x18');}}_0x22ae46=_0x481855['\x67\x65\x74\x48\x6f\x75\x72\x73']();_0x472932=_0x481855[_0x3074('0x1c')]();_0x10c2fb=_0x481855[_0x3074('0x5')]();_0x24a13c=_0x481855[_0x3074('0x6')]();_0x1d642a=_0x481855['\x67\x65\x74\x46\x75\x6c\x6c\x59\x65\x61\x72']();_0x30ca33=_0x3074('0x2b');document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0xa1fb8+_0x3074('0x2c');}else{var _0x1916a3=_0x15b065(_0x4d6e25(_0x1d45bd,_0x481855));_0x30ca33=_0x3074('0x2d');document[_0x3074('0x13')](_0x3074('0x14'))['\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c']=_0x1916a3+_0x3074('0x2e');}}else{var _0x10868a=jsonData[_0x3074('0x2f')][_0x3074('0x30')];_0x58efa9(_0x10868a,_0x1d45bd);}_0x2d8a77='\x41\x4d';if(_0x22ae46>0xc){if(_0x3074('0x31')!==_0x3074('0x32')){_0x22ae46=_0x22ae46-0xc;_0x2d8a77='\x50\x4d';}else{_0x481855[_0x3074('0x22')](_0x10868a[_0x3074('0x33')][0x0]);_0x481855[_0x3074('0x34')](_0x10868a['\x73\x69\x78\x74\x68\x45'][0x1]);_0x481855[_0x3074('0x23')](_0x10868a[_0x3074('0x33')][0x2]);if(_0x2f5840(_0x481855,_0x1d45bd)===![]){var _0xa4ab9a=_0x15b065(_0x4d6e25(_0x1d45bd,_0x481855));_0x30ca33='\x53\x69\x78\x74\x68\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73';document[_0x3074('0x13')]('\x63\x6f\x75\x6e\x74\x64\x6f\x77\x6e')[_0x3074('0x15')]=_0xa4ab9a+_0x3074('0x16');}else{_0x481855[_0x3074('0x35')](_0x481855[_0x3074('0x6')]()+0x1);_0x481855['\x73\x65\x74\x48\x6f\x75\x72\x73'](_0x10868a[_0x3074('0x36')][0x0]);_0x481855[_0x3074('0x34')](_0x10868a['\x73\x65\x63\x6f\x6e\x64\x53'][0x1]);_0x481855[_0x3074('0x23')](_0x10868a[_0x3074('0x36')][0x2]);if(_0x2f5840(_0x481855,_0x1d45bd)===![]){var _0xa4ab9a=_0x15b065(_0x4d6e25(_0x1d45bd,_0x481855));_0x30ca33=_0x3074('0x37');document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0xa4ab9a+_0x3074('0x2c');}}}}else if(_0x22ae46===0x0){_0x22ae46=0xc;_0x2d8a77='\x41\x4d';}var _0x435ac3=_0x472932['\x74\x6f\x53\x74\x72\x69\x6e\x67']();if(_0x435ac3==='\x30'||_0x435ac3==='\x31'||_0x435ac3==='\x32'||_0x435ac3==='\x33'||_0x435ac3==='\x34'||_0x435ac3==='\x35'||_0x435ac3==='\x36'||_0x435ac3==='\x37'||_0x435ac3==='\x38'||_0x435ac3==='\x39'){if(_0x3074('0x38')!=='\x47\x74\x5a\x43\x6b'){var _0x4dcc45=_0x15b065(_0x4d6e25(_0x1d45bd,_0x481855));_0x30ca33=_0x3074('0x39');document[_0x3074('0x13')]('\x63\x6f\x75\x6e\x74\x64\x6f\x77\x6e')['\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c']=_0x4dcc45+_0x3074('0x3a');}else{_0x435ac3='\x30'+_0x435ac3;}}document[_0x3074('0x13')](_0x3074('0x3b'))[_0x3074('0x15')]='\x43\x75\x72\x72\x65\x6e\x74\x20\x54\x69\x6d\x65\x3a\x20'+_0x11e582+'\x3a'+_0x3217db+'\x20'+_0x554255+_0x3074('0x3c')+_0xb717f6+'\x2c\x20'+(_0x588e22+0x1)+'\x2f'+_0x100c5f+'\x2f'+_0x21e940+_0x3074('0x3d')+_0x30ca33+'\x3a\x20'+_0x22ae46+'\x3a'+_0x435ac3+_0x2d8a77+'\x20\x2d\x20'+_0x4aa160+'\x2c\x20'+(_0x10c2fb+0x1)+'\x2f'+_0x24a13c+'\x2f'+_0x1d642a;}function _0x58efa9(_0x2ebd82,_0x17e863){_0x481855=new Date(_0x21e940,_0x588e22,_0x100c5f);if(_0x2ebd82['\x61\x53']){_0x481855[_0x3074('0x22')](_0x2ebd82['\x61\x53'][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82['\x61\x53'][0x1]);_0x481855['\x73\x65\x74\x53\x65\x63\x6f\x6e\x64\x73'](_0x2ebd82['\x61\x53'][0x2]);}if(_0x2f5840(_0x481855,_0x17e863)===![]&&_0x2ebd82['\x61\x53']!==undefined){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x2b');document['\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64'](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+_0x3074('0x2c');}else{if(_0x2ebd82['\x61\x45']){_0x481855[_0x3074('0x22')](_0x2ebd82['\x61\x45'][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82['\x61\x45'][0x1]);_0x481855[_0x3074('0x23')](_0x2ebd82['\x61\x45'][0x2]);}if(_0x2f5840(_0x481855,_0x17e863)===![]&&_0x2ebd82['\x61\x45']!==undefined){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x3e');document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+'\x20\x55\x6e\x74\x69\x6c\x20\x41\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73';}else{_0x481855[_0x3074('0x22')](_0x2ebd82[_0x3074('0x3f')][0x0]);_0x481855['\x73\x65\x74\x4d\x69\x6e\x75\x74\x65\x73'](_0x2ebd82[_0x3074('0x3f')][0x1]);_0x481855[_0x3074('0x23')](_0x2ebd82[_0x3074('0x3f')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){if(_0x3074('0x40')===_0x3074('0x41')){var _0x2c2d9d=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x42');document[_0x3074('0x13')](_0x3074('0x14'))['\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c']=_0x2c2d9d+_0x3074('0x43');}else{var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33='\x46\x69\x72\x73\x74\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73';document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+_0x3074('0x44');}}else{_0x481855[_0x3074('0x22')](_0x2ebd82[_0x3074('0x45')][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82[_0x3074('0x45')][0x1]);_0x481855[_0x3074('0x23')](_0x2ebd82[_0x3074('0x45')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){if(_0x3074('0x46')!==_0x3074('0x47')){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x48');document['\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64'](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+'\x20\x55\x6e\x74\x69\x6c\x20\x46\x69\x72\x73\x74\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73';}else{return;}}else{_0x481855[_0x3074('0x22')](_0x2ebd82[_0x3074('0x36')][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82['\x73\x65\x63\x6f\x6e\x64\x53'][0x1]);_0x481855['\x73\x65\x74\x53\x65\x63\x6f\x6e\x64\x73'](_0x2ebd82[_0x3074('0x36')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){if(_0x3074('0x49')!==_0x3074('0x49')){return!![];}else{var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x42');document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+_0x3074('0x43');}}else{_0x481855[_0x3074('0x22')](_0x2ebd82['\x73\x65\x63\x6f\x6e\x64\x45'][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82[_0x3074('0x4a')][0x1]);_0x481855['\x73\x65\x74\x53\x65\x63\x6f\x6e\x64\x73'](_0x2ebd82[_0x3074('0x4a')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x4b');document['\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64'](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+'\x20\x55\x6e\x74\x69\x6c\x20\x53\x65\x63\x6f\x6e\x64\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73';}else{_0x481855[_0x3074('0x22')](_0x2ebd82['\x74\x68\x69\x72\x64\x53'][0x0]);_0x481855['\x73\x65\x74\x4d\x69\x6e\x75\x74\x65\x73'](_0x2ebd82['\x74\x68\x69\x72\x64\x53'][0x1]);_0x481855[_0x3074('0x23')](_0x2ebd82[_0x3074('0x4c')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){if(_0x3074('0x4d')!==_0x3074('0x4e')){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x39');document[_0x3074('0x13')](_0x3074('0x14'))['\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c']=_0x21d40f+_0x3074('0x3a');}else{minutesStr='\x30'+minutesStr;}}else{_0x481855[_0x3074('0x22')](_0x2ebd82[_0x3074('0x4f')][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82[_0x3074('0x4f')][0x1]);_0x481855['\x73\x65\x74\x53\x65\x63\x6f\x6e\x64\x73'](_0x2ebd82[_0x3074('0x4f')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x50');document['\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64']('\x63\x6f\x75\x6e\x74\x64\x6f\x77\x6e')[_0x3074('0x15')]=_0x21d40f+_0x3074('0x51');}else{_0x481855['\x73\x65\x74\x48\x6f\x75\x72\x73'](_0x2ebd82[_0x3074('0x52')][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82[_0x3074('0x52')][0x1]);_0x481855[_0x3074('0x23')](_0x2ebd82[_0x3074('0x52')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){if(_0x3074('0x53')!==_0x3074('0x54')){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x2d');document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+'\x20\x55\x6e\x74\x69\x6c\x20\x46\x6f\x75\x72\x74\x68\x20\x48\x6f\x75\x72\x20\x53\x74\x61\x72\x74\x73';}else{if(currentTime<time){return![];}else{return!![];}}}else{_0x481855[_0x3074('0x22')](_0x2ebd82[_0x3074('0x55')][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82[_0x3074('0x55')][0x1]);_0x481855['\x73\x65\x74\x53\x65\x63\x6f\x6e\x64\x73'](_0x2ebd82[_0x3074('0x55')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x56');document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+_0x3074('0x57');}else{_0x481855[_0x3074('0x22')](_0x2ebd82[_0x3074('0x58')][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82[_0x3074('0x58')][0x1]);_0x481855[_0x3074('0x23')](_0x2ebd82['\x66\x69\x66\x74\x68\x53'][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x1a');document[_0x3074('0x13')]('\x63\x6f\x75\x6e\x74\x64\x6f\x77\x6e')[_0x3074('0x15')]=_0x21d40f+_0x3074('0x1b');}else{if('\x6e\x72\x69\x68\x77'===_0x3074('0x59')){var _0x2cba26=jsonData[_0x3074('0x2f')][_0x3074('0x30')];_0x58efa9(_0x2cba26,_0x17e863);}else{_0x481855[_0x3074('0x22')](_0x2ebd82['\x66\x69\x66\x74\x68\x45'][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82[_0x3074('0x5a')][0x1]);_0x481855[_0x3074('0x23')](_0x2ebd82[_0x3074('0x5a')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33='\x46\x69\x66\x74\x68\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73';document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+_0x3074('0x5b');}else{_0x481855[_0x3074('0x22')](_0x2ebd82[_0x3074('0x5c')][0x0]);_0x481855['\x73\x65\x74\x4d\x69\x6e\x75\x74\x65\x73'](_0x2ebd82['\x73\x69\x78\x74\x68\x53'][0x1]);_0x481855['\x73\x65\x74\x53\x65\x63\x6f\x6e\x64\x73'](_0x2ebd82[_0x3074('0x5c')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x5d');document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+_0x3074('0x5e');}else{_0x481855[_0x3074('0x22')](_0x2ebd82[_0x3074('0x33')][0x0]);_0x481855['\x73\x65\x74\x4d\x69\x6e\x75\x74\x65\x73'](_0x2ebd82[_0x3074('0x33')][0x1]);_0x481855[_0x3074('0x23')](_0x2ebd82[_0x3074('0x33')][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x5f');document['\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64']('\x63\x6f\x75\x6e\x74\x64\x6f\x77\x6e')['\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c']=_0x21d40f+'\x20\x55\x6e\x74\x69\x6c\x20\x53\x69\x78\x74\x68\x20\x48\x6f\x75\x72\x20\x45\x6e\x64\x73';}else{if(_0x3074('0x60')===_0x3074('0x61')){_0x4aa160=_0x3074('0xe');}else{_0x481855[_0x3074('0x35')](_0x481855[_0x3074('0x6')]()+0x1);_0x481855[_0x3074('0x22')](_0x2ebd82[_0x3074('0x36')][0x0]);_0x481855[_0x3074('0x34')](_0x2ebd82['\x73\x65\x63\x6f\x6e\x64\x53'][0x1]);_0x481855[_0x3074('0x23')](_0x2ebd82['\x73\x65\x63\x6f\x6e\x64\x53'][0x2]);if(_0x2f5840(_0x481855,_0x17e863)===![]){if(_0x3074('0x62')==='\x6a\x4c\x6a\x65\x45'){var _0x21d40f=_0x15b065(_0x4d6e25(_0x17e863,_0x481855));_0x30ca33=_0x3074('0x37');document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x21d40f+_0x3074('0x2c');}else{_0x4aa160=_0x3074('0xa');}}}}}}}}}}}}}}}}}}_0x4f1c8e=_0x481855[_0x3074('0x8')]();_0x4aa160;if(_0x4f1c8e===0x1){_0x4aa160=_0x3074('0xa');}else if(_0x4f1c8e===0x2){if(_0x3074('0x63')===_0x3074('0x63')){_0x4aa160=_0x3074('0xc');}else{_0x5269f6=d;}}else if(_0x4f1c8e===0x3){_0x4aa160=_0x3074('0xe');}else if(_0x4f1c8e===0x4){_0x4aa160=_0x3074('0x12');}else if(_0x4f1c8e===0x5){_0x4aa160=_0x3074('0x17');}else if(_0x4f1c8e===0x6){if('\x57\x41\x73\x50\x74'!==_0x3074('0x64')){weekDayString=_0x3074('0x18');}else{_0x4aa160='\x54\x75\x65\x73\x64\x61\x79';}}_0x22ae46=_0x481855['\x67\x65\x74\x48\x6f\x75\x72\x73']();_0x472932=_0x481855['\x67\x65\x74\x4d\x69\x6e\x75\x74\x65\x73']();_0x10c2fb=_0x481855[_0x3074('0x5')]();_0x24a13c=_0x481855[_0x3074('0x6')]();_0x1d642a=_0x481855['\x67\x65\x74\x46\x75\x6c\x6c\x59\x65\x61\x72']();}function _0x15b065(_0x2c0414){var _0x13480e=[Math[_0x3074('0x65')](_0x2c0414/0x3c/0x3c/0x18),Math['\x66\x6c\x6f\x6f\x72'](_0x2c0414/0x3c/0x3c)%0x18,Math[_0x3074('0x65')](_0x2c0414/0x3c)%0x3c,_0x2c0414%0x3c];if(_0x13480e[0x0]!==0x0){if(_0x3074('0x66')==='\x6c\x74\x79\x43\x46'){_0x481855[_0x3074('0x22')](schedule['\x61\x53'][0x0]);_0x481855[_0x3074('0x34')](schedule['\x61\x53'][0x1]);_0x481855[_0x3074('0x23')](schedule['\x61\x53'][0x2]);}else{return _0x13480e[0x0]+'\x20\x44\x61\x79\x73\x2c\x20'+_0x13480e[0x1]+_0x3074('0x67')+_0x13480e[0x2]+_0x3074('0x10')+_0x13480e[0x3]+'\x20\x53\x65\x63\x6f\x6e\x64\x73';}}else if(_0x13480e[0x1]!==0x0){if(_0x3074('0x68')!==_0x3074('0x68')){console[_0x3074('0x0')](_0x3074('0x69'));_0x329f7d=!![];document[_0x3074('0x13')](_0x3074('0x6a'))['\x69\x6e\x73\x65\x72\x74\x41\x64\x6a\x61\x63\x65\x6e\x74\x48\x54\x4d\x4c'](_0x3074('0x6b'),'\x3c\x63\x65\x6e\x74\x65\x72\x3e\x3c\x64\x69\x76\x20\x63\x6c\x61\x73\x73\x3d\x22\x64\x61\x74\x65\x70\x69\x63\x6b\x65\x72\x2d\x68\x65\x72\x65\x22\x20\x69\x64\x3d\x22\x64\x61\x74\x65\x70\x69\x63\x6b\x65\x72\x22\x20\x64\x61\x74\x61\x2d\x6c\x61\x6e\x67\x75\x61\x67\x65\x3d\x22\x65\x6e\x22\x3e\x3c\x2f\x64\x69\x76\x3e\x3c\x62\x72\x2f\x3e\x3c\x68\x34\x3e\x49\x74\x20\x6c\x6f\x6f\x6b\x73\x20\x6c\x69\x6b\x65\x20\x79\x6f\x75\x20\x66\x6f\x75\x6e\x64\x20\x74\x68\x65\x20\x44\x65\x62\x75\x67\x20\x50\x61\x67\x65\x21\x20\x49\x66\x20\x79\x6f\x75\x20\x77\x6f\x75\x6c\x64\x20\x6c\x69\x6b\x65\x20\x74\x6f\x20\x67\x6f\x20\x62\x61\x63\x6b\x20\x74\x6f\x20\x74\x68\x65\x20\x72\x65\x67\x75\x6c\x61\x72\x20\x73\x69\x74\x65\x2c\x20\x63\x6c\x69\x63\x6b\x20\x3c\x61\x20\x68\x72\x65\x66\x3d\x22'+window[_0x3074('0x6c')][_0x3074('0x6d')]+_0x3074('0x6e'));$(_0x3074('0x6f'))[_0x3074('0x70')]({'\x74\x69\x6d\x65\x70\x69\x63\x6b\x65\x72':!![],'\x6f\x6e\x53\x65\x6c\x65\x63\x74':function(_0x675327,_0x3c6df2,_0x4eb1e6){if(!_0x3c6df2){return;}else{_0x5269f6=_0x3c6df2;}}});$(_0x3074('0x6f'))[_0x3074('0x71')](_0x3074('0x70'));}else{return _0x13480e[0x1]+_0x3074('0x67')+_0x13480e[0x2]+_0x3074('0x10')+_0x13480e[0x3]+_0x3074('0x72');}}else if(_0x13480e[0x2]!==0x0){return _0x13480e[0x2]+_0x3074('0x10')+_0x13480e[0x3]+_0x3074('0x72');}else{if(_0x3074('0x73')!==_0x3074('0x74')){return _0x13480e[0x3]+'\x20\x53\x65\x63\x6f\x6e\x64\x73';}else{_0x481855=new Date(_0x21e940,_0x588e22,_0x100c5f+0x2);}}}function _0x4d6e25(_0x490f0c,_0x80b5a){var _0x394a2b=_0x490f0c[_0x3074('0x75')]();var _0x4a1c03=_0x80b5a['\x67\x65\x74\x54\x69\x6d\x65']();var _0x50eae7=_0x4a1c03-_0x394a2b;return Math[_0x3074('0x76')](_0x50eae7/0x3e8);}function _0x2f5840(_0x173d55,_0x27ba36){if(_0x27ba36<_0x173d55){return![];}else{if('\x5a\x68\x52\x4f\x69'==='\x5a\x68\x52\x4f\x69'){return!![];}else{var _0x51e73b=_0x15b065(_0x4d6e25(date,_0x481855));_0x30ca33=_0x3074('0x50');document[_0x3074('0x13')](_0x3074('0x14'))[_0x3074('0x15')]=_0x51e73b+_0x3074('0x51');}}}var _0x5269f6=new Date();window[_0x3074('0x77')]=function(){_0x21c4e6();setInterval(_0x21c4e6,0x3e8);if(window[_0x3074('0x6c')][_0x3074('0x78')]===_0x3074('0x79')||window['\x6c\x6f\x63\x61\x74\x69\x6f\x6e'][_0x3074('0x78')]===_0x3074('0x7a')){console[_0x3074('0x0')](_0x3074('0x69'));_0x329f7d=!![];document[_0x3074('0x13')](_0x3074('0x6a'))[_0x3074('0x7b')](_0x3074('0x6b'),_0x3074('0x7c')+window[_0x3074('0x6c')][_0x3074('0x6d')]+_0x3074('0x6e'));$(_0x3074('0x6f'))[_0x3074('0x70')]({'\x74\x69\x6d\x65\x70\x69\x63\x6b\x65\x72':!![],'\x6f\x6e\x53\x65\x6c\x65\x63\x74':function(_0x11ad49,_0x1e8e86,_0x2d738d){if(!_0x1e8e86){return;}else{_0x5269f6=_0x1e8e86;}}});$(_0x3074('0x6f'))[_0x3074('0x71')](_0x3074('0x70'));}};
+console.log("index.js loaded")
+console.log(jsonData);
+var debug = false;
+var year;
+var month;
+var day;
+var weekDay;
+var eventWeekDay;
+var eventWeekDayString;
+var eventHours;
+var eventMinutes;
+var eventMonth;
+var eventDay;
+var eventYear;
+var eventDate;
+var eventName;
+var eventSuffix;
+function updateTime() {
+  var date;
+  if(debug === true) {
+    date = calDate;
+  } else {
+    date = new Date();
+  }
+  year = date.getFullYear();
+  month = date.getMonth();
+  day = date.getDate();
+  var hoursM = date.getHours();
+  var hours = hoursM;
+  var suffix = "AM";
+  weekDay = date.getDay();
+  var weekDayString = "Sunday";
+
+  if(weekDay === 1) {
+    weekDayString = "Monday";
+  } else if(weekDay === 2) {
+    weekDayString = "Tuesday";
+  } else if(weekDay === 3) {
+    weekDayString = "Wednesday";
+  } else if(weekDay === 4) {
+    weekDayString = "Thursday";
+  } else if(weekDay === 5) {
+    weekDayString = "Friday";
+  } else if(weekDay === 6) {
+    weekDayString = "Saturday";
+  }
+  if(hours > 12) {
+    hours = hours - 12;
+    suffix = "PM";
+  } else if(hours === 0) {
+    hours = 12;
+    suffix = "AM";
+  }
+  var minutes = date.getMinutes();
+  var minutesStr = minutes.toString();
+  var seconds = date.getSeconds();
+  var secondsStr = seconds.toString();
+  if(minutesStr === "0" || minutesStr === "1" || minutesStr === "2" || minutesStr === "3" || minutesStr === "4" || minutesStr === "5" || minutesStr === "6" || minutesStr === "7" || minutesStr === "8" || minutesStr === "9") {
+    minutesStr = "0" + minutesStr;
+  }
+
+  if(secondsStr === "0" || secondsStr === "1" || secondsStr === "2" || secondsStr === "3" || secondsStr === "4" || secondsStr === "5" || secondsStr === "6" || secondsStr === "7" || secondsStr === "8" || secondsStr === "9") {
+    secondsStr = "0" + secondsStr;
+  }
+
+
+
+calculate(date);
+  eventSuffix = "AM";
+  if(eventHours > 12) {
+    eventHours = eventHours - 12;
+    eventSuffix = "PM";
+  } else if(eventHours === 0) {
+    eventHours = 12;
+    eventSuffix = "AM";
+  }
+  var eventMinutesStr = eventMinutes.toString();
+  if(eventMinutesStr === "0" || eventMinutesStr === "1" || eventMinutesStr === "2" || eventMinutesStr === "3" || eventMinutesStr === "4" || eventMinutesStr === "5" || eventMinutesStr === "6" || eventMinutesStr === "7" || eventMinutesStr === "8" || eventMinutesStr === "9") {
+    eventMinutesStr = "0" + eventMinutesStr;
+  }
+  document.getElementById("time").innerHTML = "Current Time: " + hours + ":" + minutesStr + " " + suffix + " - " + weekDayString + ", " + (month+1) + "/" + day + "/" + year + "<br/><br/>" + eventName + ": " + eventHours + ":" + eventMinutesStr + eventSuffix + " - " + eventWeekDayString + ", " + (eventMonth+1) + "/" + eventDay + "/" + eventYear;
+}
+
+
+function calculate(date) {
+  var foundNext = false;
+  var schedule = jsonData.rmhs.default;
+  for(var i = 0; i < jsonData.rmhs.specialDays.length; i++) {
+    if(jsonData.rmhs.specialDays[i].type === "weekly") {
+      if(weekDay === jsonData.rmhs.specialDays[i].value) {
+        schedule = jsonData.rmhs[jsonData.rmhs.specialDays[i].scheduleName];
+      }
+    } else if(jsonData.rmhs.specialDays[i].type === "single") {
+      if(date.getDate() === jsonData.rmhs.specialDays[i].value[0] && date.getMonth()+1 === jsonData.rmhs.specialDays[i].value[1] && date.getFullYear() === jsonData.rmhs.specialDays[i].value[2]) {
+        schedule = jsonData.rmhs[jsonData.rmhs.specialDays[i].scheduleName];
+      }
+    }
+  }
+  eventDate = new Date(year, month, day);
+  var addNum = 1;
+  while(foundNext === false && addNum < 365) {
+    eventDate.setDate(eventDate.getDate()+1);
+    if(eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
+      var schedule = jsonData.rmhs.default;
+      for(var i = 0; i < jsonData.rmhs.specialDays.length; i++) {
+        if(jsonData.rmhs.specialDays[i].type === "weekly") {
+          if(eventDate.getDay() === jsonData.rmhs.specialDays[i].value) {
+            schedule = jsonData.rmhs[jsonData.rmhs.specialDays[i].scheduleName];
+          }
+        } else if(jsonData.rmhs.specialDays[i].type === "single") {
+          if(eventDate.getDate() === jsonData.rmhs.specialDays[i].value[0] && eventDate.getMonth()+1 === jsonData.rmhs.specialDays[i].value[1] && eventDate.getFullYear() === jsonData.rmhs.specialDays[i].value[2]) {
+            schedule = jsonData.rmhs[jsonData.rmhs.specialDays[i].scheduleName];
+          }
+        }
+      }
+      for(var i = 0; i < schedule.length; i++) {
+        eventDate.setHours(schedule[i][0]);
+        eventDate.setMinutes(schedule[i][1]);
+        eventDate.setSeconds(schedule[i][2]);
+        if(isPast(eventDate, date) === false) {
+          eventName = schedule[i][3];
+          document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+          foundNext = true;
+          i = schedule.length;
+        }
+      }
+    }
+  }
+
+  for(var i = 0; i < schedule.length; i++) {
+    eventDate.setHours(schedule[i][0]);
+    eventDate.setMinutes(schedule[i][1]);
+    eventDate.setSeconds(schedule[i][2]);
+    if(isPast(eventDate, date) === false) {
+      eventName = schedule[i][3];
+      document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+      foundNext = true;
+      i = schedule.length;
+    }
+  }
+
+  /*
+  if(schedule.aS) {
+    eventDate.setHours(schedule.aS[0]);
+    eventDate.setMinutes(schedule.aS[1]);
+    eventDate.setSeconds(schedule.aS[2]);
+  }
+  if(isPast(eventDate, date) === false && schedule.aS !== undefined) {
+    var timeUntilNext = msToStr(daysBetween(date, eventDate));
+    eventName = "A Hour Starts";
+    document.getElementById("countdown").innerHTML = timeUntilNext + " Until A Hour";
+  } else {
+    if(schedule.aE) {
+      eventDate.setHours(schedule.aE[0]);
+      eventDate.setMinutes(schedule.aE[1]);
+      eventDate.setSeconds(schedule.aE[2]);
+    }
+    if(isPast(eventDate, date) === false && schedule.aE !== undefined) {
+      var timeUntilNext = msToStr(daysBetween(date, eventDate));
+      eventName = "A Hour Ends";
+      document.getElementById("countdown").innerHTML = timeUntilNext + " Until A Hour Ends";
+    } else {
+      eventDate.setHours(schedule.firstS[0]);
+      eventDate.setMinutes(schedule.firstS[1]);
+      eventDate.setSeconds(schedule.firstS[2]);
+      if(isPast(eventDate, date) === false) {
+        var timeUntilNext = msToStr(daysBetween(date, eventDate));
+        eventName = "First Hour Starts";
+        document.getElementById("countdown").innerHTML = timeUntilNext + " Until First Hour Starts";
+      } else {
+        eventDate.setHours(schedule.firstE[0]);
+        eventDate.setMinutes(schedule.firstE[1]);
+        eventDate.setSeconds(schedule.firstE[2]);
+        if(isPast(eventDate, date) === false) {
+          var timeUntilNext = msToStr(daysBetween(date, eventDate));
+          eventName = "First Hour Ends";
+          document.getElementById("countdown").innerHTML = timeUntilNext + " Until First Hour Ends";
+        } else {
+          eventDate.setHours(schedule.secondS[0]);
+          eventDate.setMinutes(schedule.secondS[1]);
+          eventDate.setSeconds(schedule.secondS[2]);
+          if(isPast(eventDate, date) === false) {
+            var timeUntilNext = msToStr(daysBetween(date, eventDate));
+            eventName = "Second Hour Starts";
+            document.getElementById("countdown").innerHTML = timeUntilNext + " Until Second Hour Starts";
+          } else {
+            eventDate.setHours(schedule.secondE[0]);
+            eventDate.setMinutes(schedule.secondE[1]);
+            eventDate.setSeconds(schedule.secondE[2]);
+            if(isPast(eventDate, date) === false) {
+              var timeUntilNext = msToStr(daysBetween(date, eventDate));
+              eventName = "Second Hour Ends";
+              document.getElementById("countdown").innerHTML = timeUntilNext + " Until Second Hour Ends";
+            } else {
+              eventDate.setHours(schedule.thirdS[0]);
+              eventDate.setMinutes(schedule.thirdS[1]);
+              eventDate.setSeconds(schedule.thirdS[2]);
+              if(isPast(eventDate, date) === false) {
+                var timeUntilNext = msToStr(daysBetween(date, eventDate));
+                eventName = "Third Hour Starts";
+                document.getElementById("countdown").innerHTML = timeUntilNext + " Until Third Hour Starts";
+              } else {
+                eventDate.setHours(schedule.thirdE[0]);
+                eventDate.setMinutes(schedule.thirdE[1]);
+                eventDate.setSeconds(schedule.thirdE[2]);
+                if(isPast(eventDate, date) === false) {
+                  var timeUntilNext = msToStr(daysBetween(date, eventDate));
+                  eventName = "Third Hour Ends";
+                  document.getElementById("countdown").innerHTML = timeUntilNext + " Until Third Hour Ends";
+                } else {
+                  eventDate.setHours(schedule.fourthS[0]);
+                  eventDate.setMinutes(schedule.fourthS[1]);
+                  eventDate.setSeconds(schedule.fourthS[2]);
+                  if(isPast(eventDate, date) === false) {
+                    var timeUntilNext = msToStr(daysBetween(date, eventDate));
+                    eventName = "Fourth Hour Starts";
+                    document.getElementById("countdown").innerHTML = timeUntilNext + " Until Fourth Hour Starts";
+                  } else {
+                    eventDate.setHours(schedule.fourthE[0]);
+                    eventDate.setMinutes(schedule.fourthE[1]);
+                    eventDate.setSeconds(schedule.fourthE[2]);
+                    if(isPast(eventDate, date) === false) {
+                      var timeUntilNext = msToStr(daysBetween(date, eventDate));
+                      eventName = "Fourth Hour Ends";
+                      document.getElementById("countdown").innerHTML = timeUntilNext + " Until Fourth Hour Ends";
+                    } else {
+                      eventDate.setHours(schedule.fifthS[0]);
+                      eventDate.setMinutes(schedule.fifthS[1]);
+                      eventDate.setSeconds(schedule.fifthS[2]);
+                      if(isPast(eventDate, date) === false) {
+                        var timeUntilNext = msToStr(daysBetween(date, eventDate));
+                        eventName = "Fifth Hour Starts";
+                        document.getElementById("countdown").innerHTML = timeUntilNext + " Until Fifth Hour Starts";
+                      } else {
+                        eventDate.setHours(schedule.fifthE[0]);
+                        eventDate.setMinutes(schedule.fifthE[1]);
+                        eventDate.setSeconds(schedule.fifthE[2]);
+                        if(isPast(eventDate, date) === false) {
+                          var timeUntilNext = msToStr(daysBetween(date, eventDate));
+                          eventName = "Fifth Hour Ends";
+                          document.getElementById("countdown").innerHTML = timeUntilNext + " Until Fifth Hour Ends";
+                        } else {
+                          eventDate.setHours(schedule.sixthS[0]);
+                          eventDate.setMinutes(schedule.sixthS[1]);
+                          eventDate.setSeconds(schedule.sixthS[2]);
+                          if(isPast(eventDate, date) === false) {
+                            var timeUntilNext = msToStr(daysBetween(date, eventDate));
+                            eventName = "Sixth Hour Starts";
+                            document.getElementById("countdown").innerHTML = timeUntilNext + " Until Sixth Hour Starts";
+                          } else {
+                            eventDate.setHours(schedule.sixthE[0]);
+                            eventDate.setMinutes(schedule.sixthE[1]);
+                            eventDate.setSeconds(schedule.sixthE[2]);
+                            if(isPast(eventDate, date) === false) {
+                              var timeUntilNext = msToStr(daysBetween(date, eventDate));
+                              eventName = "Sixth Hour Ends";
+                              document.getElementById("countdown").innerHTML = timeUntilNext + " Until Sixth Hour Ends";
+                            } else {
+                              eventDate.setDate(eventDate.getDate() + 1);
+                              eventDate.setHours(schedule.secondS[0]);
+                              eventDate.setMinutes(schedule.secondS[1]);
+                              eventDate.setSeconds(schedule.secondS[2]);
+                              if(isPast(eventDate, date) === false) {
+                                var timeUntilNext = msToStr(daysBetween(date, eventDate));
+                                eventName = "A Hour Starts Tomorrow";
+                                document.getElementById("countdown").innerHTML = timeUntilNext + " Until A Hour";
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }*/
+  eventWeekDay = eventDate.getDay();
+ eventWeekDayString;
+  if(eventWeekDay === 1) {
+    eventWeekDayString = "Monday";
+  } else if(eventWeekDay === 2) {
+    eventWeekDayString = "Tuesday";
+  } else if(eventWeekDay === 3) {
+    eventWeekDayString = "Wednesday";
+  } else if(eventWeekDay === 4) {
+    eventWeekDayString = "Thursday";
+  } else if(eventWeekDay === 5) {
+    eventWeekDayString = "Friday";
+  } else if(eventWeekDay === 6) {
+    weekDayString = "Saturday";
+  }
+  eventHours = eventDate.getHours();
+  eventMinutes = eventDate.getMinutes();
+  eventMonth = eventDate.getMonth();
+  eventDay = eventDate.getDate();
+  eventYear = eventDate.getFullYear();
+
+}
+
+
+
+function msToStr(s) {
+  var fm = [Math.floor(s/60/60/24),Math.floor(s/60/60)%24,Math.floor(s/60)%60,s%60];
+  if(window.innerWidth >= 875) {
+      if(fm[0] !== 0) {
+        return fm[0] + " Days, " + fm[1] + " Hours, " + fm[2] + " Minutes and " + fm[3] + " Seconds";
+      } else if(fm[1] !== 0) {
+        return fm[1] + " Hours, " + fm[2] + " Minutes and " + fm[3] + " Seconds";
+      } else if(fm[2] !== 0) {
+        return fm[2] + " Minutes and " + fm[3] + " Seconds";
+      } else {
+        return fm[3] + " Seconds";
+      }
+    } else {
+      if(fm[0] !== 0) {
+        return fm[0] + "D " + fm[1] + "H " + fm[2] + "M " + fm[3] + "S";
+      } else if(fm[1] !== 0) {
+        return fm[1] + "H " + fm[2] + "M " + fm[3] + "S";
+      } else if(fm[2] !== 0) {
+        return fm[2] + "M " + fm[3] + "S";
+      } else {
+        return fm[3] + "S";
+      }
+    }
+}
+
+
+
+function daysBetween(date1, date2) {
+  var date1Ms = date1.getTime();
+  var date2Ms = date2.getTime();
+  var differenceMs = date2Ms - date1Ms;
+  return Math.round(differenceMs/1000);
+}
+
+function isPast(time, currentTime) {
+if(currentTime < time) {
+    return false;
+} else {
+    return true;
+}
+}
+var calDate = new Date();
+window.onload = function() {
+  updateTime();
+  setInterval(updateTime, 1000);
+  if(window.location.hash === "#test" || window.location.hash === "#debug") {
+    console.log("debug mode");
+    debug = true;
+    document.getElementById("content").insertAdjacentHTML('beforeend', '<center><div class="datepicker-here" id="datepicker" data-language="en"></div><br/><h4>It looks like you found the Debug Page! If you would like to go back to the regular site, click <a href="' + window.location.origin + '">here</a>. If you are just woundering how this site works, feel free to look around!</h4></center>');
+    $('#datepicker').datepicker({timepicker: true,
+      onSelect: function (fd, d, picker) {
+            if(!d) {
+              return;
+            } else {
+              calDate = d;
+            }
+        }
+    })
+$('#datepicker').data('datepicker')
+
+  }
+}
