@@ -1,3 +1,26 @@
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return null;
+}
+
 console.log("index.js loaded")
 console.log(jsonData);
 var debug = false;
@@ -15,6 +38,18 @@ var eventYear;
 var eventDate;
 var eventName;
 var eventSuffix;
+var scheduleName;
+if(getCookie("schedule") === null) {
+  scheduleName = "regular";
+} else {
+  scheduleName = getCookie("schedule");
+}
+var schoolName;
+if(getCookie("school") === null) {
+  schoolName = "rmhs";
+} else {
+  schoolName = getCookie("school")
+}
 function updateTime() {
   var date;
   if(debug === true) {
@@ -84,32 +119,43 @@ calculate(date);
 
 function calculate(date) {
   var foundNext = false;
-  var schedule = jsonData.rmhs.default;
-  for(var i = 0; i < jsonData.rmhs.specialDays.length; i++) {
-    if(jsonData.rmhs.specialDays[i].type === "weekly") {
-      if(weekDay === jsonData.rmhs.specialDays[i].value) {
-        schedule = jsonData.rmhs[jsonData.rmhs.specialDays[i].scheduleName];
+  var schedule = jsonData[schoolName][scheduleName].default;
+  for(var i = 0; i < jsonData[schoolName][scheduleName].specialDays.length; i++) {
+    if(jsonData[schoolName][scheduleName].specialDays[i].type === "weekly") {
+      if(weekDay === jsonData[schoolName][scheduleName].specialDays[i].value) {
+        schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
       }
-    } else if(jsonData.rmhs.specialDays[i].type === "single") {
-      if(date.getDate() === jsonData.rmhs.specialDays[i].value[0] && date.getMonth()+1 === jsonData.rmhs.specialDays[i].value[1] && date.getFullYear() === jsonData.rmhs.specialDays[i].value[2]) {
-        schedule = jsonData.rmhs[jsonData.rmhs.specialDays[i].scheduleName];
+    } else if(jsonData[schoolName][scheduleName].specialDays[i].type === "single") {
+      if(date.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && date.getMonth()+1 === jsonData[schoolName][scheduleName].specialDays[i].value[1] && date.getFullYear() === jsonData[schoolName][scheduleName].specialDays[i].value[2]) {
+        schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
       }
     }
   }
   eventDate = new Date(year, month, day);
+  for(var i = 0; i < schedule.length; i++) {
+    eventDate.setHours(schedule[i][0]);
+    eventDate.setMinutes(schedule[i][1]);
+    eventDate.setSeconds(schedule[i][2]);
+    if(isPast(eventDate, date) === false) {
+      eventName = schedule[i][3];
+      document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+      foundNext = true;
+      i = schedule.length;
+    }
+  }
   var addNum = 1;
   while(foundNext === false && addNum < 365) {
-    eventDate.setDate(eventDate.getDate()+1);
+    eventDate.setDate(eventDate.getDate() + 1);
     if(eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
-      var schedule = jsonData.rmhs.default;
-      for(var i = 0; i < jsonData.rmhs.specialDays.length; i++) {
-        if(jsonData.rmhs.specialDays[i].type === "weekly") {
-          if(eventDate.getDay() === jsonData.rmhs.specialDays[i].value) {
-            schedule = jsonData.rmhs[jsonData.rmhs.specialDays[i].scheduleName];
+      var schedule = jsonData[schoolName][scheduleName].default;
+      for(var i = 0; i < jsonData[schoolName][scheduleName].specialDays.length; i++) {
+        if(jsonData[schoolName][scheduleName].specialDays[i].type === "weekly") {
+          if(eventDate.getDay() === jsonData[schoolName][scheduleName].specialDays[i].value) {
+            schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
           }
-        } else if(jsonData.rmhs.specialDays[i].type === "single") {
-          if(eventDate.getDate() === jsonData.rmhs.specialDays[i].value[0] && eventDate.getMonth()+1 === jsonData.rmhs.specialDays[i].value[1] && eventDate.getFullYear() === jsonData.rmhs.specialDays[i].value[2]) {
-            schedule = jsonData.rmhs[jsonData.rmhs.specialDays[i].scheduleName];
+        } else if(jsonData[schoolName][scheduleName].specialDays[i].type === "single") {
+          if(eventDate.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && eventDate.getMonth()+1 === jsonData[schoolName][scheduleName].specialDays[i].value[1] && eventDate.getFullYear() === jsonData[schoolName][scheduleName].specialDays[i].value[2]) {
+            schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
           }
         }
       }
@@ -127,160 +173,7 @@ function calculate(date) {
     }
   }
 
-  for(var i = 0; i < schedule.length; i++) {
-    eventDate.setHours(schedule[i][0]);
-    eventDate.setMinutes(schedule[i][1]);
-    eventDate.setSeconds(schedule[i][2]);
-    if(isPast(eventDate, date) === false) {
-      eventName = schedule[i][3];
-      document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
-      foundNext = true;
-      i = schedule.length;
-    }
-  }
-
-  /*
-  if(schedule.aS) {
-    eventDate.setHours(schedule.aS[0]);
-    eventDate.setMinutes(schedule.aS[1]);
-    eventDate.setSeconds(schedule.aS[2]);
-  }
-  if(isPast(eventDate, date) === false && schedule.aS !== undefined) {
-    var timeUntilNext = msToStr(daysBetween(date, eventDate));
-    eventName = "A Hour Starts";
-    document.getElementById("countdown").innerHTML = timeUntilNext + " Until A Hour";
-  } else {
-    if(schedule.aE) {
-      eventDate.setHours(schedule.aE[0]);
-      eventDate.setMinutes(schedule.aE[1]);
-      eventDate.setSeconds(schedule.aE[2]);
-    }
-    if(isPast(eventDate, date) === false && schedule.aE !== undefined) {
-      var timeUntilNext = msToStr(daysBetween(date, eventDate));
-      eventName = "A Hour Ends";
-      document.getElementById("countdown").innerHTML = timeUntilNext + " Until A Hour Ends";
-    } else {
-      eventDate.setHours(schedule.firstS[0]);
-      eventDate.setMinutes(schedule.firstS[1]);
-      eventDate.setSeconds(schedule.firstS[2]);
-      if(isPast(eventDate, date) === false) {
-        var timeUntilNext = msToStr(daysBetween(date, eventDate));
-        eventName = "First Hour Starts";
-        document.getElementById("countdown").innerHTML = timeUntilNext + " Until First Hour Starts";
-      } else {
-        eventDate.setHours(schedule.firstE[0]);
-        eventDate.setMinutes(schedule.firstE[1]);
-        eventDate.setSeconds(schedule.firstE[2]);
-        if(isPast(eventDate, date) === false) {
-          var timeUntilNext = msToStr(daysBetween(date, eventDate));
-          eventName = "First Hour Ends";
-          document.getElementById("countdown").innerHTML = timeUntilNext + " Until First Hour Ends";
-        } else {
-          eventDate.setHours(schedule.secondS[0]);
-          eventDate.setMinutes(schedule.secondS[1]);
-          eventDate.setSeconds(schedule.secondS[2]);
-          if(isPast(eventDate, date) === false) {
-            var timeUntilNext = msToStr(daysBetween(date, eventDate));
-            eventName = "Second Hour Starts";
-            document.getElementById("countdown").innerHTML = timeUntilNext + " Until Second Hour Starts";
-          } else {
-            eventDate.setHours(schedule.secondE[0]);
-            eventDate.setMinutes(schedule.secondE[1]);
-            eventDate.setSeconds(schedule.secondE[2]);
-            if(isPast(eventDate, date) === false) {
-              var timeUntilNext = msToStr(daysBetween(date, eventDate));
-              eventName = "Second Hour Ends";
-              document.getElementById("countdown").innerHTML = timeUntilNext + " Until Second Hour Ends";
-            } else {
-              eventDate.setHours(schedule.thirdS[0]);
-              eventDate.setMinutes(schedule.thirdS[1]);
-              eventDate.setSeconds(schedule.thirdS[2]);
-              if(isPast(eventDate, date) === false) {
-                var timeUntilNext = msToStr(daysBetween(date, eventDate));
-                eventName = "Third Hour Starts";
-                document.getElementById("countdown").innerHTML = timeUntilNext + " Until Third Hour Starts";
-              } else {
-                eventDate.setHours(schedule.thirdE[0]);
-                eventDate.setMinutes(schedule.thirdE[1]);
-                eventDate.setSeconds(schedule.thirdE[2]);
-                if(isPast(eventDate, date) === false) {
-                  var timeUntilNext = msToStr(daysBetween(date, eventDate));
-                  eventName = "Third Hour Ends";
-                  document.getElementById("countdown").innerHTML = timeUntilNext + " Until Third Hour Ends";
-                } else {
-                  eventDate.setHours(schedule.fourthS[0]);
-                  eventDate.setMinutes(schedule.fourthS[1]);
-                  eventDate.setSeconds(schedule.fourthS[2]);
-                  if(isPast(eventDate, date) === false) {
-                    var timeUntilNext = msToStr(daysBetween(date, eventDate));
-                    eventName = "Fourth Hour Starts";
-                    document.getElementById("countdown").innerHTML = timeUntilNext + " Until Fourth Hour Starts";
-                  } else {
-                    eventDate.setHours(schedule.fourthE[0]);
-                    eventDate.setMinutes(schedule.fourthE[1]);
-                    eventDate.setSeconds(schedule.fourthE[2]);
-                    if(isPast(eventDate, date) === false) {
-                      var timeUntilNext = msToStr(daysBetween(date, eventDate));
-                      eventName = "Fourth Hour Ends";
-                      document.getElementById("countdown").innerHTML = timeUntilNext + " Until Fourth Hour Ends";
-                    } else {
-                      eventDate.setHours(schedule.fifthS[0]);
-                      eventDate.setMinutes(schedule.fifthS[1]);
-                      eventDate.setSeconds(schedule.fifthS[2]);
-                      if(isPast(eventDate, date) === false) {
-                        var timeUntilNext = msToStr(daysBetween(date, eventDate));
-                        eventName = "Fifth Hour Starts";
-                        document.getElementById("countdown").innerHTML = timeUntilNext + " Until Fifth Hour Starts";
-                      } else {
-                        eventDate.setHours(schedule.fifthE[0]);
-                        eventDate.setMinutes(schedule.fifthE[1]);
-                        eventDate.setSeconds(schedule.fifthE[2]);
-                        if(isPast(eventDate, date) === false) {
-                          var timeUntilNext = msToStr(daysBetween(date, eventDate));
-                          eventName = "Fifth Hour Ends";
-                          document.getElementById("countdown").innerHTML = timeUntilNext + " Until Fifth Hour Ends";
-                        } else {
-                          eventDate.setHours(schedule.sixthS[0]);
-                          eventDate.setMinutes(schedule.sixthS[1]);
-                          eventDate.setSeconds(schedule.sixthS[2]);
-                          if(isPast(eventDate, date) === false) {
-                            var timeUntilNext = msToStr(daysBetween(date, eventDate));
-                            eventName = "Sixth Hour Starts";
-                            document.getElementById("countdown").innerHTML = timeUntilNext + " Until Sixth Hour Starts";
-                          } else {
-                            eventDate.setHours(schedule.sixthE[0]);
-                            eventDate.setMinutes(schedule.sixthE[1]);
-                            eventDate.setSeconds(schedule.sixthE[2]);
-                            if(isPast(eventDate, date) === false) {
-                              var timeUntilNext = msToStr(daysBetween(date, eventDate));
-                              eventName = "Sixth Hour Ends";
-                              document.getElementById("countdown").innerHTML = timeUntilNext + " Until Sixth Hour Ends";
-                            } else {
-                              eventDate.setDate(eventDate.getDate() + 1);
-                              eventDate.setHours(schedule.secondS[0]);
-                              eventDate.setMinutes(schedule.secondS[1]);
-                              eventDate.setSeconds(schedule.secondS[2]);
-                              if(isPast(eventDate, date) === false) {
-                                var timeUntilNext = msToStr(daysBetween(date, eventDate));
-                                eventName = "A Hour Starts Tomorrow";
-                                document.getElementById("countdown").innerHTML = timeUntilNext + " Until A Hour";
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-  }*/
-  eventWeekDay = eventDate.getDay();
+eventWeekDay = eventDate.getDay();
  eventWeekDayString;
   if(eventWeekDay === 1) {
     eventWeekDayString = "Monday";
@@ -348,6 +241,17 @@ if(currentTime < time) {
 }
 var calDate = new Date();
 window.onload = function() {
+  document.getElementById("settings").onclick = function(e) {
+    e.preventDefault();
+    var dialog = bootbox.dialog({
+    message: '<p><br/>School: <select id="school" onchange="updateSchool(this.value)"><option value="rmhs">Red Mountain High School</option><option id="westwood" disabled>Westwood High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value)"><option value="regular">Normal Schedule</option><option value="CORE">CORE Schedule</option></select><br/><br/><input type="checkbox" disabled checked/> Display A Hour</p>',
+    closeButton: true,
+    backdrop: true
+  });
+  dialog.find("school").prevObject[0].children[0].children[0].children[0].children[1].children[0].children[1].setAttribute("value", schoolName);
+  dialog.find("school").prevObject[0].children[0].children[0].children[0].children[1].children[0].children[4].value = scheduleName;
+  console.log(dialog.find("school").prevObject[0].children[0].children[0].children[0].children[1].children[0].children[4]);
+  }
   updateTime();
   setInterval(updateTime, 1000);
   if(window.location.hash === "#test" || window.location.hash === "#debug") {
@@ -366,4 +270,12 @@ window.onload = function() {
 $('#datepicker').data('datepicker')
 
   }
+}
+function updateSchool(school) {
+  schoolName = school;
+  setCookie("school", school, 999);
+}
+function updateSchedule(val) {
+  scheduleName = val;
+  setCookie("schedule", val, 999);
 }
