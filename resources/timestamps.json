@@ -5,8 +5,8 @@ var jsonData = {
       "default": [
         [6, 45, 11, "A Hour Starts", "aS"],
         [7, 54, 11, "A Hour Ends", "aE"],
-        [7, 58, 11, "First Hour Starts", "firstS"],
-        [8, 54, 11, "First Hour Ends", "firstE"],
+        [8, 0, 11, "First Hour Starts", "firstS"],
+        [8, 56, 11, "First Hour Ends", "firstE"],
         [9, 2, 11, "Second Hour Starts", "secondS"],
         [10, 4, 11, "Second Hour Ends", "secondE"],
         [10, 10, 11, "Third Hour Starts", "thirdS"],
