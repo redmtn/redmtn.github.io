@@ -37,7 +37,19 @@ var eventYear;
 var eventDate;
 var eventName;
 var eventSuffix;
-var enableAHour;
+var displayTimeInTab = false;
+if(getCookie("displayTimeInTab") === null) {
+  displayTimeInTab = false;
+} else {
+  displayTimeInTab = getCookie("displayTimeInTab");
+  if(displayTimeInTab === "true") {
+    displayTimeInTab = true;
+  }
+  if(displayTimeInTab === "false") {
+    displayTimeInTab = false;
+  }
+}
+var enableAHour = true;
 if(getCookie("AHour") === null) {
   enableAHour = true;
 } else {
@@ -150,7 +162,12 @@ function calculate(date) {
       eventDate.setSeconds(schedule[i][2]);
       if(isPast(eventDate, date) === false) {
         eventName = schedule[i][3];
-        document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+        document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
+        if(displayTimeInTab === true) {
+          document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+        } else {
+          document.getElementById("pageTitle").innerHTML = "Countdown";
+        }
         foundNext = true;
         i = schedule.length;
       }
@@ -161,7 +178,12 @@ function calculate(date) {
       eventDate.setSeconds(schedule[i][2]);
       if(isPast(eventDate, date) === false) {
         eventName = schedule[i][3];
-        document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+        document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
+        if(displayTimeInTab === true) {
+          document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+        } else {
+          document.getElementById("pageTitle").innerHTML = "Countdown";
+        }
         foundNext = true;
         i = schedule.length;
       }
@@ -190,7 +212,12 @@ function calculate(date) {
           eventDate.setSeconds(schedule[i][2]);
           if(isPast(eventDate, date) === false) {
             eventName = schedule[i][3];
-            document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+            document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
+            if(displayTimeInTab === true) {
+              document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+            } else {
+              document.getElementById("pageTitle").innerHTML = "Countdown";
+            }
             foundNext = true;
             i = schedule.length;
           }
@@ -201,7 +228,12 @@ function calculate(date) {
           eventDate.setSeconds(schedule[i][2]);
           if(isPast(eventDate, date) === false) {
             eventName = schedule[i][3];
-            document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+            document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
+            if(displayTimeInTab === true) {
+              document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+            } else {
+              document.getElementById("pageTitle").innerHTML = "Countdown";
+            }
             foundNext = true;
             i = schedule.length;
           }
@@ -236,9 +268,9 @@ eventWeekDay = eventDate.getDay();
 
 
 
-function msToStr(s) {
+function msToStr(s, f) {
   var fm = [Math.floor(s/60/60/24),Math.floor(s/60/60)%24,Math.floor(s/60)%60,s%60];
-  if(window.innerWidth >= 875) {
+  if(window.innerWidth >= 875 && f === "full") {
       if(fm[0] !== 0) {
         return fm[0] + " Days, " + fm[1] + " Hours, " + fm[2] + " Minutes and " + fm[3] + " Seconds";
       } else if(fm[1] !== 0) {
@@ -282,11 +314,11 @@ window.onload = function() {
   document.getElementById("settings").onclick = function(e) {
     e.preventDefault();
     if(schoolName === "mtnView" || schoolName === "westwood") {
-      dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour</p>');
+      dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p>');
       var boxHTML = $("#pageSettings")[0].children[0];
       boxHTML.children[7].value = "A"
     } else {
-      dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour</p>');
+      dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p>');
       var boxHTML = $("#pageSettings")[0].children[0];
       boxHTML.children[7].value = "default"
     }
@@ -310,6 +342,10 @@ window.onload = function() {
 $('#datepicker').data('datepicker')
 
   }
+}
+function updateDisplayTab(value) {
+  displayTimeInTab = value;
+  setCookie("displayTimeInTab", value, 999);
 }
 function updateSchool(school) {
   var boxHTML = $("#pageSettings")[0].children[0];
@@ -352,4 +388,5 @@ console.log(boxHTML.children);
 boxHTML.children[1].value = schoolName;
 boxHTML.children[4].value = scheduleName;
 boxHTML.children[7].checked = enableAHour;
+boxHTML.children[10].checked = displayTimeInTab;
 }
