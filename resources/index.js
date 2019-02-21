@@ -326,7 +326,6 @@ function updateSchool(school) {
   }
   schoolName = school;
   setCookie("school", school, 999);
-  window.location.href = window.location.host;
 }
 function updateSchedule(val) {
   scheduleName = val;
