@@ -21,8 +21,7 @@ function getCookie(cname) {
   return null;
 }
 
-console.log("index.js loaded")
-console.log(jsonData);
+console.log("index.js loaded");
 var debug = false;
 var year;
 var month;
@@ -318,11 +317,13 @@ function updateSchool(school) {
     boxHTML.children[4].innerHTML = '<option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option>';
     boxHTML.children[7].value = "A"
     scheduleName = "A";
+    setCookie("schedule", "A", 999);
   }
   if(school === "rmhs") {
     boxHTML.children[4].innerHTML = '<option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>';
     boxHTML.children[7].value = "default"
     scheduleName = "regular";
+    setCookie("schedule", "regular", 999);
   }
   schoolName = school;
   setCookie("school", school, 999);
