@@ -38,6 +38,18 @@ var eventYear;
 var eventDate;
 var eventName;
 var eventSuffix;
+var enableAHour;
+if(getCookie("AHour") === null) {
+  enableAHour = true;
+} else {
+  enableAHour = getCookie("AHour");
+  if(enableAHour === "true") {
+    enableAHour = true;
+  }
+  if(enableAHour === "false") {
+    enableAHour = false;
+  }
+}
 var scheduleName;
 if(getCookie("schedule") === null) {
   scheduleName = "regular";
@@ -113,7 +125,7 @@ calculate(date);
   if(eventMinutesStr === "0" || eventMinutesStr === "1" || eventMinutesStr === "2" || eventMinutesStr === "3" || eventMinutesStr === "4" || eventMinutesStr === "5" || eventMinutesStr === "6" || eventMinutesStr === "7" || eventMinutesStr === "8" || eventMinutesStr === "9") {
     eventMinutesStr = "0" + eventMinutesStr;
   }
-  document.getElementById("time").innerHTML = "Current Time: " + hours + ":" + minutesStr + " " + suffix + " - " + weekDayString + ", " + (month+1) + "/" + day + "/" + year + "<br/><br/>" + eventName + ": " + eventHours + ":" + eventMinutesStr + eventSuffix + " - " + eventWeekDayString + ", " + (eventMonth+1) + "/" + eventDay + "/" + eventYear;
+  document.getElementById("time").innerHTML = "<br/>Current Time: " + hours + ":" + minutesStr + " " + suffix + " - " + weekDayString + ", " + (month+1) + "/" + day + "/" + year + "<br/><br/>" + eventName + ": " + eventHours + ":" + eventMinutesStr + eventSuffix + " - " + eventWeekDayString + ", " + (eventMonth+1) + "/" + eventDay + "/" + eventYear;
 }
 
 
@@ -133,14 +145,27 @@ function calculate(date) {
   }
   eventDate = new Date(year, month, day);
   for(var i = 0; i < schedule.length; i++) {
-    eventDate.setHours(schedule[i][0]);
-    eventDate.setMinutes(schedule[i][1]);
-    eventDate.setSeconds(schedule[i][2]);
-    if(isPast(eventDate, date) === false) {
-      eventName = schedule[i][3];
-      document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
-      foundNext = true;
-      i = schedule.length;
+    if(enableAHour === false && schedule[i][4] !== "aS" && schedule[i][4] !== "aE") {
+      eventDate.setHours(schedule[i][0]);
+      eventDate.setMinutes(schedule[i][1]);
+      eventDate.setSeconds(schedule[i][2]);
+      if(isPast(eventDate, date) === false) {
+        eventName = schedule[i][3];
+        document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+        foundNext = true;
+        i = schedule.length;
+      }
+    }
+    if(enableAHour === true && schedule[i][4] !== "bell") {
+      eventDate.setHours(schedule[i][0]);
+      eventDate.setMinutes(schedule[i][1]);
+      eventDate.setSeconds(schedule[i][2]);
+      if(isPast(eventDate, date) === false) {
+        eventName = schedule[i][3];
+        document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+        foundNext = true;
+        i = schedule.length;
+      }
     }
   }
   var addNum = 1;
@@ -160,18 +185,32 @@ function calculate(date) {
         }
       }
       for(var i = 0; i < schedule.length; i++) {
-        eventDate.setHours(schedule[i][0]);
-        eventDate.setMinutes(schedule[i][1]);
-        eventDate.setSeconds(schedule[i][2]);
-        if(isPast(eventDate, date) === false) {
-          eventName = schedule[i][3];
-          document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
-          foundNext = true;
-          i = schedule.length;
+        if(enableAHour === false && schedule[i][4] !== "aS" && schedule[i][4] !== "aE") {
+          eventDate.setHours(schedule[i][0]);
+          eventDate.setMinutes(schedule[i][1]);
+          eventDate.setSeconds(schedule[i][2]);
+          if(isPast(eventDate, date) === false) {
+            eventName = schedule[i][3];
+            document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+            foundNext = true;
+            i = schedule.length;
+          }
+        }
+        if(enableAHour === true && schedule[i][4] !== "bell") {
+          eventDate.setHours(schedule[i][0]);
+          eventDate.setMinutes(schedule[i][1]);
+          eventDate.setSeconds(schedule[i][2]);
+          if(isPast(eventDate, date) === false) {
+            eventName = schedule[i][3];
+            document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+            foundNext = true;
+            i = schedule.length;
+          }
         }
       }
     }
   }
+
 
 eventWeekDay = eventDate.getDay();
  eventWeekDayString;
@@ -243,15 +282,17 @@ var calDate = new Date();
 window.onload = function() {
   document.getElementById("settings").onclick = function(e) {
     e.preventDefault();
-    var dialog = bootbox.dialog({
-    message: '<p><br/>School: <select id="school" onchange="updateSchool(this.value)"><option value="rmhs">Red Mountain High School</option><option id="westwood" disabled>Westwood High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value)"><option value="regular">Normal Schedule</option><option value="CORE">CORE Schedule</option></select><br/><br/><input type="checkbox" disabled checked/> Display A Hour</p>',
-    closeButton: true,
-    backdrop: true
-  });
-  dialog.find("school").prevObject[0].children[0].children[0].children[0].children[1].children[0].children[1].setAttribute("value", schoolName);
-  dialog.find("school").prevObject[0].children[0].children[0].children[0].children[1].children[0].children[4].value = scheduleName;
-  console.log(dialog.find("school").prevObject[0].children[0].children[0].children[0].children[1].children[0].children[4]);
+    if(schoolName === "mtnView" || schoolName === "westwood") {
+      dialogueBox('<p><br/>School: <select id="school" onmousedown="this.value=\'\';" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onmousedown="this.value=\'\';" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour</p>');
+      var boxHTML = $("#pageSettings")[0].children[0];
+      boxHTML.children[7].value = "A"
+    } else {
+      dialogueBox('<p><br/>School: <select id="school" onmousedown="this.value=\'\';" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onmousedown="this.value=\'\';" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour</p>');
+      var boxHTML = $("#pageSettings")[0].children[0];
+      boxHTML.children[7].value = "default"
+    }
   }
+
   updateTime();
   setInterval(updateTime, 1000);
   if(window.location.hash === "#test" || window.location.hash === "#debug") {
@@ -272,10 +313,43 @@ $('#datepicker').data('datepicker')
   }
 }
 function updateSchool(school) {
+  var boxHTML = $("#pageSettings")[0].children[0];
+  if(school === "mtnView" || school === "westwood") {
+    boxHTML.children[4].innerHTML = '<option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option>';
+    boxHTML.children[7].value = "A"
+    scheduleName = "A";
+  }
+  if(school === "rmhs") {
+    boxHTML.children[4].innerHTML = '<option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>';
+    boxHTML.children[7].value = "default"
+    scheduleName = "regular";
+  }
   schoolName = school;
   setCookie("school", school, 999);
+  window.location.href = window.location.host;
 }
 function updateSchedule(val) {
   scheduleName = val;
   setCookie("schedule", val, 999);
+}
+function setAHour(val) {
+  enableAHour = val;
+  if(enableAHour === "true") {
+    enableAHour = true;
+  }
+  if(enableAHour === "false") {
+    enableAHour = false;
+  }
+  setCookie("AHour", enableAHour, 999);
+}
+function dialogueBox(content) {
+  var dialog = bootbox.dialog({
+       message: "<div id='pageSettings'></div>",
+    });
+    $("#pageSettings").html(content);
+var boxHTML = $("#pageSettings")[0].children[0];
+console.log(boxHTML.children);
+boxHTML.children[1].value = schoolName;
+boxHTML.children[4].value = scheduleName;
+boxHTML.children[7].checked = enableAHour;
 }
