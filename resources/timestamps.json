@@ -36,6 +36,12 @@ var jsonData = {
         [14, 8, 11, "Sixth Hour Starts", "sixthS"],
         [15, 0, 11, "Sixth Hour Ends", "sixthE"],
       ],
+      "earlyRelease": [
+        [6, 45, 11, "A Hour Starts", "aS"],
+        [7, 54, 11, "A Hour Ends", "aE"],
+        [7, 54, 11, "First Bell Rings", "bell"],
+        [8, 0, 11, "First Hour Starts", "firstS"],
+      ],
       "specialDays": [
         {"type": "weekly", "value": 3, "scheduleName": "wednesday"}
       ]

@@ -160,7 +160,7 @@ function calculate(date) {
       eventDate.setHours(schedule[i][0]);
       eventDate.setMinutes(schedule[i][1]);
       eventDate.setSeconds(schedule[i][2]);
-      if(isPast(eventDate, date) === false) {
+      if(isPast(eventDate, date) === false && eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
         eventName = schedule[i][3];
         document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
         if(displayTimeInTab === true) {
@@ -176,7 +176,7 @@ function calculate(date) {
       eventDate.setHours(schedule[i][0]);
       eventDate.setMinutes(schedule[i][1]);
       eventDate.setSeconds(schedule[i][2]);
-      if(isPast(eventDate, date) === false) {
+      if(isPast(eventDate, date) === false && eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
         eventName = schedule[i][3];
         document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
         if(displayTimeInTab === true) {
