@@ -149,7 +149,11 @@ function calculate(date) {
         schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
       }
     } else if(jsonData[schoolName][scheduleName].specialDays[i].type === "single") {
-      if(date.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && date.getMonth()+1 === jsonData[schoolName][scheduleName].specialDays[i].value[1] && date.getFullYear() === jsonData[schoolName][scheduleName].specialDays[i].value[2]) {
+      if(date.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && date.getMonth()+1 === jsonData[schoolName][scheduleName].specialDays[i].value[1]) {
+        schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
+      }
+    } else if(jsonData[schoolName][scheduleName].specialDays[i].type === "range") {
+      if(date.getDate() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][0] && date.getDate() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][0] && date.getMonth()+1 >= jsonData[schoolName][scheduleName].specialDays[i].value[0][1] && date.getMonth()+1 <= jsonData[schoolName][scheduleName].specialDays[i].value[1][1] && date.getFullYear() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][2] && date.getFullYear() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][2]) {
         schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
       }
     }
@@ -200,7 +204,11 @@ function calculate(date) {
             schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
           }
         } else if(jsonData[schoolName][scheduleName].specialDays[i].type === "single") {
-          if(eventDate.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && eventDate.getMonth()+1 === jsonData[schoolName][scheduleName].specialDays[i].value[1] && eventDate.getFullYear() === jsonData[schoolName][scheduleName].specialDays[i].value[2]) {
+          if(eventDate.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && eventDate.getMonth()+1 === jsonData[schoolName][scheduleName].specialDays[i].value[1]) {
+            schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
+          }
+        } else if(jsonData[schoolName][scheduleName].specialDays[i].type === "range") {
+          if(eventDate.getDate() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][0] && eventDate.getDate() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][0] && eventDate.getMonth()+1 >= jsonData[schoolName][scheduleName].specialDays[i].value[0][1] && eventDate.getMonth()+1 <= jsonData[schoolName][scheduleName].specialDays[i].value[1][1] && eventDate.getFullYear() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][2] && eventDate.getFullYear() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][2]) {
             schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
           }
         }
