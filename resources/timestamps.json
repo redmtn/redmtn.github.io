@@ -53,10 +53,24 @@ var jsonData = {
         [11, 50, 11, "Sixth Hour Starts", "sixthS"],
         [12, 30, 11, "Sixth Hour Ends", "sixthE"]
       ],
+      "testing1": [
+        [7, 59, 51, "A Hour Starts", "aS"],
+        [7, 53, 51, "A Hour Ends", "aE"],
+        [7, 59, 51, "first Hour Starts", "firstS"],
+        [10, 3, 51, "First Hour Ends", "firstS"],
+        [10, 38, 51, "First Lunch Ends", "firstE"],
+        [10, 44, 51, "Second Hour (1st lunch) Starts", "seconsS"],
+        [12, 13, 51, "Second Hour (2nd lunch) Starts", "secondS"],
+        [12, 48, 51, "Second Lunch / Second Hour (1st lunch) ends", "secondE"],
+        [12, 54, 51, "Third Hour Starts", "thirdS"],
+        [2, 59, 51, "Third Hour Ends", "thirdS"]
+
+      ],
       "dayOff": [
 
       ],
       "specialDays": [
+        {"type": "single", "value": [1, 4], "scheduleName": "testing1"},
         {"type": "weekly", "value": 3, "scheduleName": "wednesday"},
         {"type": "single", "value": [8, 3], "scheduleName": "earlyRelease"},
         {"type": "range", "value": [[11, 3, 2019], [15, 3, 2019]], "scheduleName": "dayOff"}
