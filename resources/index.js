@@ -1,5 +1,6 @@
 var year, month, day, weekDay, eventWeekDay, eventWeekDayString, eventHours, eventMinutes, eventMonth, eventDay, eventYear, eventDate, eventName, eventSuffix;
 var debug = false;
+var useHMS = false;
 var version = "1.2.0";
 var displayTimeInTab = false;
 if (localStorage.getItem("displayTimeInTab") === null) {
@@ -117,7 +118,7 @@ function calculate(date) {
 			eventDate.setSeconds(schedule[i][2]);
 			if (isPast(eventDate, date) === false && eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
 				eventName = schedule[i][3];
-				document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
+				document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
 				if (displayTimeInTab === true) {
 					document.title = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
 				} else {
@@ -133,7 +134,7 @@ function calculate(date) {
 			eventDate.setSeconds(schedule[i][2]);
 			if (isPast(eventDate, date) === false && eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
 				eventName = schedule[i][3];
-				document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
+				document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
 				if (displayTimeInTab === true) {
 					document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
 				} else {
@@ -171,7 +172,7 @@ function calculate(date) {
 					eventDate.setSeconds(schedule[i][2]);
 					if (isPast(eventDate, date) === false) {
 						eventName = schedule[i][3];
-						document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
+						document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
 						if (displayTimeInTab === true) {
 							document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
 						} else {
@@ -187,7 +188,7 @@ function calculate(date) {
 					eventDate.setSeconds(schedule[i][2]);
 					if (isPast(eventDate, date) === false) {
 						eventName = schedule[i][3];
-						document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until " + eventName;
+						document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
 						if (displayTimeInTab === true) {
 							document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
 						} else {
@@ -229,7 +230,7 @@ function calculate(date) {
 
 function msToStr(s, f) {
 	var fm = [Math.floor(s / 60 / 60 / 24), Math.floor(s / 60 / 60) % 24, Math.floor(s / 60) % 60, s % 60];
-	if (window.innerWidth >= 875 && f === "full") {
+	if (window.innerWidth >= 875 && f === "full" && useHMS === false) {
 		if (fm[0] !== 0) {
 			return fm[0] + " Days, " + fm[1] + " Hours, " + fm[2] + " Minutes and " + fm[3] + " Seconds";
 		} else if (fm[1] !== 0) {
@@ -255,7 +256,7 @@ function msToStr(s, f) {
 function resetCSS() {
 	if (confirm("Are you sure you want to delete your custom stylesheet?") === true) {
 		localStorage.removeItem("css");
-		document.getElementById("customStyle").parentNode.removeChild(document.getElementById("customStyle"));
+		location.reload();
 	}
 }
 
@@ -267,10 +268,7 @@ function handleFiles(files) {
 			newCss = e.target.result;
 			localStorage.setItem("css", encodeURIComponent(newCss));
 			console.log("CSS written, replaced localstorage.");
-			if (document.getElementById("customStyle")) {
-				document.getElementById("customStyle").parentNode.removeChild(document.getElementById("customStyle"));
-			}
-			document.head.insertAdjacentHTML("beforeend", "<style id='customStyle'>" + newCss + "</style>");
+			location.reload();
 		};
 	})(files[0]);
 	reader.readAsText(files[0]);
@@ -295,6 +293,16 @@ window.onload = function() {
 	if (localStorage.getItem("css") !== null) {
 		if (document.getElementById("customStyle")) {
 			document.getElementById("customStyle").parentNode.removeChild(document.getElementById("customStyle"));
+		}
+		console.log(decodeURIComponent(localStorage.getItem("css")).split(';')[0]);
+		if (decodeURIComponent(localStorage.getItem("css")).split(';')[0] == "override: true") {
+			document.getElementById("mainStylesheet").parentNode.removeChild(document.getElementById("mainStylesheet"));
+			console.log("main CSS overridden");
+		}
+		console.log(encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]));
+		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]) == "%0D%0AuseHMS%3A%20true") {
+			useHMS = true;
+			console.log("always using HMS");
 		}
 		document.head.insertAdjacentHTML("beforeend", "<style id='customStyle'>" + decodeURIComponent(localStorage.getItem("css")) + "</style>");
 		console.log("inserting new CSS");

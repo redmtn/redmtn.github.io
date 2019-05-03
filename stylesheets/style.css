@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+
+@font-face {
+  font-family: "oxygen";
+  src: url(../resources/font/Quark-Light.otf) format("opentype");
+}
+
+@font-face {
+  font-family: "prime";
+  src: url(../resources/font/Prime-Regular.otf) format("opentype");
+}
+
+
+html {
+  font-family: "oxygen";
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  padding: 25px;
+}
+body {
+  font-family: "oxygen";
+  background-color: #dddddd;
+  color: #666;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "prime";
+}
+
+ul {
+  font-size: 18px;
+}

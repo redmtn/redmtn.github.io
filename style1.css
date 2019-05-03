@@ -1,0 +1,34 @@
+override: true;
+body {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+    background: url(./resources/meadow.jpg);
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+
+.#countdown, #time {
+    position: relative !important;
+    text-align: center !important;
+    padding-left: auto !important;
+    padding-right: auto !important;
+}
+
+body,html,nav {
+    font-family: roboto,-apple-system,BlinkMacSystemFont,segoe ui,Roboto,helvetica neue,Arial,sans-serif !important;
+}
+
+#page-header {
+    margin-top: 5px !important;
+    margin-left: 5px !important;
+    border: none  !important;
+    min-height: 44vh !important;
+    width: 60% !important;
+    background-color: rgba(221,221,221,.5) !important;
+    margin: .5% !important;
+    padding-bottom: 4em !important;
+    border-radius: .5vw !important;
+}

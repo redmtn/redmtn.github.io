@@ -20,7 +20,7 @@ body {
   background-color: #dddddd;
 }
 
-.page-header {
+.countdown-container {
   font-family: "oxygen";
   padding: 2.5em;
   color: #fff;
@@ -28,7 +28,6 @@ body {
   margin-right: 150px;
   margin-top: 66px;
   border: 7px solid #757575;
-  border-radius: 50px;
   text-align: center;
   background-color: #999999;
 }
