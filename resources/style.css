@@ -10,6 +10,20 @@
   src: url(./font/Prime-Regular.otf) format("opentype");
 }
 
+#settings {
+  margin-top:-48px;margin-right:16px;position:absolute;right:0px;
+}
+
+#countdown {
+      font-size: 2.5rem;
+}
+
+#time {
+  font-family: "prime";
+  font-size: 1.15rem;
+  color: #dddddd;
+}
+
 html {
   font-family: "oxygen";
   -ms-text-size-adjust: 100%;
@@ -24,8 +38,8 @@ body {
   font-family: "oxygen";
   padding: 2.5em;
   color: #fff;
-  margin-left: 150px;
-  margin-right: 150px;
+  margin-left: 75px;
+  margin-right: 75px;
   margin-top: 66px;
   border: 7px solid #757575;
   text-align: center;
