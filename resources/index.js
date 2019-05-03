@@ -1,5 +1,6 @@
 var year, month, day, weekDay, eventWeekDay, eventWeekDayString, eventHours, eventMinutes, eventMonth, eventDay, eventYear, eventDate, eventName, eventSuffix;
 var debug = false;
+var version = "1.2.0";
 var displayTimeInTab = false;
 if (localStorage.getItem("displayTimeInTab") === null) {
 	displayTimeInTab = false;
@@ -251,6 +252,13 @@ function msToStr(s, f) {
 	}
 }
 
+function resetCSS() {
+	if (confirm("Are you sure you want to delete your custom stylesheet?") === true) {
+		localStorage.removeItem("css");
+		document.getElementById("customStyle").parentNode.removeChild(document.getElementById("customStyle"));
+	}
+}
+
 function handleFiles(files) {
 	var reader = new FileReader();
 	reader.onload = (function(theFile) {
@@ -294,11 +302,11 @@ window.onload = function() {
 	document.getElementById("settings").onclick = function(e) {
 		e.preventDefault();
 		if (schoolName === "mtnView" || schoolName === "westwood") {
-			dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)">');
+			dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/>');
 			var boxHTML = $("#pageSettings")[0].children[0];
 			boxHTML.children[7].value = "A"
 		} else {
-			dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)">');
+			dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/>');
 			var boxHTML = $("#pageSettings")[0].children[0];
 			boxHTML.children[7].value = "default"
 		}
@@ -378,4 +386,4 @@ function dialogueBox(content) {
 }
 
 
-console.log("index.js loaded");
+console.log("index.js loaded (version " + version + ")");
