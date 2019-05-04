@@ -10,6 +10,9 @@
   src: url(../resources/font/Prime-Regular.otf) format("opentype");
 }
 
+iframe {
+  border: 4px solid gray;
+}
 
 html {
   font-family: "oxygen";
@@ -19,7 +22,7 @@ html {
 }
 body {
   font-family: "oxygen";
-  background-color: #dddddd;
+  background-color: #ffffff;
   color: #666;
 }
 
