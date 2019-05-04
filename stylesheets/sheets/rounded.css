@@ -42,6 +42,7 @@ body {
   margin-right: 75px;
   margin-top: 66px;
   border: 7px solid #757575;
+  border-radius: 50px;
   text-align: center;
   background-color: #999999;
 }
