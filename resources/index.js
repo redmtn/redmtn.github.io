@@ -46,13 +46,14 @@ function replaceCSS() {
 		}
 		console.log(decodeURIComponent(localStorage.getItem("css")).split(';')[0]);
 		console.log(encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]));
-		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]) == "%0D%0AuseHMS%3A%20true") {
+		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]) == "*%2F%0D%0A%2F*useHMS%3A%20true") {
 			useHMS = true;
 			console.log("always using HMS");
 		}
 		document.getElementById("mainStylesheet").insertAdjacentHTML("beforebegin", "<style id='customStyle'>" + decodeURIComponent(localStorage.getItem("css")) + "</style>");
 		console.log("inserting new CSS");
-		if (decodeURIComponent(localStorage.getItem("css")).split(';')[0] == "override: true") {
+
+		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[0]) == "%2F*override%3A%20true") {
 			document.getElementById("mainStylesheet").parentNode.removeChild(document.getElementById("mainStylesheet"));
 			console.log("main CSS overridden");
 		}
@@ -328,7 +329,7 @@ window.onload = function() {
 	if (window.location.hash === "#test" || window.location.hash === "#debug") {
 		console.log("debug mode");
 		debug = true;
-		document.getElementById("content").insertAdjacentHTML('beforeend', '<center><div class="datepicker-here" id="datepicker" data-language="en"></div><br/><h4>It looks like you found the Debug Page! If you would like to go back to the regular site, click <a href="' + window.location.origin + '">here</a>. If you are just woundering how this site works, feel free to look around!</h4></center>');
+		document.getElementById("countdown").insertAdjacentHTML('afterend', '<center><div class="datepicker-here" id="datepicker" data-language="en"></div><br/><h4>It looks like you found the Debug Page! If you would like to go back to the regular site, click <a href="' + window.location.origin + '">here</a>. If you are just woundering how this site works, feel free to look around!</h4></center>');
 		$('#datepicker').datepicker({
 			timepicker: true,
 			onSelect: function(fd, d, picker) {

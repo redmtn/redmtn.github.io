@@ -1,9 +1,7 @@
-override: true;
-useHMS: true;
-
+/*override: true;*/
+/*useHMS: true;*/
 body, html {
   background-color: #fff;
-  color: #d0d0d0;
   font-family: roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
 }
 
@@ -24,6 +22,7 @@ body, html {
 }
 
 .countdown-container {
+  color: #b0b0b0;
   margin: 0;
   position: absolute;
   top: 45%;
