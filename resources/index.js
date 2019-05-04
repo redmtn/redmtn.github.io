@@ -39,6 +39,26 @@ if (localStorage.getItem("school") === null) {
 	schoolName = localStorage.getItem("school")
 }
 
+function replaceCSS() {
+	if (localStorage.getItem("css") !== null) {
+		if (document.getElementById("customStyle")) {
+			document.getElementById("customStyle").parentNode.removeChild(document.getElementById("customStyle"));
+		}
+		console.log(decodeURIComponent(localStorage.getItem("css")).split(';')[0]);
+		console.log(encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]));
+		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]) == "%0D%0AuseHMS%3A%20true") {
+			useHMS = true;
+			console.log("always using HMS");
+		}
+		document.getElementById("mainStylesheet").insertAdjacentHTML("beforebegin", "<style id='customStyle'>" + decodeURIComponent(localStorage.getItem("css")) + "</style>");
+		console.log("inserting new CSS");
+		if (decodeURIComponent(localStorage.getItem("css")).split(';')[0] == "override: true") {
+			document.getElementById("mainStylesheet").parentNode.removeChild(document.getElementById("mainStylesheet"));
+			console.log("main CSS overridden");
+		}
+	}
+}
+
 function updateTime() {
 	var date;
 	if (debug === true) {
@@ -290,23 +310,6 @@ function isPast(time, currentTime) {
 }
 var calDate = new Date();
 window.onload = function() {
-	if (localStorage.getItem("css") !== null) {
-		if (document.getElementById("customStyle")) {
-			document.getElementById("customStyle").parentNode.removeChild(document.getElementById("customStyle"));
-		}
-		console.log(decodeURIComponent(localStorage.getItem("css")).split(';')[0]);
-		if (decodeURIComponent(localStorage.getItem("css")).split(';')[0] == "override: true") {
-			document.getElementById("mainStylesheet").parentNode.removeChild(document.getElementById("mainStylesheet"));
-			console.log("main CSS overridden");
-		}
-		console.log(encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]));
-		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]) == "%0D%0AuseHMS%3A%20true") {
-			useHMS = true;
-			console.log("always using HMS");
-		}
-		document.head.insertAdjacentHTML("beforeend", "<style id='customStyle'>" + decodeURIComponent(localStorage.getItem("css")) + "</style>");
-		console.log("inserting new CSS");
-	}
 	document.getElementById("settings").onclick = function(e) {
 		e.preventDefault();
 		if (schoolName === "mtnView" || schoolName === "westwood") {
