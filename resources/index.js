@@ -1,7 +1,7 @@
 var year, month, day, weekDay, eventWeekDay, eventWeekDayString, eventHours, eventMinutes, eventMonth, eventDay, eventYear, eventDate, eventName, eventSuffix;
 var debug = false;
 var useHMS = false;
-var version = "1.2.0";
+var version = "2.6.0";
 var displayTimeInTab = false;
 if (localStorage.getItem("displayTimeInTab") === null) {
 	displayTimeInTab = false;
@@ -44,16 +44,15 @@ function replaceCSS() {
 		if (document.getElementById("customStyle")) {
 			document.getElementById("customStyle").parentNode.removeChild(document.getElementById("customStyle"));
 		}
-		console.log(decodeURIComponent(localStorage.getItem("css")).split(';')[0]);
-		console.log(encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]));
-		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]) == "*%2F%0A%2F*useHMS%3A%20true") {
+		console.log(encodeURIComponent(decodeURIComponent(localStorage.getItem("css"))).indexOf("useHMS%3A%20true"));
+		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css"))).indexOf("useHMS%3A%20true") >= 0) {
 			useHMS = true;
 			console.log("always using HMS");
 		}
 		document.getElementById("mainStylesheet").insertAdjacentHTML("beforebegin", "<style id='customStyle'>" + decodeURIComponent(localStorage.getItem("css")) + "</style>");
 		console.log("inserting new CSS");
 
-		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[0]) == "%2F*override%3A%20true") {
+		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css"))).indexOf("override%3A%20true") >= 0) {
 			document.getElementById("mainStylesheet").parentNode.removeChild(document.getElementById("mainStylesheet"));
 			console.log("main CSS overridden");
 		}
