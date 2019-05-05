@@ -46,7 +46,7 @@ function replaceCSS() {
 		}
 		console.log(decodeURIComponent(localStorage.getItem("css")).split(';')[0]);
 		console.log(encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]));
-		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]) == "*%2F%0D%0A%2F*useHMS%3A%20true") {
+		if (encodeURIComponent(decodeURIComponent(localStorage.getItem("css")).split(';')[1]) == "*%2F%0A%2F*useHMS%3A%20true") {
 			useHMS = true;
 			console.log("always using HMS");
 		}
