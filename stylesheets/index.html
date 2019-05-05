@@ -11,7 +11,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="../resources/bootbox.min.js"></script>
   <script>
-  function getSheetContents(sheet) {
+    function getSheetContents(sheet) {
     $.get(sheet, function(data) {
       if(localStorage.getItem("css")) {
         if(confirm("are you sure you want to overwrite your existing custom CSS?") === true) {
@@ -30,31 +30,29 @@
 
 <body>
   <h1>Custom Stylesheets</h1>
-  <h5><a href="mailto:dfsek.dev@gmail.com?subject=Custom%20stylesheet%20for%20countdown%20site">email me</a> sheets you create for others to download!</h5><h6><a href="../">Back to Main Page</a></h6><br/><br />
+  <h5><a href="mailto:dfsek.dev@gmail.com?subject=Custom%20stylesheet%20for%20countdown%20site">email me</a> sheets you create for others to download!</h5>
+  <h6><a href="../">Back to Main Page</a></h6><br /><br />
   <ul>
-    <li>
+    <li>Rounded
       <ul>
-        <li>Rounded</li>
-        <iframe width="1152" height="648" src="./sheets/rounded.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-150px; margin-left:-300px;"></iframe>
-        <li><input type="button" onclick="getSheetContents('./sheets/rounded.css')" value="Install Stylesheet"/> <a href="./sheets/rounded.css" download>Download CSS File</a></li>
+        <li></li><iframe width="1152" height="648" src="./sheets/rounded.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-185px; margin-left:-290px;"></iframe>
+        <li><input type="button" onclick="getSheetContents('./sheets/rounded.css')" value="Install Stylesheet" /> <a href="./sheets/rounded.css" download>Download CSS File</a></li>
       </ul>
     </li>
-    <br/>
-    <li>
+    <br />
+    <li>Minimal
       <ul>
-        <li>Minimal</li>
-        <iframe width="1152" height="648" src="./sheets/minimal.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-150px; margin-left:-300px;"></iframe>
-        <li><input type="button" onclick="getSheetContents('./sheets/minimal.css')" value="Install Stylesheet"/> <a href="./sheets/minimal.css" download>Download CSS File</a></li>
+        <li></li><iframe width="1152" height="648" src="./sheets/minimal.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-185px; margin-left:-290px;"></iframe>
+        <li><input type="button" onclick="getSheetContents('./sheets/minimal.css')" value="Install Stylesheet" /> <a href="./sheets/minimal.css" download>Download CSS File</a></li>
       </ul>
     </li>
-    <br/>
-    <li>
-    <ul>
-      <li>The Early 2000s (Obviously the best one why would you even use any of the others)</li>
-      <iframe width="1152" height="648" src="./sheets/2000s.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-150px; margin-left:-300px;"></iframe>
-      <li><input type="button" onclick="getSheetContents('./sheets/2000s.css')" value="Install Stylesheet"/> <a href="./sheets/2000s.css" download>Download CSS File</a></li>
-    </ul>
-  </li>
+    <br />
+    <li>The Early 2000s (Obviously the best one why would you even use any of the others)
+      <ul>
+        <li></li><iframe width="1152" height="648" src="./sheets/2000s.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-185px; margin-left:-290px;"></iframe>
+        <li><input type="button" onclick="getSheetContents('./sheets/2000s.css')" value="Install Stylesheet" /> <a href="./sheets/2000s.css" download>Download CSS File</a></li>
+      </ul>
+    </li>
   </ul>
   <h6><a href="../">Back to Main Page</a></h6>
 </body>
