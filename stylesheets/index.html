@@ -10,6 +10,21 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="../resources/bootbox.min.js"></script>
+  <script>
+  function getSheetContents(sheet) {
+    $.get(sheet, function(data) {
+      if(localStorage.getItem("css")) {
+        if(confirm("are you sure you want to overwrite your existing custom CSS?") === true) {
+          localStorage.setItem("css", encodeURIComponent(data));
+          window.location = "../";
+        }
+      } else {
+        localStorage.setItem("css", encodeURIComponent(data));
+        window.location = "../";
+      }
+    });
+  }
+  </script>
   <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -21,7 +36,7 @@
       <ul>
         <li>Rounded</li>
         <iframe width="1152" height="648" src="./sheets/rounded.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-150px; margin-left:-300px;"></iframe>
-        <li><a href="./sheets/rounded.css" download>Download</a></li>
+        <li><input type="button" onclick="getSheetContents('./sheets/rounded.css')" value="Install Stylesheet"/> <a href="./sheets/rounded.css" download>Download CSS File</a></li>
       </ul>
     </li>
     <br/>
@@ -29,7 +44,7 @@
       <ul>
         <li>Minimal</li>
         <iframe width="1152" height="648" src="./sheets/minimal.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-150px; margin-left:-300px;"></iframe>
-        <li><a href="./sheets/minimal.css" download>Download</a></li>
+        <li><input type="button" onclick="getSheetContents('./sheets/minimal.css')" value="Install Stylesheet"/> <a href="./sheets/minimal.css" download>Download CSS File</a></li>
       </ul>
     </li>
     <br/>
@@ -37,7 +52,7 @@
     <ul>
       <li>The Early 2000s (Obviously the best one why would you even use any of the others)</li>
       <iframe width="1152" height="648" src="./sheets/2000s.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-150px; margin-left:-300px;"></iframe>
-      <li><a href="./sheets/2000s.css" download>Download</a></li>
+      <li><input type="button" onclick="getSheetContents('./sheets/2000s.css')" value="Install Stylesheet"/> <a href="./sheets/2000s.css" download>Download CSS File</a></li>
     </ul>
   </li>
   </ul>
