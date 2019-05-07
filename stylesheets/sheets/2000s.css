@@ -13,12 +13,24 @@ body {
 }
 #settings>a {
   display:inline-block;
+  transition-property: transform;
+    transition-duration: 0.75s;
   background-image: url("./resources/2000sSettings.png");
   width:48px;
   height:48px;
   margin-right: 18px;
   margin-top: 18px;
   background-size: 48px 48px;
+}
+#settings>a:hover {
+  animation-name: rotate;
+animation-duration: 0.75s;
+animation-iteration-count: infinite;
+animation-timing-function: linear;
+}
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
 }
 #settings {
   text-align: right;
