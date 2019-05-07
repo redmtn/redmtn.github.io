@@ -36,7 +36,10 @@ body {
 
 .countdown-container {
   font-family: "oxygen";
-  padding: 2.5em;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
   color: #fff;
   margin-left: 75px;
   margin-right: 75px;

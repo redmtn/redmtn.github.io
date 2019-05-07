@@ -32,19 +32,23 @@ html {
 
 body {
   background-color: #dddddd;
+  position: relative;
 }
 
 .countdown-container {
   font-family: "oxygen";
-  padding: 2.5em;
+  padding-top: 5em;
+  padding-bottom: 5em;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
   color: #fff;
   margin-left: 75px;
   margin-right: 75px;
   margin-top: 66px;
   border: 7px solid #757575;
-  border-radius: 50px;
   text-align: center;
   background-color: #999999;
+  border-radius: 50px;
 }
 
 .project-name {

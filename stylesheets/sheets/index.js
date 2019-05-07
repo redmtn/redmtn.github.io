@@ -1,6 +1,7 @@
 var year, month, day, weekDay, eventWeekDay, eventWeekDayString, eventHours, eventMinutes, eventMonth, eventDay, eventYear, eventDate, eventName, eventSuffix;
 var debug = false;
 var useHMS = false;
+var pause = false;
 var version = "1.2.0";
 var displayTimeInTab = false;
 if (localStorage.getItem("displayTimeInTab") === null) {
@@ -39,216 +40,230 @@ if (localStorage.getItem("school") === null) {
 	schoolName = localStorage.getItem("school")
 }
 
+function bindEvent(element, eventName, eventHandler) {
+	if (element.addEventListener) {
+		element.addEventListener(eventName, eventHandler, false);
+	} else if (element.attachEvent) {
+		element.attachEvent('on' + eventName, eventHandler);
+	}
+}
+
 function updateTime() {
-	var date;
-	if (debug === true) {
-		date = calDate;
-	} else {
-		date = new Date();
-	}
-	year = date.getFullYear();
-	month = date.getMonth();
-	day = date.getDate();
-	var hoursM = date.getHours();
-	var hours = hoursM;
-	var suffix = "AM";
-	weekDay = date.getDay();
-	var weekDayString = "Sunday";
+	if (pause === false) {
+		var date;
+		if (debug === true) {
+			date = calDate;
+		} else {
+			date = new Date();
+		}
+		year = date.getFullYear();
+		month = date.getMonth();
+		day = date.getDate();
+		var hoursM = date.getHours();
+		var hours = hoursM;
+		var suffix = "AM";
+		weekDay = date.getDay();
+		var weekDayString = "Sunday";
 
-	if (weekDay === 1) {
-		weekDayString = "Monday";
-	} else if (weekDay === 2) {
-		weekDayString = "Tuesday";
-	} else if (weekDay === 3) {
-		weekDayString = "Wednesday";
-	} else if (weekDay === 4) {
-		weekDayString = "Thursday";
-	} else if (weekDay === 5) {
-		weekDayString = "Friday";
-	} else if (weekDay === 6) {
-		weekDayString = "Saturday";
-	}
-	if (hours > 12) {
-		hours = hours - 12;
-		suffix = "PM";
-	} else if (hours === 0) {
-		hours = 12;
-		suffix = "AM";
-	}
-	var minutesStr = ('0' + date.getMinutes().toString()).slice(-2);
-	var secondsStr = ('0' + date.getSeconds().toString()).slice(-2);
+		if (weekDay === 1) {
+			weekDayString = "Monday";
+		} else if (weekDay === 2) {
+			weekDayString = "Tuesday";
+		} else if (weekDay === 3) {
+			weekDayString = "Wednesday";
+		} else if (weekDay === 4) {
+			weekDayString = "Thursday";
+		} else if (weekDay === 5) {
+			weekDayString = "Friday";
+		} else if (weekDay === 6) {
+			weekDayString = "Saturday";
+		}
+		if (hours > 12) {
+			hours = hours - 12;
+			suffix = "PM";
+		} else if (hours === 0) {
+			hours = 12;
+			suffix = "AM";
+		}
+		var minutesStr = ('0' + date.getMinutes().toString()).slice(-2);
+		var secondsStr = ('0' + date.getSeconds().toString()).slice(-2);
 
-	calculate(date);
-	eventSuffix = "AM";
-	if (eventHours > 12) {
-		eventHours = eventHours - 12;
-		eventSuffix = "PM";
-	} else if (eventHours === 0) {
-		eventHours = 12;
+		calculate(date);
 		eventSuffix = "AM";
+		if (eventHours > 12) {
+			eventHours = eventHours - 12;
+			eventSuffix = "PM";
+		} else if (eventHours === 0) {
+			eventHours = 12;
+			eventSuffix = "AM";
+		}
+		var eventMinutesStr = ('0' + eventMinutes.toString()).slice(-2);
+		document.getElementById("time").innerHTML = "<br/>Current Time: " + hours + ":" + minutesStr + " " + suffix + " - " + weekDayString + ", " + (month + 1) + "/" + day + "/" + year + "<br/><br/>" + eventName + ": " + eventHours + ":" + eventMinutesStr + " " + eventSuffix + " - " + eventWeekDayString + ", " + (eventMonth + 1) + "/" + eventDay + "/" + eventYear;
 	}
-	var eventMinutesStr = ('0' + eventMinutes.toString()).slice(-2);
-	document.getElementById("time").innerHTML = "<br/>Current Time: " + hours + ":" + minutesStr + " " + suffix + " - " + weekDayString + ", " + (month + 1) + "/" + day + "/" + year + "<br/><br/>" + eventName + ": " + eventHours + ":" + eventMinutesStr + " " + eventSuffix + " - " + eventWeekDayString + ", " + (eventMonth + 1) + "/" + eventDay + "/" + eventYear;
 }
 
 
 function calculate(date) {
-	var foundNext = false;
-	var schedule = jsonData[schoolName][scheduleName].default;
-	for (var i = 0; i < jsonData[schoolName][scheduleName].specialDays.length; i++) {
-		if (jsonData[schoolName][scheduleName].specialDays[i].type === "weekly") {
-			if (weekDay === jsonData[schoolName][scheduleName].specialDays[i].value) {
-				schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
-			}
-		} else if (jsonData[schoolName][scheduleName].specialDays[i].type === "single") {
-			if (date.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && date.getMonth() + 1 === jsonData[schoolName][scheduleName].specialDays[i].value[1]) {
-				schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
-			}
-		} else if (jsonData[schoolName][scheduleName].specialDays[i].type === "range") {
-			if (date.getDate() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][0] && date.getDate() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][0] && date.getMonth() + 1 >= jsonData[schoolName][scheduleName].specialDays[i].value[0][1] && date.getMonth() + 1 <= jsonData[schoolName][scheduleName].specialDays[i].value[1][1] && date.getFullYear() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][2] && date.getFullYear() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][2]) {
-				schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
-			}
-		}
-	}
-	eventDate = new Date(year, month, day);
-	for (var i = 0; i < schedule.length; i++) {
-		if (enableAHour === false && schedule[i][4] !== "aS" && schedule[i][4] !== "aE") {
-			eventDate.setHours(schedule[i][0]);
-			eventDate.setMinutes(schedule[i][1]);
-			eventDate.setSeconds(schedule[i][2]);
-			if (isPast(eventDate, date) === false && eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
-				eventName = schedule[i][3];
-				document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
-				if (displayTimeInTab === true) {
-					document.title = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
-				} else {
-					document.title = "Countdown";
+	if (pause === false) {
+		var foundNext = false;
+		var schedule = jsonData[schoolName][scheduleName].default;
+		for (var i = 0; i < jsonData[schoolName][scheduleName].specialDays.length; i++) {
+			if (jsonData[schoolName][scheduleName].specialDays[i].type === "weekly") {
+				if (weekDay === jsonData[schoolName][scheduleName].specialDays[i].value) {
+					schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
 				}
-				foundNext = true;
-				i = schedule.length;
-			}
-		}
-		if (enableAHour === true && schedule[i][4] !== "bell") {
-			eventDate.setHours(schedule[i][0]);
-			eventDate.setMinutes(schedule[i][1]);
-			eventDate.setSeconds(schedule[i][2]);
-			if (isPast(eventDate, date) === false && eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
-				eventName = schedule[i][3];
-				document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
-				if (displayTimeInTab === true) {
-					document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
-				} else {
-					document.getElementById("pageTitle").innerHTML = "Countdown";
+			} else if (jsonData[schoolName][scheduleName].specialDays[i].type === "single") {
+				if (date.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && date.getMonth() + 1 === jsonData[schoolName][scheduleName].specialDays[i].value[1]) {
+					schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
 				}
-				foundNext = true;
-				i = schedule.length;
-			}
-		}
-	}
-	var addNum = 1;
-	while (foundNext === false && addNum < 365) {
-		eventDate.setDate(eventDate.getDate() + 1);
-		if (eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
-			var schedule = jsonData[schoolName][scheduleName].default;
-			for (var i = 0; i < jsonData[schoolName][scheduleName].specialDays.length; i++) {
-				if (jsonData[schoolName][scheduleName].specialDays[i].type === "weekly") {
-					if (eventDate.getDay() === jsonData[schoolName][scheduleName].specialDays[i].value) {
-						schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
-					}
-				} else if (jsonData[schoolName][scheduleName].specialDays[i].type === "single") {
-					if (eventDate.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && eventDate.getMonth() + 1 === jsonData[schoolName][scheduleName].specialDays[i].value[1]) {
-						schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
-					}
-				} else if (jsonData[schoolName][scheduleName].specialDays[i].type === "range") {
-					if (eventDate.getDate() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][0] && eventDate.getDate() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][0] && eventDate.getMonth() + 1 >= jsonData[schoolName][scheduleName].specialDays[i].value[0][1] && eventDate.getMonth() + 1 <= jsonData[schoolName][scheduleName].specialDays[i].value[1][1] && eventDate.getFullYear() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][2] && eventDate.getFullYear() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][2]) {
-						schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
-					}
+			} else if (jsonData[schoolName][scheduleName].specialDays[i].type === "range") {
+				if (date.getDate() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][0] && date.getDate() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][0] && date.getMonth() + 1 >= jsonData[schoolName][scheduleName].specialDays[i].value[0][1] && date.getMonth() + 1 <= jsonData[schoolName][scheduleName].specialDays[i].value[1][1] && date.getFullYear() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][2] && date.getFullYear() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][2]) {
+					schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
 				}
 			}
-			for (var i = 0; i < schedule.length; i++) {
-				if (enableAHour === false && schedule[i][4] !== "aS" && schedule[i][4] !== "aE") {
-					eventDate.setHours(schedule[i][0]);
-					eventDate.setMinutes(schedule[i][1]);
-					eventDate.setSeconds(schedule[i][2]);
-					if (isPast(eventDate, date) === false) {
-						eventName = schedule[i][3];
-						document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
-						if (displayTimeInTab === true) {
-							document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
-						} else {
-							document.getElementById("pageTitle").innerHTML = "Countdown";
+		}
+		eventDate = new Date(year, month, day);
+		for (var i = 0; i < schedule.length; i++) {
+			if (enableAHour === false && schedule[i][4] !== "aS" && schedule[i][4] !== "aE") {
+				eventDate.setHours(schedule[i][0]);
+				eventDate.setMinutes(schedule[i][1]);
+				eventDate.setSeconds(schedule[i][2]);
+				if (isPast(eventDate, date) === false && eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
+					eventName = schedule[i][3];
+					document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
+					if (displayTimeInTab === true) {
+						document.title = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+					} else {
+						document.title = "Countdown";
+					}
+					foundNext = true;
+					i = schedule.length;
+				}
+			}
+			if (enableAHour === true && schedule[i][4] !== "bell") {
+				eventDate.setHours(schedule[i][0]);
+				eventDate.setMinutes(schedule[i][1]);
+				eventDate.setSeconds(schedule[i][2]);
+				if (isPast(eventDate, date) === false && eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
+					eventName = schedule[i][3];
+					document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
+					if (displayTimeInTab === true) {
+						document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+					} else {
+						document.getElementById("pageTitle").innerHTML = "Countdown";
+					}
+					foundNext = true;
+					i = schedule.length;
+				}
+			}
+		}
+		var addNum = 1;
+		while (foundNext === false && addNum < 365) {
+			eventDate.setDate(eventDate.getDate() + 1);
+			if (eventDate.getDay() !== 0 && eventDate.getDay() !== 6) {
+				var schedule = jsonData[schoolName][scheduleName].default;
+				for (var i = 0; i < jsonData[schoolName][scheduleName].specialDays.length; i++) {
+					if (jsonData[schoolName][scheduleName].specialDays[i].type === "weekly") {
+						if (eventDate.getDay() === jsonData[schoolName][scheduleName].specialDays[i].value) {
+							schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
 						}
-						foundNext = true;
-						i = schedule.length;
+					} else if (jsonData[schoolName][scheduleName].specialDays[i].type === "single") {
+						if (eventDate.getDate() === jsonData[schoolName][scheduleName].specialDays[i].value[0] && eventDate.getMonth() + 1 === jsonData[schoolName][scheduleName].specialDays[i].value[1]) {
+							schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
+						}
+					} else if (jsonData[schoolName][scheduleName].specialDays[i].type === "range") {
+						if (eventDate.getDate() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][0] && eventDate.getDate() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][0] && eventDate.getMonth() + 1 >= jsonData[schoolName][scheduleName].specialDays[i].value[0][1] && eventDate.getMonth() + 1 <= jsonData[schoolName][scheduleName].specialDays[i].value[1][1] && eventDate.getFullYear() >= jsonData[schoolName][scheduleName].specialDays[i].value[0][2] && eventDate.getFullYear() <= jsonData[schoolName][scheduleName].specialDays[i].value[1][2]) {
+							schedule = jsonData[schoolName][scheduleName][jsonData[schoolName][scheduleName].specialDays[i].scheduleName];
+						}
 					}
 				}
-				if (enableAHour === true && schedule[i][4] !== "bell") {
-					eventDate.setHours(schedule[i][0]);
-					eventDate.setMinutes(schedule[i][1]);
-					eventDate.setSeconds(schedule[i][2]);
-					if (isPast(eventDate, date) === false) {
-						eventName = schedule[i][3];
-						document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
-						if (displayTimeInTab === true) {
-							document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
-						} else {
-							document.getElementById("pageTitle").innerHTML = "Countdown";
+				for (var i = 0; i < schedule.length; i++) {
+					if (enableAHour === false && schedule[i][4] !== "aS" && schedule[i][4] !== "aE") {
+						eventDate.setHours(schedule[i][0]);
+						eventDate.setMinutes(schedule[i][1]);
+						eventDate.setSeconds(schedule[i][2]);
+						if (isPast(eventDate, date) === false) {
+							eventName = schedule[i][3];
+							document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
+							if (displayTimeInTab === true) {
+								document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+							} else {
+								document.getElementById("pageTitle").innerHTML = "Countdown";
+							}
+							foundNext = true;
+							i = schedule.length;
 						}
-						foundNext = true;
-						i = schedule.length;
+					}
+					if (enableAHour === true && schedule[i][4] !== "bell") {
+						eventDate.setHours(schedule[i][0]);
+						eventDate.setMinutes(schedule[i][1]);
+						eventDate.setSeconds(schedule[i][2]);
+						if (isPast(eventDate, date) === false) {
+							eventName = schedule[i][3];
+							document.getElementById("countdown").innerHTML = msToStr(daysBetween(date, eventDate), "full") + " Until <span id='eventName'>" + eventName + "</span>";
+							if (displayTimeInTab === true) {
+								document.getElementById("pageTitle").innerHTML = msToStr(daysBetween(date, eventDate)) + " Until " + eventName;
+							} else {
+								document.getElementById("pageTitle").innerHTML = "Countdown";
+							}
+							foundNext = true;
+							i = schedule.length;
+						}
 					}
 				}
 			}
 		}
+
+
+		eventWeekDay = eventDate.getDay();
+		eventWeekDayString;
+		if (eventWeekDay === 1) {
+			eventWeekDayString = "Monday";
+		} else if (eventWeekDay === 2) {
+			eventWeekDayString = "Tuesday";
+		} else if (eventWeekDay === 3) {
+			eventWeekDayString = "Wednesday";
+		} else if (eventWeekDay === 4) {
+			eventWeekDayString = "Thursday";
+		} else if (eventWeekDay === 5) {
+			eventWeekDayString = "Friday";
+		} else if (eventWeekDay === 6) {
+			weekDayString = "Saturday";
+		}
+		eventHours = eventDate.getHours();
+		eventMinutes = eventDate.getMinutes();
+		eventMonth = eventDate.getMonth();
+		eventDay = eventDate.getDate();
+		eventYear = eventDate.getFullYear();
+
 	}
-
-
-	eventWeekDay = eventDate.getDay();
-	eventWeekDayString;
-	if (eventWeekDay === 1) {
-		eventWeekDayString = "Monday";
-	} else if (eventWeekDay === 2) {
-		eventWeekDayString = "Tuesday";
-	} else if (eventWeekDay === 3) {
-		eventWeekDayString = "Wednesday";
-	} else if (eventWeekDay === 4) {
-		eventWeekDayString = "Thursday";
-	} else if (eventWeekDay === 5) {
-		eventWeekDayString = "Friday";
-	} else if (eventWeekDay === 6) {
-		weekDayString = "Saturday";
-	}
-	eventHours = eventDate.getHours();
-	eventMinutes = eventDate.getMinutes();
-	eventMonth = eventDate.getMonth();
-	eventDay = eventDate.getDate();
-	eventYear = eventDate.getFullYear();
-
 }
 
 
 
 function msToStr(s, f) {
-	var fm = [Math.floor(s / 60 / 60 / 24), Math.floor(s / 60 / 60) % 24, Math.floor(s / 60) % 60, s % 60];
-	if (window.innerWidth >= 875 && f === "full" && useHMS === false) {
-		if (fm[0] !== 0) {
-			return fm[0] + " Days, " + fm[1] + " Hours, " + fm[2] + " Minutes and " + fm[3] + " Seconds";
-		} else if (fm[1] !== 0) {
-			return fm[1] + " Hours, " + fm[2] + " Minutes and " + fm[3] + " Seconds";
-		} else if (fm[2] !== 0) {
-			return fm[2] + " Minutes and " + fm[3] + " Seconds";
+	if (pause === false) {
+		var fm = [Math.floor(s / 60 / 60 / 24), Math.floor(s / 60 / 60) % 24, Math.floor(s / 60) % 60, s % 60];
+		if (window.innerWidth >= 875 && f === "full" && useHMS === false) {
+			if (fm[0] !== 0) {
+				return fm[0] + " Days, " + fm[1] + " Hours, " + fm[2] + " Minutes and " + fm[3] + " Seconds";
+			} else if (fm[1] !== 0) {
+				return fm[1] + " Hours, " + fm[2] + " Minutes and " + fm[3] + " Seconds";
+			} else if (fm[2] !== 0) {
+				return fm[2] + " Minutes and " + fm[3] + " Seconds";
+			} else {
+				return fm[3] + " Seconds";
+			}
 		} else {
-			return fm[3] + " Seconds";
-		}
-	} else {
-		if (fm[0] !== 0) {
-			return fm[0] + "D " + fm[1] + "H " + fm[2] + "M " + fm[3] + "S";
-		} else if (fm[1] !== 0) {
-			return fm[1] + "H " + fm[2] + "M " + fm[3] + "S";
-		} else if (fm[2] !== 0) {
-			return fm[2] + "M " + fm[3] + "S";
-		} else {
-			return fm[3] + "S";
+			if (fm[0] !== 0) {
+				return fm[0] + "D " + fm[1] + "H " + fm[2] + "M " + fm[3] + "S";
+			} else if (fm[1] !== 0) {
+				return fm[1] + "H " + fm[2] + "M " + fm[3] + "S";
+			} else if (fm[2] !== 0) {
+				return fm[2] + "M " + fm[3] + "S";
+			} else {
+				return fm[3] + "S";
+			}
 		}
 	}
 }
@@ -270,6 +285,13 @@ function isPast(time, currentTime) {
 }
 var calDate = new Date();
 window.onload = function() {
+	bindEvent(window, 'message', function(e) {
+		if (e.data === "unload") {
+			pause = true;
+		} else {
+			pause = false;
+		}
+	});
 	if (document.getElementsByClassName("minimal").length !== 0) {
 		useHMS = true;
 	}
