@@ -3,6 +3,7 @@ var debug = false;
 var useHMS = false;
 var version = "2.6.0";
 var displayTimeInTab = false;
+var enableNotes = false;
 var pause = false;
 
 function inIframe() {
@@ -25,6 +26,17 @@ var iFramed = inIframe();
 
 console.log(iFramed);
 
+if (localStorage.getItem("enableNotes") === null) {
+	enableNotes = false;
+} else {
+	enableNotes = localStorage.getItem("enableNotes");
+	if (enableNotes === "true") {
+		enableNotes = true;
+	}
+	if (enableNotes === "false") {
+		enableNotes = false;
+	}
+}
 
 if (localStorage.getItem("displayTimeInTab") === null) {
 	displayTimeInTab = false;
@@ -340,6 +352,67 @@ function handleFiles(files) {
 	reader.readAsText(files[0]);
 }
 
+function setNotes(state) {
+	if (state === true) {
+		console.log("enabling notes");
+		localStorage.setItem("enableNotes", "true");
+		enableNotes = true;
+		document.body.insertAdjacentHTML("beforeend", '<div id="notesContainer" style="position: absolute;z-index: 9;;background-color:#fff"><div id="notesContainerHeader" style="cursor: move;z-index: 10;">Notes (Click to drag)</div><textarea>notes</textarea></div>');
+		dragElement(document.getElementById("notesContainer"));
+	} else {
+		console.log("disabling notes");
+		localStorage.setItem("enableNotes", "false");
+		enableNotes = false;
+		document.getElementById("notesContainer").parentNode.removeChild(document.getElementById("notesContainer"));
+	}
+	localStorage.setItem("enableNotes", state);
+}
+
+function dragElement(elmnt) {
+	var pos1 = 0,
+		pos2 = 0,
+		pos3 = 0,
+		pos4 = 0;
+	if (document.getElementById(elmnt.id + "Header")) {
+		// if present, the header is where you move the DIV from:
+		document.getElementById(elmnt.id + "Header").onmousedown = dragMouseDown;
+	} else {
+		// otherwise, move the DIV from anywhere inside the DIV:
+		elmnt.onmousedown = dragMouseDown;
+	}
+
+	function dragMouseDown(e) {
+		e = e || window.event;
+		e.preventDefault();
+		// get the mouse cursor position at startup:
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		document.onmouseup = closeDragElement;
+		// call a function whenever the cursor moves:
+		document.onmousemove = elementDrag;
+	}
+
+	function elementDrag(e) {
+		e = e || window.event;
+		e.preventDefault();
+		// calculate the new cursor position:
+		pos1 = pos3 - e.clientX;
+		pos2 = pos4 - e.clientY;
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		// set the element's new position:
+		elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+		elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+	}
+
+	function closeDragElement() {
+		// stop moving when mouse button is released:
+		document.onmouseup = null;
+		document.onmousemove = null;
+	}
+}
+
+
 function daysBetween(date1, date2) {
 	var date1Ms = date1.getTime();
 	var date2Ms = date2.getTime();
@@ -356,6 +429,10 @@ function isPast(time, currentTime) {
 }
 var calDate = new Date();
 window.onload = function() {
+	if (enableNotes === true) {
+		document.body.insertAdjacentHTML("beforeend", '<div id="notesContainer" style="position: absolute;z-index: 9;;background-color:#fff"><div id="notesContainerHeader" style="cursor: move;z-index: 10;">Notes (Click to drag)</div><textarea>notes</textarea></div>');
+		dragElement(document.getElementById("notesContainer"));
+	}
 	if (iFramed === true) {
 		if (document.getElementsByClassName("minimal").length > 0) {
 			useHMS = true;
@@ -372,21 +449,21 @@ window.onload = function() {
 		e.preventDefault();
 		if (iFramed === false) {
 			if (schoolName === "mtnView" || schoolName === "westwood") {
-				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/><br/><br/><a href="./stylesheets">Browse Custom Stylesheets</a>"');
+				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/><br/><br/><a href="./stylesheets">Browse Custom Stylesheets</a>"');
 				var boxHTML = $("#pageSettings")[0].children[0];
 				boxHTML.children[7].value = "A"
 			} else {
-				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/><br/><br/><a href="./stylesheets">Browse Custom Stylesheets</a>');
+				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/><br/><br/><a href="./stylesheets">Browse Custom Stylesheets</a>');
 				var boxHTML = $("#pageSettings")[0].children[0];
 				boxHTML.children[7].value = "default"
 			}
 		} else {
 			if (schoolName === "mtnView" || schoolName === "westwood") {
-				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p>');
+				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p>');
 				var boxHTML = $("#pageSettings")[0].children[0];
 				boxHTML.children[7].value = "A"
 			} else {
-				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p>');
+				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p>');
 				var boxHTML = $("#pageSettings")[0].children[0];
 				boxHTML.children[7].value = "default"
 			}
@@ -460,11 +537,11 @@ function dialogueBox(content) {
 	});
 	$("#pageSettings").html(content);
 	var boxHTML = $("#pageSettings")[0].children[0];
-	console.log(boxHTML.children);
-	boxHTML.children[1].value = schoolName;
-	boxHTML.children[4].value = scheduleName;
-	boxHTML.children[7].checked = enableAHour;
-	boxHTML.children[10].checked = displayTimeInTab;
+	document.getElementById("school").value = schoolName;
+	document.getElementById("schedule").value = scheduleName;
+	document.getElementById("AHour").checked = enableAHour;
+	document.getElementById("displayTimeInTab").checked = displayTimeInTab;
+	document.getElementById("notes").checked = enableNotes;
 	if (iFramed === false) {
 		document.getElementById("CSSReset").onclick = function() {
 			dialog.modal('hide');
