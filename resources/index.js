@@ -5,6 +5,7 @@ var version = "2.6.0";
 var displayTimeInTab = false;
 var enableNotes = false;
 var pause = false;
+var notes = [];
 
 function inIframe() {
 	try {
@@ -129,7 +130,7 @@ function updateTime() {
 			suffix = "PM";
 		} else if (hours === 0) {
 			hours = 12;
-			suffix = "AM";
+			suffix = "PM";
 		}
 		var minutesStr = ('0' + date.getMinutes().toString()).slice(-2);
 		var secondsStr = ('0' + date.getSeconds().toString()).slice(-2);
@@ -141,7 +142,7 @@ function updateTime() {
 			eventSuffix = "PM";
 		} else if (eventHours === 0) {
 			eventHours = 12;
-			eventSuffix = "AM";
+			eventSuffix = "PM";
 		}
 		var eventMinutesStr = ('0' + eventMinutes.toString()).slice(-2);
 		document.getElementById("time").innerHTML = "<br/>Current Time: " + hours + ":" + minutesStr + " " + suffix + " - " + weekDayString + ", " + (month + 1) + "/" + day + "/" + year + "<br/><br/>" + eventName + ": " + eventHours + ":" + eventMinutesStr + " " + eventSuffix + " - " + eventWeekDayString + ", " + (eventMonth + 1) + "/" + eventDay + "/" + eventYear;
@@ -352,18 +353,34 @@ function handleFiles(files) {
 	reader.readAsText(files[0]);
 }
 
+function saveNotes() {
+	console.log(document.getElementById("noteBox").value);
+	localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+function addNoteBox() {
+
+}
+
 function setNotes(state) {
 	if (state === true) {
 		console.log("enabling notes");
-		localStorage.setItem("enableNotes", "true");
 		enableNotes = true;
-		document.body.insertAdjacentHTML("beforeend", '<div id="notesContainer" style="position: absolute;z-index: 9;;background-color:#fff"><div id="notesContainerHeader" style="cursor: move;z-index: 10;">Notes (Click to drag)</div><textarea>notes</textarea></div>');
+		if (localStorage.getItem("notes") !== null) {
+			var notes = null;
+			try {
+				notes = JSON.parse(localStorage.getItem("notes"));
+			} catch {
+				console.log("Could not parse JSON");
+				localStorage.removeItem("notes");
+			}
+		}
+		document.body.insertAdjacentHTML("beforeend", '<div id="notesContainer" style="position: absolute;z-index: 9;;background-color:#fff"><div id="notesContainerHeader" style="cursor: move;z-index: 10;">Notes (Click to drag)</div><textarea style="resize: both;" onchange="saveNotes()" id="noteBox">notes</textarea></div>');
 		dragElement(document.getElementById("notesContainer"));
 	} else {
-		console.log("disabling notes");
-		localStorage.setItem("enableNotes", "false");
-		enableNotes = false;
-		document.getElementById("notesContainer").parentNode.removeChild(document.getElementById("notesContainer"));
+		if (document.getElementById("notesContainer")) {
+			document.getElementById("notesContainer").parentNode.removeChild(document.getElementById("notesContainer"));
+		}
 	}
 	localStorage.setItem("enableNotes", state);
 }
@@ -430,8 +447,7 @@ function isPast(time, currentTime) {
 var calDate = new Date();
 window.onload = function() {
 	if (enableNotes === true) {
-		document.body.insertAdjacentHTML("beforeend", '<div id="notesContainer" style="position: absolute;z-index: 9;;background-color:#fff"><div id="notesContainerHeader" style="cursor: move;z-index: 10;">Notes (Click to drag)</div><textarea>notes</textarea></div>');
-		dragElement(document.getElementById("notesContainer"));
+		setNotes(true);
 	}
 	if (iFramed === true) {
 		if (document.getElementsByClassName("minimal").length > 0) {
