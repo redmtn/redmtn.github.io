@@ -1,4 +1,4 @@
-var year, month, day, weekDay, eventWeekDay, eventWeekDayString, eventHours, eventMinutes, eventMonth, eventDay, eventYear, eventDate, eventName, eventSuffix;
+var year, month, day, weekDay, eventWeekDay, eventWeekDayString, eventHours, eventMinutes, eventMonth, eventDay, eventYear, eventDate, eventName, eventSuffix, visits;
 var debug = false;
 var useHMS = false;
 var version = "2.6.0";
@@ -6,6 +6,36 @@ var displayTimeInTab = false;
 var enableNotes = false;
 var pause = false;
 var notes = [];
+
+if (localStorage.getItem("visits")) {
+	visits = parseInt(localStorage.getItem("visits")) + 1;
+} else {
+	visits = 0;
+}
+
+localStorage.setItem("visits", visits);
+
+
+
+function discordPrompt() {
+	bootbox.confirm({
+		message: "Do you use this site regularly, but there's that <b>ONE</b> feature you're just <i>dying</i> to have added? <a href='https://discord.gg/KVWjVjw' target='_blank'>Join our discord</a> to discuss it!<br/><br/>Would you like to join?",
+		buttons: {
+			confirm: {
+				label: 'Yes',
+			},
+			cancel: {
+				label: 'No',
+			}
+		},
+		callback: function(result) {
+			if (result === true) {
+				window.open('https://discord.gg/KVWjVjw', '_blank');
+			}
+		}
+	});
+}
+
 
 function inIframe() {
 	try {
@@ -446,6 +476,9 @@ function isPast(time, currentTime) {
 }
 var calDate = new Date();
 window.onload = function() {
+	if (visits === 4 || visits === 50 || visits === 150) {
+		discordPrompt();
+	}
 	if (enableNotes === true) {
 		setNotes(true);
 	}
@@ -465,21 +498,21 @@ window.onload = function() {
 		e.preventDefault();
 		if (iFramed === false) {
 			if (schoolName === "mtnView" || schoolName === "westwood") {
-				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/><br/><br/><a href="./stylesheets">Browse Custom Stylesheets</a>"');
+				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/><br/><br/><a href="./stylesheets">Browse Custom Stylesheets</a><br/><br/><a href="https://discord.gg/KVWjVjw" target="_blank">Join our Discord!!</a>');
 				var boxHTML = $("#pageSettings")[0].children[0];
 				boxHTML.children[7].value = "A"
 			} else {
-				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/><br/><br/><a href="./stylesheets">Browse Custom Stylesheets</a>');
+				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/>Upload custom stylesheet: <input type="file" name="datafile" accept=".css" onchange="handleFiles(this.files)"><input id="CSSReset" type="button" onclick="resetCSS()" value="Reset CSS"/><br/><br/><a href="./stylesheets">Browse Custom Stylesheets</a><br/><br/><a href="https://discord.gg/KVWjVjw" target="_blank">Join our Discord!!</a>');
 				var boxHTML = $("#pageSettings")[0].children[0];
 				boxHTML.children[7].value = "default"
 			}
 		} else {
 			if (schoolName === "mtnView" || schoolName === "westwood") {
-				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p>');
+				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="A" onchange="updateSchedule(this.value)">Schedule A</option><option value="B" onchange="updateSchedule(this.value)">Schedule B</option></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/><br/><a href="https://discord.gg/KVWjVjw">Join our Discord!!</a><br/><br/><a href="https://discord.gg/KVWjVjw" target="_blank">Join our Discord!!</a>');
 				var boxHTML = $("#pageSettings")[0].children[0];
 				boxHTML.children[7].value = "A"
 			} else {
-				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p>');
+				dialogueBox('<p><br/>School: <select id="school" onchange="updateSchool(this.value);"><option value="rmhs">Red Mountain High School</option><option value="westwood">Westwood High School</option><option value="mtnView">Mountain View High School</option></select><br/><br/>Schedule: <select id="schedule" onchange="updateSchedule(this.value);"><option value="regular" onchange="updateSchedule(this.value)">Normal Schedule</option><option onchange="updateSchedule(this.value)" value="CORE">CORE Schedule</option>></select><br/><br/><input id="AHour" type="checkbox" onchange="setAHour(this.checked)"/> Display A Hour<br/><br/><input id="notes" type="checkbox" onchange="setNotes(this.checked)"/> Enable Notes (BETA)<br/><br/><input onchange="updateDisplayTab(this.checked)" id="displayTimeInTab" type="checkbox"/> Display Time in Tab</p><br/><br/><a href="https://discord.gg/KVWjVjw" target="_blank">Join our Discord!!</a>');
 				var boxHTML = $("#pageSettings")[0].children[0];
 				boxHTML.children[7].value = "default"
 			}
