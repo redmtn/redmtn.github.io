@@ -2,12 +2,12 @@
 
 @font-face {
   font-family: "oxygen";
-  src: url(./font/Quark-Light.otf) format("opentype");
+  src: url(./resources/font/Quark-Light.otf) format("opentype");
 }
 
 @font-face {
   font-family: "prime";
-  src: url(./font/Prime-Regular.otf) format("opentype");
+  src: url(./resources/font/Prime-Regular.otf) format("opentype");
 }
 
 #settings {
@@ -32,6 +32,7 @@ html {
 
 body {
   background-color: #dddddd;
+  position: relative;
 }
 
 .countdown-container {

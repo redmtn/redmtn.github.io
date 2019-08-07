@@ -106,6 +106,7 @@ if (localStorage.getItem("school") === null) {
 }
 
 function replaceCSS() {
+	console.log(localStorage.getItem("css"));
 	if (localStorage.getItem("css") !== null) {
 		if (document.getElementById("customStyle")) {
 			document.getElementById("customStyle").parentNode.removeChild(document.getElementById("customStyle"));
@@ -475,7 +476,7 @@ function isPast(time, currentTime) {
 	}
 }
 var calDate = new Date();
-window.onload = function() {
+function onLoad() {
 	if (visits === 4 || visits === 50 || visits === 150) {
 		discordPrompt();
 	}
