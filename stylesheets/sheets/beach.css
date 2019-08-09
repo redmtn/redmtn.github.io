@@ -1,0 +1,56 @@
+/*override: true;*/
+/*useHMS: true;*/
+body, html {
+  background-color: #fff;
+  background-image: url("resources/beach.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  background-size: cover;
+  font-family: roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
+}
+
+#settings {
+    text-align: right;
+    margin-right: 18px;
+    margin-top: 18px;
+}
+
+#settings>a>img {
+  opacity: 0.1;
+  transition: opacity ease-in-out 0.25s;
+}
+
+#settings>a>img:hover {
+  opacity: 0.4;
+  text-align: right;
+}
+
+.countdown-container {
+  color: #b0b0b0;
+  margin: 0;
+  position: absolute;
+  top: 20%;
+  -ms-transform: translateY(-20%);
+  transform: translateY(-20%);
+  color: #d0d0d0 text-align: center;
+  width: 100%;
+}
+
+#countdown {
+  font-weight: bold;
+  font-size: 5vw;
+}
+
+#time {
+  font-size: 2.5vw;
+}
+
+#time, #countdown {
+  color: #fff;
+  position: relative;
+  text-align: center;
+  padding-left: auto;
+  padding-right: auto;
+}
