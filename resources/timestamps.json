@@ -73,7 +73,6 @@ var jsonData = {
       ],
       "specialDays": [
         {"type": "weekly", "value": 3, "scheduleName": "wednesday"},
-        {"type": "range", "value": [[24, 4, 2019], [28, 8, 2019]], "scheduleName": "dayOff"},
       ]
     },
     "CORE": {
