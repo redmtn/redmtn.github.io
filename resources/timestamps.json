@@ -16,7 +16,7 @@ var jsonData = {
         [12, 22, 57, "Fourth Hour Ends", "fourthE"],
         [13, 10, 57, "Lunch Ends", "lunchE"],
         [13, 16, 57, "Fifth Hour Starts", "fifthS"],
-        [13, 10, 57, "Fifth Hour Ends", "fifthE"],
+        [14, 10, 57, "Fifth Hour Ends", "fifthE"],
         [14, 18, 57, "Sixth Hour Starts", "sixthS"],
         [15, 14, 57, "Sixth Hour Ends", "sixthE"],
       ],
