@@ -20,3 +20,7 @@ table {
   width: 97.5%;
   height: 95%
 }
+body, html {
+  overflow: hidden;
+  font-family: roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
+}

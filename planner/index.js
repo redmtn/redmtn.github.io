@@ -14,6 +14,18 @@ function recalculateInputSizes() {
 	}
 }
 
+function isInViewport(element) {
+	var rect = element.getBoundingClientRect();
+	var html = document.documentElement;
+	return (
+		rect.top >= 0 &&
+		rect.left >= 0 &&
+		rect.bottom <= (window.innerHeight || html.clientHeight) &&
+		rect.right <= (window.innerWidth || html.clientWidth)
+	);
+}
+
+
 function dragElement(elmnt) {
 	var pos1 = 0,
 		pos2 = 0,
@@ -43,13 +55,19 @@ function dragElement(elmnt) {
 		e = e || window.event;
 		e.preventDefault();
 		// calculate the new cursor position:
-		pos1 = pos3 - e.clientX;
-		pos2 = pos4 - e.clientY;
-		pos3 = e.clientX;
-		pos4 = e.clientY;
+		if (e.clientX > 0 && e.clientX < window.innerWidth) {
+			pos1 = pos3 - e.clientX;
+			pos3 = e.clientX;
+			elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+		}
+		if (e.clientY > 0 && e.clientY < window.innerHeight) {
+			pos2 = pos4 - e.clientY;
+			pos4 = e.clientY;
+			elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+		}
 		// set the element's new position:
-		elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-		elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+
+
 	}
 
 	function closeDragElement() {
