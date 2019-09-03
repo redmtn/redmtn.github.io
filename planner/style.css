@@ -1,0 +1,22 @@
+tr, td {
+  border: 1px solid black;
+}
+.date {
+  height: 25px;
+}
+.hour {
+  width: 25px;
+}
+.input {
+  width:100%;
+  height: 100%;
+ box-sizing: border-box;         /* For IE and modern versions of Chrome */
+ -moz-box-sizing: border-box;    /* For Firefox                          */
+ -webkit-box-sizing: border-box; /* For Safari                           */
+ border: none;
+ resize: none;
+}
+table {
+  width: 97.5%;
+  height: 95%
+}
