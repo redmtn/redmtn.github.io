@@ -1,15 +1,66 @@
-var countdown, countdownParent, html, countdownPosition;
+var countdown, countdownParent, html, countdownPosition, plannerData = {
+	"_0": [],
+	"_1": [],
+	"_2": [],
+	"_3": [],
+	"_4": [],
+	"_5": [],
+	"_6": []
+};
+if (localStorage.getItem("plannerData")) {
+	try {
+		plannerData = JSON.parse(localStorage.getItem("plannerData"));
+		if (!plannerData._0) {
+			plannerData = {
+				"_0": [],
+				"_1": [],
+				"_2": [],
+				"_3": [],
+				"_4": [],
+				"_5": [],
+				"_6": []
+			};
+		}
+	} catch {
+		plannerData = {
+			"_0": [],
+			"_1": [],
+			"_2": [],
+			"_3": [],
+			"_4": [],
+			"_5": [],
+			"_6": []
+		};
+	}
+}
 if (localStorage.getItem("countdownPosition")) {
 	countdownPosition = JSON.parse(localStorage.getItem("countdownPosition"))
 } else {
 	countdownPosition = [0, 0];
 }
 
+function recalculateAHour() {
+	if (localStorage.getItem("AHour") === "true") {
+		if (!document.getElementById("0")) {
+			document.getElementById("days").insertAdjacentHTML('afterend', "<tr id=\"0\"><td class=\"hour\">A</td><td><textarea class=\"input\"></textarea></td><td><textarea class=\"input\"></textarea></td><td><textarea class=\"input\"></textarea></td><td><textarea class=\"input\"></textarea></td><td><textarea class=\"input\"></textarea></td></tr>");
+		}
+	} else {
+		if (document.getElementById("0")) {
+			document.getElementById("0").parentNode.removeChild(document.getElementById("0"));
+		}
+	}
+	recalculateInputSizes();
+}
+
 function recalculateInputSizes() {
-	var height = document.getElementById('reference').clientHeight;
+	var height = window.innerHeight;
 	for (var j = 0; j < document.getElementsByClassName('input').length; j++) {
 		//console.log(document.getElementsByClassName('input')[j].value);
-		document.getElementsByClassName('input')[j].style.height = height + "px";
+		if (localStorage.getItem("AHour") === "true") {
+			document.getElementsByClassName('input')[j].style.height = ((height - 125)) / 7 + "px";
+		} else {
+			document.getElementsByClassName('input')[j].style.height = ((height - 100)) / 6 + "px";
+		}
 
 	}
 }
@@ -79,36 +130,75 @@ function dragElement(elmnt) {
 	}
 }
 window.onload = function() {
+	recalculateAHour();
+	document.body.onmouseup = function() {
+		recalculateAHour();
+	}
 	recalculateInputSizes();
 	document.getElementById("countdownContainer").style.top = countdownPosition[0];
 	document.getElementById("countdownContainer").style.left = countdownPosition[1];
-
-	if (localStorage.getItem("plannerData")) {
-		data = JSON.parse(localStorage.getItem("plannerData"));
-		for (var i = 0; i < data.length; i++) {
-			document.getElementsByClassName('input')[i].value = data[i]
+	if (localStorage.getItem("AHour") === "true") {
+		for (var i = 0; i < 7; i++) {
+			for (var j = 0; j < 5; j++) {
+				if (eval("plannerData._" + i + "[j]") !== undefined) {
+					console.log(eval("plannerData._" + i + "[j]"));
+					document.getElementById(i.toString()).children[j + 1].children[0].value = eval("plannerData._" + i + "[j]");
+				} else {
+					console.log(eval("plannerData._" + i + "[j]"));
+					document.getElementById(i.toString()).children[j + 1].children[0].value = "";
+				}
+			}
+		}
+	} else {
+		for (var i = 1; i < 7; i++) {
+			for (var j = 0; j < 5; j++) {
+				if (eval("plannerData._" + i + "[j]") !== undefined) {
+					console.log(eval("plannerData._" + i + "[j]"));
+					document.getElementById(i.toString()).children[j + 1].children[0].value = eval("plannerData._" + i + "[j]");
+				} else {
+					console.log(eval("plannerData._" + i + "[j]"));
+					document.getElementById(i.toString()).children[j + 1].children[0].value = "";
+				}
+			}
 		}
 	}
 	countdownParent = document.getElementById('countdown').parentNode;
 	html = '<iframe id="countdown" width="1152" height="648" src="../index.html" style="-webkit-transform:scale(0.5);-moz-transform-scale(0.5);margin:-150px; margin-top:-160px; margin-left:-290px;">';
 
 	dragElement(document.getElementById("countdownContainer"));
-	var data = [];
-	for (var i = 0; i < document.getElementsByClassName('input').length; i++) {
-		console.log("bazinga");
-		document.getElementsByClassName('input')[i].onchange = function() {
-			data = [];
-			for (var j = 0; j < document.getElementsByClassName('input').length; j++) {
-				//console.log(document.getElementsByClassName('input')[j].value);
-				data.push(document.getElementsByClassName('input')[j].value);
-
+	for (var h = 0; h < document.getElementsByClassName('input').length; h++) {
+		document.getElementsByClassName('input')[h].onkeyup = function() {
+			var evalString = "plannerData._";
+			plannerData = {
+				"_0": [],
+				"_1": [],
+				"_2": [],
+				"_3": [],
+				"_4": [],
+				"_5": [],
+				"_6": []
+			};
+			if (localStorage.getItem("AHour") === "true") {
+				for (var i = 0; i < 7; i++) {
+					for (var j = 0; j < 5; j++) {
+						eval(evalString + i + ".push(\"" + document.getElementById(i.toString()).children[j + 1].children[0].value + "\")");
+					}
+				}
+			} else {
+				for (var i = 1; i < 7; i++) {
+					for (var j = 0; j < 5; j++) {
+						eval(evalString + i + ".push(\"" + document.getElementById(i.toString()).children[j + 1].children[0].value + "\")");
+					}
+				}
 			}
-			localStorage.setItem('plannerData', JSON.stringify(data));
-			console.log(JSON.stringify(data));
-			console.log(data);
+			localStorage.setItem("plannerData", JSON.stringify(plannerData));
+
 		}
 	}
 
 
 }
-window.onresize = recalculateInputSizes();
+
+window.onresize = function() {
+	recalculateInputSizes();
+}
