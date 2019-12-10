@@ -51,6 +51,10 @@ animation-timing-function: linear;
 }
 #time {
   font-size: 24px;
+  padding-top: 7.5%;
+}
+#event {
+  padding-top: 5%;
 }
 .countdown-container div {
  position: absolute;

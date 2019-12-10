@@ -13,18 +13,18 @@
   <script src="../resources/bootbox.min.js"></script>
   <script>
     function getSheetContents(sheet) {
-    $.get(sheet, function(data) {
-      if(localStorage.getItem("css")) {
-        if(confirm("are you sure you want to overwrite your existing custom CSS?") === true) {
-          localStorage.setItem("css", encodeURIComponent(data));
+      $.get(sheet, function(data) {
+        if (localStorage.getItem("css")) {
+          if (confirm("are you sure you want to overwrite your existing custom CSS?") === true) {
+            localStorage.setItem("css", data);
+            window.location = "../";
+          }
+        } else {
+          localStorage.setItem("css", data);
           window.location = "../";
         }
-      } else {
-        localStorage.setItem("css", encodeURIComponent(data));
-        window.location = "../";
-      }
-    });
-  }
+      });
+    }
   </script>
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -64,7 +64,7 @@
         <li><input type="button" onclick="getSheetContents('./sheets/beach.css')" value="Install Stylesheet" /> <a href="./sheets/beach.css" download>Download CSS File</a></li>
       </ul>
     </li>
-    <br/>
+    <br />
     <li>The Early 2000s
       <ul>
         <li>Designed to look like a website from the late 90s/early 2000s</li>
@@ -77,4 +77,5 @@
   <h6><a href="../">Back to Main Page</a></h6>
 </body>
 <script src="./index.js"></script>
+
 </html>

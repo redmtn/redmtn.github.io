@@ -1,113 +1,55 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
-
-@font-face {
-  font-family: "oxygen";
-  src: url(./resources/font/Quark-Light.otf) format("opentype");
-}
-
-@font-face {
-  font-family: "prime";
-  src: url(./resources/font/Prime-Regular.otf) format("opentype");
+/*override: true;*/
+/*useHMS: true;*/
+body, html {
+  background-color: #2C2F33;
+  font-family: roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
 }
 
 #settings {
-  margin-top:-48px;margin-right:16px;position:absolute;right:0px;
+    text-align: right;
+    margin-right: 18px;
+    margin-top: 18px;
 }
 
-#countdown {
-      font-size: 2.5rem;
+#settings>a>img {
+  opacity: 0.25;
+  filter: invert(100%);
+  transition: opacity ease-in-out 0.25s;
 }
 
-#time {
-  font-family: "prime";
-  font-size: 1.15rem;
-  color: #dddddd;
-}
-
-html {
-  font-family: "oxygen";
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  background-color: #dddddd;
-  position: relative;
+#settings>a>img:hover {
+  opacity: 0.5;
+  text-align: right;
 }
 
 .countdown-container {
-  font-family: "oxygen";
-  padding-top: 5em;
-  padding-bottom: 5em;
-  padding-left: 2.5em;
-  padding-right: 2.5em;
+  color: #b0b0b0;
+  margin: 0;
+  position: absolute;
+  top: 45%;
+  -ms-transform: translateY(-45%);
+  transform: translateY(-45%);
   color: #fff;
-  margin-left: 75px;
-  margin-right: 75px;
-  margin-top: 66px;
-  border: 7px solid #757575;
+   text-align: center;
+  width: 100%;
+}
+
+#countdown {
+  font-weight: bold;
+  font-size: 5vw;
+}
+
+#time {
+  font-size: 2vw;
+}
+#event {
+  font-size: 2vw;
+  padding-bottom: 1.25%;
+}
+
+#time, #countdown {
+  color: #d0d0d0 position: relative;
   text-align: center;
-  background-color: #999999;
-}
-
-.project-name {
-  font-family: "prime";
-  margin-top: 0;
-  margin-bottom: 0.1rem
-}
-
-.project-tagline {
-  font-family: "prime";
-  margin-bottom: 2rem;
-  font-weight: normal;
-  opacity: 0.7
-}
-
-@media screen and (min-width: 64em) {
-  .project-tagline {
-    font-size: 1.25rem
-  }
-}
-
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .project-tagline {
-    font-size: 1.15rem
-  }
-}
-
-@media screen and (max-width: 42em) {
-  .project-tagline {
-    font-size: 1rem
-  }
-}
-
-.main-content {
-  word-wrap: break-word
-}
-
-.main-content :first-child {
-  margin-top: 0
-}
-
-@media screen and (min-width: 64em) {
-  .main-content {
-    max-width: 108rem;
-    padding: 2rem 6rem;
-    margin: 0 auto;
-    font-size: 1.1rem
-  }
-}
-
-@media screen and (min-width: 42em) and (max-width: 64em) {
-  .main-content {
-    padding: 2rem 4rem;
-    font-size: 1.1rem
-  }
-}
-
-@media screen and (max-width: 42em) {
-  .main-content {
-    padding: 2rem 1rem;
-    font-size: 1rem
-  }
+  padding-left: auto;
+  padding-right: auto;
 }
