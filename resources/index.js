@@ -5,93 +5,50 @@ var useHMS = false;
 var scheduleJSON;
 var timestampsArr;
 var schoolJSON;
+var eventDateTemp = new Date();
+var eventNameTemp;
 
 var htmlPrefs = `
-<br><br><br>
+<br>
 Upload Custom Stylesheet: <input type="file" id="stylesheetFile" accept=".css" onchange="setCSS(this.files)"> <input type="button" value="Delete Custom Style" onclick="removeCSS()"><br>
 <a href="./stylesheets">Manage Stylesheets</a>
 `;
 
-function removeCSS() {
-	bootbox.confirm({
-		message: "Are you sure you want to delete your custom stylesheet?",
-		buttons: {
-			confirm: {
-				label: 'Yes',
-				className: 'btn-success'
-			},
-			cancel: {
-				label: 'No',
-				className: 'btn-danger'
-			}
-		},
-		callback: function(result) {
-			if(result === true) {
-				localStorage.removeItem("css");
-				location.reload();
-			}
-		}
-	});
-}
-
-function setCSS(files) {
-	var file = files[0];
-	console.log(files);
-	var allowed_types = ['text/css'];
-	if(allowed_types.indexOf(file.type) == -1) {
-		alert('Error: Incorrect file type. Please upload a *.CSS file.');
-		return;
-	}
-	var max_size_allowed = 4 * 1024
-	if(file.size > max_size_allowed) {
-		alert('Error: Size exceeds max 4KB');
-		return;
-	}
-	var reader = new FileReader();
-	reader.addEventListener('loadstart', function() {
-		console.log('File reading started');
-	});
-	reader.addEventListener('load', function(e) {
-		var text = e.target.result;
-		console.log(text);
-		localStorage.setItem("css", text);
-		window.location.href = window.location.href;
-	});
-	reader.addEventListener('error', function() {
-		alert('Error : Failed to read file');
-	});
-	reader.addEventListener('progress', function(e) {
-		if(e.lengthComputable == true) {
-			var percent_read = Math.floor((e.loaded / e.total) * 100);
-			console.log(percent_read + '% read');
-		}
-	});
-	reader.readAsText(file);
-}
 
 function main() {
 	var date = new Date();
-	var event = calculateTime();
-	if(event.times[0]) {
-		document.getElementById("countdown").innerHTML = event.times[0] + "D " + event.times[1] + "H " + event.times[2] + "M " + event.times[3] + "S";
-	} else if(event.times[1]) {
-		document.getElementById("countdown").innerHTML = event.times[1] + "H " + event.times[2] + "M " + event.times[3] + "S";
-	} else if(event.times[2]) {
-		document.getElementById("countdown").innerHTML = event.times[2] + "M " + event.times[3] + "S";
+	var dateEvent;
+	if(eventDateTemp.getTime() < date.getTime()) {
+		dateEvent = calculateTime();
+		eventDateTemp = dateEvent.eventDate;
+		eventNameTemp = dateEvent.name;
+		console.log("Recalculating...", dateEvent);
 	} else {
-		document.getElementById("countdown").innerHTML = event.times[3] + "S";
+		dateEvent = {
+			"times": getDHMS(date, eventDateTemp),
+			"name": eventNameTemp,
+			"eventDate": eventDateTemp
+		};
 	}
-	document.getElementById("event").innerHTML = "Until " + event.name
+	if(dateEvent.times[0]) {
+		document.getElementById("countdown").innerHTML = dateEvent.times[0] + "D " + dateEvent.times[1] + "H " + dateEvent.times[2] + "M " + dateEvent.times[3] + "S";
+	} else if(dateEvent.times[1]) {
+		document.getElementById("countdown").innerHTML = dateEvent.times[1] + "H " + dateEvent.times[2] + "M " + dateEvent.times[3] + "S";
+	} else if(dateEvent.times[2]) {
+		document.getElementById("countdown").innerHTML = dateEvent.times[2] + "M " + dateEvent.times[3] + "S";
+	} else {
+		document.getElementById("countdown").innerHTML = dateEvent.times[3] + "S";
+	}
+	document.getElementById("event").innerHTML = "Until " + dateEvent.name;
 	document.getElementById("time").innerHTML = "Current Time: " + date.toLocaleString('en-US', {
-			hour: 'numeric',
-			minute: 'numeric',
-			hour12: true
-		}) + " - " + (date.getMonth() + 1) + "/" + (date.getDate()) + "/" + (date.getFullYear()) +
-		"<br>" + event.name + ": " + event.eventDate.toLocaleString('en-US', {
-			hour: 'numeric',
-			minute: 'numeric',
-			hour12: true
-		}) + " - " + +(event.eventDate.getMonth() + 1) + "/" + (event.eventDate.getDate()) + "/" + (event.eventDate.getFullYear());
+		hour: 'numeric',
+		minute: 'numeric',
+		hour12: true
+	}) + " - " + (date.getMonth() + 1) + "/" + (date.getDate()) + "/" + (date.getFullYear()) + "<br>" + dateEvent.name + ": " + dateEvent.eventDate.toLocaleString('en-US', {
+		hour: 'numeric',
+		minute: 'numeric',
+		hour12: true
+	}) + " - " + +(dateEvent.eventDate.getMonth() + 1) + "/" + (dateEvent.eventDate.getDate()) + "/" + (dateEvent.eventDate.getFullYear());
 }
 
 function getScheduleTimes(schedule, currentTime) {
@@ -120,7 +77,7 @@ function getDHMS(date1, date2) {
 function calculateTime() {
 	var date = new Date();
 	var compDate = new Date();
-	var evenName = "";
+	var eventName = "";
 	whileLoop:
 		while(true) {
 			timestampsArr = getScheduleTimes(scheduleJSON, compDate);
@@ -129,7 +86,7 @@ function calculateTime() {
 				compDate.setMinutes(timestampsArr[i][1] + scheduleJSON.offset[1]);
 				compDate.setSeconds(timestampsArr[i][2] + scheduleJSON.offset[2]);
 				if(date.getTime() < compDate.getTime()) {
-					evenName = timestampsArr[i][3]
+					eventName = timestampsArr[i][3]
 					break whileLoop;
 				}
 			}
@@ -137,7 +94,7 @@ function calculateTime() {
 		}
 	return {
 		"times": getDHMS(date, compDate),
-		"name": evenName,
+		"name": eventName,
 		"eventDate": compDate
 	}
 }
@@ -223,4 +180,49 @@ function onLoad() {
 			main()
 		}, 1000);
 	});
+}
+
+function removeCSS() {
+	bootbox.confirm({
+		message: "Are you sure you want to delete your custom stylesheet?",
+		buttons: {
+			confirm: {
+				label: 'Yes',
+				className: 'btn-success'
+			},
+			cancel: {
+				label: 'No',
+				className: 'btn-danger'
+			}
+		},
+		callback: function(result) {
+			if(result === true) {
+				localStorage.removeItem("css");
+				location.reload();
+			}
+		}
+	});
+}
+
+function setCSS(files) {
+	var file = files[0];
+	console.log(files);
+	var allowed_types = ['text/css'];
+	if(allowed_types.indexOf(file.type) == -1) {
+		alert('Error: Incorrect file type. Please upload a *.CSS file.');
+		return;
+	}
+	var max_size_allowed = 4 * 1024
+	if(file.size > max_size_allowed) {
+		alert('Error: Size exceeds max 4KB');
+		return;
+	}
+	var reader = new FileReader();
+	reader.addEventListener('load', function(e) {
+		var text = e.target.result;
+		console.log(text);
+		localStorage.setItem("css", text);
+		window.location.href = window.location.href;
+	});
+	reader.readAsText(file);
 }
