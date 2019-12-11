@@ -32,12 +32,16 @@ function main() {
 	}
 	if(dateEvent.times[0]) {
 		document.getElementById("countdown").innerHTML = dateEvent.times[0] + "D " + dateEvent.times[1] + "H " + dateEvent.times[2] + "M " + dateEvent.times[3] + "S";
+		document.getElementById("pageTitle").innerHTML = dateEvent.times[0] + "D " + dateEvent.times[1] + "H " + dateEvent.times[2] + "M " + dateEvent.times[3] + "S";
 	} else if(dateEvent.times[1]) {
 		document.getElementById("countdown").innerHTML = dateEvent.times[1] + "H " + dateEvent.times[2] + "M " + dateEvent.times[3] + "S";
+		document.getElementById("pageTitle").innerHTML = dateEvent.times[1] + "H " + dateEvent.times[2] + "M " + dateEvent.times[3] + "S";
 	} else if(dateEvent.times[2]) {
 		document.getElementById("countdown").innerHTML = dateEvent.times[2] + "M " + dateEvent.times[3] + "S";
+		document.getElementById("pageTitle").innerHTML = dateEvent.times[2] + "M " + dateEvent.times[3] + "S";
 	} else {
 		document.getElementById("countdown").innerHTML = dateEvent.times[3] + "S";
+		document.getElementById("pageTitle").innerHTML = dateEvent.times[3] + "S";
 	}
 	document.getElementById("event").innerHTML = "Until " + dateEvent.name;
 	document.getElementById("time").innerHTML = "Current Time: " + date.toLocaleString('en-US', {
