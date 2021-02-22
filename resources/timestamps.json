@@ -1,77 +1,48 @@
 {
-  "schools": [{
+  "schools": [
+    {
     "name": "Red Mountain High School",
     "id": "rmhs",
-    "schedules": [{
-        "name": "Normal Bell Schedule",
-        "id": "regular",
-        "offset": [0, 0, 4],
+    "schedules": [
+      {
+        "name": "Fourth Hour Lunch",
+        "id": "regular4",
+        "offset": [0, 0, 0],
         "times": {
           "default": [
-            [7, 9, 57, "A Hour Starts", "aS", 0],
-            [8, 5, 57, "A Hour Ends", "aE", 0],
-            [8, 5, 57, "First Bell Rings", "bell", 0],
-            [8, 14, 57, "First Hour Starts", "firstS", 0],
-            [9, 10, 57, "First Hour Ends", "firstE", 1],
-            [9, 16, 57, "Second Hour Starts", "secondS", 1],
-            [10, 12, 57, "Second Hour Ends", "secondE", 2],
-            [10, 18, 57, "Third Hour Starts", "thirdS", 2],
-            [11, 20, 57, "Third Hour Ends", "thirdE", 3],
-            [11, 26, 57, "Fourth Hour Starts", "fourthS", 3],
-            [12, 22, 57, "Fourth Hour Ends", "fourthE", 4],
-            [13, 10, 57, "Lunch Ends", "lunchE", 4],
-            [13, 16, 57, "Fifth Hour Starts", "fifthS", 4],
-            [14, 12, 57, "Fifth Hour Ends", "fifthE", 5],
-            [14, 18, 57, "Sixth Hour Starts", "sixthS", 5],
-            [15, 14, 57, "Sixth Hour Ends", "sixthE", 6]
+            [7, 10, 0, "A Hour Starts", "aS", 0],
+            [8, 6, 0, "A Hour Ends", "aE", 0],
+            [8, 6, 0, "First Bell Rings", "bell", 0],
+            [8, 15, 0, "First Hour Starts", "firstS", 0],
+            [9, 11, 0, "First Hour Ends", "firstE", 1],
+            [9, 17, 0, "Second Hour Starts", "secondS", 1],
+            [10, 13, 0, "Second Hour Ends", "secondE", 2],
+            [10, 19, 0, "Third Hour Starts", "thirdS", 2],
+            [11, 15, 0, "Third Hour Ends", "thirdE", 3],
+            [11, 52, 0, "Lunch Ends", "lunchE", 4],
+            [12, 1, 0, "Fifth Hour Starts", "fifthS", 4],
+            [13, 11, 0, "Fifth Hour Ends", "fifthE", 5],
+            [13, 17, 0, "Sixth Hour Starts", "sixthS", 5],
+            [14, 13, 0, "Sixth Hour Ends", "sixthE", 6],
+            [14, 19, 0, "Seventh Hour Starts", "seventhS", 5],
+            [15, 15, 0, "Seventh Hour Ends", "seventhE", 6]
           ],
           "wednesday": [
-            [7, 9, 57, "A Hour Starts", "aS", 0],
-            [8, 5, 57, "A Hour Ends", "aE", 0],
-            [8, 5, 57, "First Bell Rings", "bell1", 0],
-            [8, 14, 57, "First Hour Starts", "firstS", 0],
-            [9, 3, 57, "First Hour Ends", "firstE", 1],
-            [9, 9, 57, "Second Hour Starts", "secondS", 1],
-            [9, 58, 57, "Second Hour Ends", "secondE", 2],
-            [10, 4, 57, "Third Hour Starts", "thirdS", 2],
-            [11, 11, 57, "Third Hour Ends", "thirdE", 3],
-            [11, 17, 57, "Fourth Hour Starts", "fourthS", 3],
-            [12, 6, 57, "Fourth Hour Ends", "fourthE", 4],
-            [12, 54, 57, "Lunch Ends", "lunchE", 4],
-            [13, 0, 57, "Fifth Hour Starts", "fifthS", 4],
-            [13, 49, 57, "Fifth Hour Ends", "fifthE", 5],
-            [13, 55, 57, "Sixth Hour Starts", "sixthS", 5],
-            [14, 44, 57, "Sixth Hour Ends", "sixthE", 6]
-          ],
-          "earlyRelease": [
-            [6, 45, 10, "A Hour Starts", "aS"],
-            [7, 54, 10, "A Hour Ends", "aE"],
-            [7, 54, 10, "First Bell Rings", "bell"],
-            [8, 0, 10, "First Hour Starts", "firstS"],
-            [8, 40, 10, "First Hour Ends", "firstE"],
-            [8, 46, 10, "Second Hour Starts", "secondS"],
-            [9, 26, 10, "Second Hour Ends", "secondE"],
-            [9, 32, 10, "Third Hour Starts", "thirdS"],
-            [10, 12, 10, "Third Hour Ends", "thirdE"],
-            [10, 18, 10, "Fourth Hour Starts", "fourthS"],
-            [10, 58, 10, "Fourth Hour Ends", "fourthE"],
-            [11, 4, 10, "Fifth Hour Starts", "fifthS"],
-            [11, 44, 10, "Fifth Hour Ends", "fifthE"],
-            [11, 41, 11, "Sixth Hour Starts", "sixthS"],
-            [12, 30, 11, "Sixth Hour Ends", "sixthE"]
-          ],
-          "testing1": [
-            [7, 59, 51, "A Hour Starts", "aS"],
-            [7, 53, 51, "A Hour Ends", "aE"],
-            [7, 59, 51, "first Hour Starts", "firstS"],
-            [10, 3, 51, "First Hour Ends", "firstS"],
-            [10, 38, 51, "First Lunch Ends", "firstE"],
-            [10, 44, 51, "Second Hour (1st lunch) Starts", "seconsS"],
-            [12, 13, 51, "Second Hour (2nd lunch) Starts", "secondS"],
-            [12, 48, 51, "Second Lunch / Second Hour (1st lunch) ends", "secondE"],
-            [12, 54, 51, "Third Hour Starts", "thirdS"],
-            [2, 59, 51, "Third Hour Ends", "thirdS"]
-
+            [7, 10, 0, "A Hour Starts", "aS", 0],
+            [8, 6, 0, "A Hour Ends", "aE", 0],
+            [8, 6, 0, "First Bell Rings", "bell1", 0],
+            [8, 15, 0, "First Hour Starts", "firstS", 0],
+            [8, 55, 0, "First Hour Ends", "firstE", 1],
+            [9, 1, 0, "Second Hour Starts", "secondS", 1],
+            [9, 41, 0, "Second Hour Ends", "secondE", 2],
+            [9, 47, 0, "Third Hour Starts", "thirdS", 2],
+            [10, 27, 0, "Third Hour Ends", "thirdE", 3],
+            [10, 33, 0, "Fifth Hour Starts", "fourthS", 3],
+            [11, 13, 0, "Fifth Hour Ends", "fourthE", 4],
+            [11, 19, 0, "Sixth Hour Starts", "fifthS", 4],
+            [11, 59, 0, "Sixth Hour Ends", "fifthE", 5],
+            [12, 5, 0, "Seventh Hour Starts", "sixthS", 5],
+            [12, 45, 0, "Seventh Hour Ends", "sixthE", 6]
           ],
           "dayOff": [
 
@@ -82,6 +53,67 @@
             "value": 3,
             "scheduleName": "wednesday"
           },
+          {
+            "type": "weekly",
+            "value": 0,
+            "scheduleName": "dayOff"
+          },
+          {
+            "type": "weekly",
+            "value": 6,
+            "scheduleName": "dayOff"
+          }
+        ]
+      },
+      {
+        "name": "Fifth Hour Lunch",
+        "id": "regular5",
+        "offset": [0, 0, 4],
+        "times": {
+          "default": [
+            [7, 10, 0, "A Hour Starts", "aS", 0],
+            [8, 6, 0, "A Hour Ends", "aE", 0],
+            [8, 6, 0, "First Bell Rings", "bell", 0],
+            [8, 15, 0, "First Hour Starts", "firstS", 0],
+            [9, 11, 0, "First Hour Ends", "firstE", 1],
+            [9, 17, 0, "Second Hour Starts", "secondS", 1],
+            [10, 13, 0, "Second Hour Ends", "secondE", 2],
+            [10, 19, 0, "Third Hour Starts", "thirdS", 2],
+            [11, 15, 0, "Third Hour Ends", "thirdE", 3],
+            [11, 21, 0, "Fourth Hour Starts", "fourthS", 3],
+            [12, 31, 0, "Fourth Hour Ends", "fourthE", 4],
+            [13, 11, 0, "Lunch Ends", "LunchE", 5],
+            [13, 17, 0, "Sixth Hour Starts", "sixthS", 5],
+            [14, 13, 0, "Sixth Hour Ends", "sixthE", 6],
+            [14, 19, 0, "Seventh Hour Starts", "seventhS", 5],
+            [15, 15, 0, "Seventh Hour Ends", "seventhE", 6]
+          ],
+          "wednesday": [
+            [7, 10, 0, "A Hour Starts", "aS", 0],
+            [8, 6, 0, "A Hour Ends", "aE", 0],
+            [8, 6, 0, "First Bell Rings", "bell1", 0],
+            [8, 15, 0, "First Hour Starts", "firstS", 0],
+            [8, 55, 0, "First Hour Ends", "firstE", 1],
+            [9, 1, 0, "Second Hour Starts", "secondS", 1],
+            [9, 41, 0, "Second Hour Ends", "secondE", 2],
+            [9, 47, 0, "Third Hour Starts", "thirdS", 2],
+            [10, 27, 0, "Third Hour Ends", "thirdE", 3],
+            [10, 33, 0, "Fourth Hour Starts", "fourthS", 3],
+            [11, 13, 0, "Fourth Hour Ends", "fourthE", 4],
+            [11, 19, 0, "Sixth Hour Starts", "fifthS", 4],
+            [11, 59, 0, "Sixth Hour Ends", "fifthE", 5],
+            [12, 5, 0, "Seventh Hour Starts", "sixthS", 5],
+            [12, 45, 0, "Seventh Hour Ends", "sixthE", 6]
+          ],
+          "dayOff": [
+
+          ]
+        },
+        "specialDays": [{
+          "type": "weekly",
+          "value": 3,
+          "scheduleName": "wednesday"
+        },
           {
             "type": "weekly",
             "value": 0,

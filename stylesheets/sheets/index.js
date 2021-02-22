@@ -1,10 +1,9 @@
-var timestampsJSON;
-var menuHTML = '';
-var schoolSelect, scheduleSelect;
-var useHMS = false;
-var scheduleJSON;
-var timestampsArr;
-var schoolJSON;
+let timestampsJSON;
+let schoolSelect, scheduleSelect;
+const useHMS = false;
+let scheduleJSON;
+let timestampsArr;
+let schoolJSON;
 
 function main() {
 	var date = new Date();

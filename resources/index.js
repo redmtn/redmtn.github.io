@@ -1,14 +1,13 @@
-var timestampsJSON;
-var menuHTML = '';
-var schoolSelect, scheduleSelect;
-var useHMS = false;
-var scheduleJSON;
-var timestampsArr;
-var schoolJSON;
-var eventDateTemp = new Date();
-var eventNameTemp;
+let timestampsJSON;
+let schoolSelect, scheduleSelect;
+let useHMS = false;
+let scheduleJSON;
+let timestampsArr;
+let schoolJSON;
+let eventDateTemp = new Date();
+let eventNameTemp;
 
-var htmlPrefs = `
+const htmlPrefs = `
 <br>
 Upload Custom Stylesheet: <input type="file" id="stylesheetFile" accept=".css" onchange="setCSS(this.files)"> <input type="button" value="Delete Custom Style" onclick="removeCSS()"><br>
 <a href="./stylesheets">Manage Stylesheets</a>
@@ -16,8 +15,8 @@ Upload Custom Stylesheet: <input type="file" id="stylesheetFile" accept=".css" o
 
 
 function main() {
-	var date = new Date();
-	var dateEvent;
+	const date = new Date();
+	let dateEvent;
 	if(eventDateTemp.getTime() < date.getTime()) {
 		dateEvent = calculateTime();
 		eventDateTemp = dateEvent.eventDate;
@@ -125,13 +124,13 @@ function replaceCSS() {
 }
 
 function updateMenu(school, schedule) {
+	let i;
 	console.log(school, schedule);
 	var menuHTML = '';
 	schoolJSON;
 	menuHTML += "School: <select id='schoolSelect' onchange='schoolSelect=this.value'>";
-	var chosenSchool;
 	if(school) {
-		for(var i = 0; i < timestampsJSON.schools.length; i++) {
+		for(i = 0; i < timestampsJSON.schools.length; i++) {
 			if(timestampsJSON.schools[i].id === school) {
 				schoolJSON = timestampsJSON.schools[i];
 				menuHTML += "<option value='" + timestampsJSON.schools[i].id + "' selected>" + timestampsJSON.schools[i].name + "</option>";
@@ -141,7 +140,7 @@ function updateMenu(school, schedule) {
 		}
 		menuHTML += "</select><br>Schedule: <select id='scheduleSelect' onchange='scheduleSelect=this.value'>";
 		if(schedule) {
-			for(var i = 0; i < schoolJSON.schedules.length; i++) {
+			for(i = 0; i < schoolJSON.schedules.length; i++) {
 				if(schoolJSON.schedules[i].id === schedule) {
 					menuHTML += "<option value='" + schoolJSON.schedules[i].id + "' selected>" + schoolJSON.schedules[i].name + "</option>";
 					scheduleJSON = schoolJSON.schedules[i];
@@ -151,18 +150,18 @@ function updateMenu(school, schedule) {
 			}
 		}
 	} else {
-		for(var i = 0; i < timestampsJSON.schools.length; i++) {
+		for(i = 0; i < timestampsJSON.schools.length; i++) {
 			menuHTML += "<option value='" + timestampsJSON.schools[i].id + "'>" + timestampsJSON.schools[i].name + "</option>";
 		}
 		menuHTML += "</select><br>Schedule: <select id='scheduleSelect' onchange='scheduleSelect=this.value'>";
-		for(var i = 0; i < timestampsJSON.schools[0].schedules.length; i++) {
+		for(i = 0; i < timestampsJSON.schools[0].schedules.length; i++) {
 			menuHTML += "<option value='" + timestampsJSON.schools[0].schedules[i].id + "'>" + timestampsJSON.schools[0].schedules[i].name + "</option>";
 		}
 	}
 	console.log(menuHTML);
-	document.getElementById("settings").onclick = function(e) {
+	document.getElementById("settingsIcon").onclick = function(e) {
 		e.preventDefault();
-		var dialog = bootbox.dialog({
+		bootbox.dialog({
 			message: menuHTML + htmlPrefs,
 			closeButton: true,
 			onEscape: function() {
@@ -180,6 +179,7 @@ function onLoad() {
 		schoolSelect = timestampsJSON.schools[0].id;
 		scheduleSelect = timestampsJSON.schools[0].schedules[0].id
 		updateMenu(schoolSelect, scheduleSelect);
+		main();
 		setInterval(function() {
 			main()
 		}, 1000);
@@ -212,7 +212,7 @@ function setCSS(files) {
 	var file = files[0];
 	console.log(files);
 	var allowed_types = ['text/css'];
-	if(allowed_types.indexOf(file.type) == -1) {
+	if(allowed_types.indexOf(file.type) === -1) {
 		alert('Error: Incorrect file type. Please upload a *.CSS file.');
 		return;
 	}
