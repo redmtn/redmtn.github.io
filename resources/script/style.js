@@ -1,8 +1,10 @@
+'use strict';
+
 // manage custom css
 let css = window.localStorage.getItem("css");
 
 
-var iFramed = (window !== window.parent)
+const iFramed = (window !== window.parent);
 
 $(document).ready(() => {
     if (css && !iFramed) {

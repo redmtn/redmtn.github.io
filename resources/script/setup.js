@@ -9,7 +9,7 @@ const scheduleDir = "resources/schedule";
 let hms = window.localStorage.getItem("use_hms");
 
 function yamlResource(...resource) {
-    var final = scheduleDir;
+    let final = scheduleDir;
     resource.forEach(resource => final += `/${resource}`);
     return fetch(final + ".yml")
         .then(data => {
