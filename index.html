@@ -42,19 +42,23 @@
     <div class="settings_overlay" tabindex="-1" data-micromodal-close>
         <div class="settings_container" role="dialog" aria-modal="true" aria-labelledby="settings_title">
             <header class="modal__header">
-                <h2 class="modal__title" id="settings_title">
+                <h1 class="modal__title" id="settings_title">
                     Settings
-                </h2>
+                </h1>
                 <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
             </header>
             <main class="modal__content" id="settings_dialog_content">
+                <h3>Schedule</h3>
                 <label for="school_select">School</label>
                 <select id="school_select"></select>
                 <br>
                 <label for="schedule_select">Schedule</label>
                 <select id="schedule_select"></select>
+                <h3>Style</h3>
+                <a href="style">Manage Stylesheets (Themes)</a>
                 <br>
-                <a href="style">Stylesheets (Themes)</a>
+                <label for="use_hms">Short time (1H 2M 3S)</label>
+                <input id="use_hms" type="checkbox">
             </main>
             <footer class="modal__footer">
                 <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>

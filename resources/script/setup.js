@@ -6,6 +6,8 @@ let scheduleData;
 
 const scheduleDir = "resources/schedule";
 
+let hms = window.localStorage.getItem("use_hms");
+
 function yamlResource(...resource) {
     var final = scheduleDir;
     resource.forEach(resource => final += `/${resource}`);
@@ -20,48 +22,59 @@ yamlResource("schools") // load schedules
             parseSchedules(schools).then(value => {
                 scheduleData = value;
                 $(document).ready(() => {
+                    let schoolSelect = $("#school_select");
                     for (const school in value) {
-                        let schoolSelect = $("#school_select");
                         schoolSelect.append(`<option value="${school}">${value[school].name}</option>`)
-                        schoolSelect.on("change", () => updateScheduleSelection())
-
-                        let scheduleSelect = $("#schedule_select");
-
-                        updateScheduleSelection(true);
-
-                        if (localStorage.getItem("school")) {
-                            console.log(`Restoring school: ${localStorage.getItem("school")}`)
-                            schoolSelect.val(localStorage.getItem("school"))
-                        }
-
-                        if (localStorage.getItem("schedule")) {
-                            console.log(`Restoring schedule: ${localStorage.getItem("schedule")}`)
-                            scheduleSelect.val(localStorage.getItem("schedule"))
-                        }
-
-                        scheduleSelect.on("change", () => updateSelected());
                     }
+
+                    schoolSelect.on("change", () => updateScheduleSelection())
+
+                    let scheduleSelect = $("#schedule_select");
+
+                    updateScheduleSelection(true);
+
+                    if (localStorage.getItem("school")) {
+                        console.log(`Restoring school: ${localStorage.getItem("school")}`)
+                        schoolSelect.val(localStorage.getItem("school"))
+                    }
+
+                    if (localStorage.getItem("schedule")) {
+                        console.log(`Restoring schedule: ${localStorage.getItem("schedule")}`)
+                        scheduleSelect.val(localStorage.getItem("schedule"))
+                    }
+
+                    scheduleSelect.on("change", () => updateSelected());
+
+                    $(document).ready(() => {
+                        let time = calculateNextEvent();
+                        window.setInterval(() => {
+                            let currentDate = getCurrentDate();
+
+                            if(currentDate.getTime() >= time.date.getTime()) {
+                                time = calculateNextEvent()
+                            }
+
+                            $("#countdown").html(prettyPrintDiff(splitDifference(currentDate, time.date), hms === "false" || hms === false));
+                            $("#event").html(`Until ${time.event}`);
+                            $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
+                            $("#current_time").html(`Current Time: ${prettyDate(getCurrentDate())}`);
+                        }, 1000);
+                    })
                 })
 
-                let hms = window.localStorage.getItem("use_hms");
-                $(document).ready(() => {
-                    let time = calculateNextEvent();
-                    window.setInterval(() => {
-                        let currentDate = getCurrentDate();
-
-                        if(currentDate.getTime() >= time.date.getTime()) {
-                            time = calculateNextEvent()
-                        }
-
-                        $("#countdown").html(prettyPrintDiff(splitDifference(currentDate, time.date), hms === "false"));
-                        $("#event").html(`Until ${time.event}`);
-                        $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
-                        $("#current_time").html(`Current Time: ${prettyDate(getCurrentDate())}`);
-                    }, 1000);
-                })
-            }).catch(reason => console.log(reason));
+            });
         }
     );
+
+$(document).ready(() => {
+    let hmsCheck = $("#use_hms");
+    hmsCheck.prop("checked", window.localStorage.getItem("use_hms") !== "false");
+    hmsCheck.on("change", () => {
+        window.localStorage.setItem("use_hms", hmsCheck.prop("checked"));
+        hms = hmsCheck.prop("checked");
+    });
+});
+
 
 function updateScheduleSelection(init) {
     let select = $("#schedule_select");
