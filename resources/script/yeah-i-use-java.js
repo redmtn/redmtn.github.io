@@ -22,3 +22,7 @@ class TaskQueue {
         this.#tasks.forEach(task => task());
     }
 }
+
+window.onload = function () {
+    TaskQueue.finish();
+}

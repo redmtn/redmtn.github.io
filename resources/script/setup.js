@@ -51,8 +51,7 @@ function updateSelected() {
     schedule = scheduleData[$("#school_select").val()].schedules[$("#schedule_select").val()];
 }
 
-window.onload = function () {
-    TaskQueue.finish();
+TaskQueue.add(() => {
 
     $("#settingsIcon").on('click', function (e) {
         e.preventDefault(); // dont redirect
@@ -68,4 +67,4 @@ window.onload = function () {
         $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
         $("#current_time").html(`Current Time: ${prettyDate(new Date())}`);
     }, 1000);
-}
+})
