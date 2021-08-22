@@ -1,4 +1,20 @@
 sheets:
+  - url: "{THIS}/resources/style/default.css"
+    id: dark
+    name: "Minimal (Dark)"
+    description: "The default style, a minimal dark theme."
+    replace: true
+    short-times: true
+  - url: "{THIS}/style/stylesheets/light/light.css"
+    id: light
+    name: "Minimal (Light)"
+    description: "A minimal light theme"
+    replace: true
+    short-times: true
   - url: "{THIS}/style/stylesheets/2000s/2000s.css"
+    id: funny
     name: "The Early 2000s"
-    description: "funny"
+    description: "funny stylesheet"
+    replace: true
+    short-times: true
+
