@@ -2,7 +2,7 @@
     font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, helvetica neue, helvetica, ubuntu, roboto, noto, segoe ui, arial, sans-serif;
 }
 
-.modal__overlay {
+.settings_overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,7 +14,7 @@
     align-items: center;
 }
 
-.modal__container {
+.settings_container {
     background-color: #fff;
     padding: 30px;
     max-width: 500px;
@@ -135,23 +135,23 @@
     display: block;
 }
 
-.micromodal-slide[aria-hidden="false"] .modal__overlay {
+.micromodal-slide[aria-hidden="false"] .settings_overlay {
     animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-.micromodal-slide[aria-hidden="false"] .modal__container {
+.micromodal-slide[aria-hidden="false"] .settings_container {
     animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
 }
 
-.micromodal-slide[aria-hidden="true"] .modal__overlay {
+.micromodal-slide[aria-hidden="true"] .settings_overlay {
     animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
 }
 
-.micromodal-slide[aria-hidden="true"] .modal__container {
+.micromodal-slide[aria-hidden="true"] .settings_container {
     animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
 }
 
-.micromodal-slide .modal__container,
-.micromodal-slide .modal__overlay {
+.micromodal-slide .settings_container,
+.micromodal-slide .settings_overlay {
     will-change: transform;
 }
