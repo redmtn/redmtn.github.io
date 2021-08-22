@@ -1,0 +1,8 @@
+name: "4th Hour Lunch"
+rules:
+  - type: weekly
+    days: [ "SAT", "SUN" ]
+    schedule: "dayOff"
+  - type: weekly
+    days: [ "WED" ]
+    schedule: "wednesday"

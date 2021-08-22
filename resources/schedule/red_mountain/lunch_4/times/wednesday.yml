@@ -1,0 +1,49 @@
+# Wednesday schedule
+
+"offset": "0:00:04"
+"times":
+  "aS":
+    "name": "A Hour Starts"
+    "time": "7:10:0"
+  "aE":
+    "name": "A Hour Ends"
+    "time": "8:06:0"
+  "bell1":
+    "name": "First Bell Rings"
+    "time": "8:06:0"
+  "firstS":
+    "name": "First Hour Starts"
+    "time": "8:15:0"
+  "firstE":
+    "name": "First Hour Ends"
+    "time": "8:55:0"
+  "secondS":
+    "name": "Second Hour Starts"
+    "time": "9:01:0"
+  "secondE":
+    "name": "Second Hour Ends"
+    "time": "9:41:0"
+  "thirdS":
+    "name": "Third Hour Starts"
+    "time": "9:47:0"
+  "thirdE":
+    "name": "Third Hour Ends"
+    "time": "10:27:0"
+  "fourthS":
+    "name": "Fourth Hour Starts"
+    "time": "10:33:0"
+  "fourthE":
+    "name": "Fourth Hour Ends"
+    "time": "11:13:0"
+  "fifthS":
+    "name": "Sixth Hour Starts"
+    "time": "11:19:0"
+  "fifthE":
+    "name": "Sixth Hour Ends"
+    "time": "11:59:0"
+  "sixthS":
+    "name": "Seventh Hour Starts"
+    "time": "12:05:0"
+  "sixthE":
+    "name": "Seventh Hour Ends"
+    "time": "12:45:0"

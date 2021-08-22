@@ -1,0 +1,52 @@
+# Regular schedule
+
+"offset": "0:0:0"
+"times":
+  "aS":
+    "name": "A Hour Starts"
+    "time": "7:10:0"
+  "aE":
+    "name": "A Hour Ends"
+    "time": "8:06:0"
+  "bell":
+    "name": "First Bell Rings"
+    "time": "8:06:0"
+  "firstS":
+    "name": "First Hour Starts"
+    "time": "8:15:0"
+  "firstE":
+    "name": "First Hour Ends"
+    "time": "9:11:0"
+  "secondS":
+    "name": "Second Hour Starts"
+    "time": "9:17:0"
+  "secondE":
+    "name": "Second Hour Ends"
+    "time": "10:13:0"
+  "thirdS":
+    "name": "Third Hour Starts"
+    "time": "10:19:0"
+  "thirdE":
+    "name": "Third Hour Ends"
+    "time": "11:15:0"
+  "lunchE":
+    "name": "Lunch Ends"
+    "time": "11:52:0"
+  "fifthS":
+    "name": "Fifth Hour Starts"
+    "time": "12:1:0"
+  "fifthE":
+    "name": "Fifth Hour Ends"
+    "time": "13:11:0"
+  "sixthS":
+    "name": "Sixth Hour Starts"
+    "time": "13:17:0"
+  "sixthE":
+    "name": "Sixth Hour Ends"
+    "time": "14:13:0"
+  "seventhS":
+    "name": "Seventh Hour Starts"
+    "time": "14:19:0"
+  "seventhE":
+    "name": "Seventh Hour Ends"
+    "time": "15:15:0"
