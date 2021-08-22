@@ -64,7 +64,7 @@ yamlResource("schools") // load schedules
     );
 
 function update(time) {
-    $(".countdown").html(prettyPrintDiff(splitDifference(new Date(), time.date), hms === "false" || hms === false));
+    $(".countdown").html(prettyPrintDiff(splitDifference(getCurrentDate(), time.date), hms === "false" || hms === false));
     $("#event").html(`Until ${time.event}`);
     $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
     $("#current_time").html(`Current Time: ${prettyDate(getCurrentDate())}`);
