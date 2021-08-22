@@ -17,6 +17,13 @@ function yamlResource(...resource) {
         });
 }
 
+let jankyWayToExpireTime = false;
+
+function expireTime() {
+    console.log("Expiring...")
+    jankyWayToExpireTime = true;
+}
+
 yamlResource("schools") // load schedules
     .then(schools => {
             parseSchedules(schools).then(value => {
@@ -51,8 +58,9 @@ yamlResource("schools") // load schedules
                         window.setInterval(() => {
                             let currentDate = getCurrentDate();
 
-                            if(currentDate.getTime() >= time.date.getTime()) {
-                                time = calculateNextEvent()
+                            if(currentDate.getTime() >= time.date.getTime() || jankyWayToExpireTime) {
+                                time = calculateNextEvent();
+                                jankyWayToExpireTime = false;
                             }
                             update(time);
                         }, 1000);
