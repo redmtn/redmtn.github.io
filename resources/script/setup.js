@@ -30,11 +30,12 @@ yamlResource("schools") // load schedules
                         updateScheduleSelection(true);
 
                         if (localStorage.getItem("school")) {
+                            console.log(`Restoring school: ${localStorage.getItem("school")}`)
                             schoolSelect.val(localStorage.getItem("school"))
                         }
 
                         if (localStorage.getItem("schedule")) {
-                            console.log(localStorage.getItem("schedule"))
+                            console.log(`Restoring schedule: ${localStorage.getItem("schedule")}`)
                             scheduleSelect.val(localStorage.getItem("schedule"))
                         }
 
