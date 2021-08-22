@@ -43,6 +43,7 @@ yamlResource("schools") // load schedules
                     }
                 })
 
+                let hms = window.localStorage.getItem("use_hms");
                 $(document).ready(() => {
                     let time = calculateNextEvent();
                     window.setInterval(() => {
@@ -52,7 +53,7 @@ yamlResource("schools") // load schedules
                             time = calculateNextEvent()
                         }
 
-                        $("#countdown").html(prettyPrintDiff(splitDifference(currentDate, time.date)));
+                        $("#countdown").html(prettyPrintDiff(splitDifference(currentDate, time.date), hms === "false"));
                         $("#event").html(`Until ${time.event}`);
                         $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
                         $("#current_time").html(`Current Time: ${prettyDate(getCurrentDate())}`);
