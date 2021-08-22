@@ -47,17 +47,14 @@ yamlResource("schools") // load schedules
 
                     $(document).ready(() => {
                         let time = calculateNextEvent();
+                        update(time);
                         window.setInterval(() => {
                             let currentDate = getCurrentDate();
 
                             if(currentDate.getTime() >= time.date.getTime()) {
                                 time = calculateNextEvent()
                             }
-
-                            $("#countdown").html(prettyPrintDiff(splitDifference(currentDate, time.date), hms === "false" || hms === false));
-                            $("#event").html(`Until ${time.event}`);
-                            $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
-                            $("#current_time").html(`Current Time: ${prettyDate(getCurrentDate())}`);
+                            update(time);
                         }, 1000);
                     })
                 })
@@ -65,6 +62,13 @@ yamlResource("schools") // load schedules
             });
         }
     );
+
+function update(time) {
+    $(".countdown").html(prettyPrintDiff(splitDifference(new Date(), time.date), hms === "false" || hms === false));
+    $("#event").html(`Until ${time.event}`);
+    $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
+    $("#current_time").html(`Current Time: ${prettyDate(getCurrentDate())}`);
+}
 
 $(document).ready(() => {
     let hmsCheck = $("#use_hms");
