@@ -2,7 +2,7 @@ html {
 
 }
 body {
-    background-image: url("2000s.png");
+    background-image: url("/style/stylesheets/2000s/2000s.png");
     color: #ff2222;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
@@ -13,7 +13,7 @@ body {
     display:inline-block;
     transition-property: transform;
     transition-duration: 0.75s;
-    background-image: url("2000sSettings.png");
+    background-image: url("/style/stylesheets/2000s/2000sSettings.png");
     width:48px;
     height:48px;
     margin-right: 18px;
