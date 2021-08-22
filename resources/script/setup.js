@@ -19,7 +19,7 @@ yamlResource("schools") // load schedules
     .then(schools => {
             parseSchedules(schools).then(value => {
                 scheduleData = value;
-                TaskQueue.add(() => {
+                $(document).ready(() => {
                     for (const school in value) {
                         let schoolSelect = $("#school_select");
                         schoolSelect.append(`<option value="${school}">${value[school].name}</option>`)
@@ -43,7 +43,7 @@ yamlResource("schools") // load schedules
                     }
                 })
 
-                TaskQueue.add(() => {
+                $(document).ready(() => {
                     let time = calculateNextEvent();
                     window.setInterval(() => {
                         let currentDate = getCurrentDate();
@@ -86,8 +86,7 @@ function updateSelected(init) {
     }
 }
 
-TaskQueue.add(() => {
-
+$(document).ready(() => {
     $("#settingsIcon").on('click', function (e) {
         e.preventDefault(); // dont redirect
     });

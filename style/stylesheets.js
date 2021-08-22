@@ -5,7 +5,7 @@ fetch("./stylesheets.yml")
         console.log(sheetsObj);
 
         sheetsObj.sheets.forEach(sheet => {
-            TaskQueue.add(() => {
+            $(document).ready(() => {
                 $("#content")
                     .append(`
 <div>

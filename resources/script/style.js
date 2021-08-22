@@ -4,7 +4,7 @@ let css = window.localStorage.getItem("css");
 
 var iFramed = (window !== window.parent)
 
-TaskQueue.add(() => {
+$(document).ready(() => {
     if (css && !iFramed) {
         console.log("Applying custom CSS...")
         if (window.localStorage.getItem("css_overwrite")) {
