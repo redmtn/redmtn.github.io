@@ -1,0 +1,91 @@
+html {
+
+}
+body {
+    background-image: url("2000s.png");
+    color: #ff2222;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+#settings>a>img {
+    opacity: 0;
+}
+#settings>a {
+    display:inline-block;
+    transition-property: transform;
+    transition-duration: 0.75s;
+    background-image: url("2000sSettings.png");
+    width:48px;
+    height:48px;
+    margin-right: 18px;
+    margin-top: 18px;
+    background-size: 48px 48px;
+}
+#settings>a:hover {
+    animation-name: rotate;
+    animation-duration: 0.75s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@keyframes rotate {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+#settings {
+    text-align: right;
+    padding: 0;
+    height: 96px;
+}
+.countdown-container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+#countdown {
+    font-weight: bold;
+    font-size: 48px;
+}
+#time {
+    font-size: 24px;
+    padding-top: 7.5%;
+}
+#event {
+    padding-top: 5%;
+}
+.countdown-container div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 50px;
+    text-align: center;
+    -moz-transform:translateX(50%);
+    -webkit-transform:translateX(50%);
+    transform:translateX(50%);
+    -moz-animation: countdown-container 5s linear infinite alternate;
+    -webkit-animation: countdown-container 5s linear infinite alternate;
+    animation: countdown-container 5s linear infinite alternate;
+}
+
+@-moz-keyframes countdown-container {
+    0%   { -moz-transform: translateX(50%); }
+    100% { -moz-transform: translateX(-50%); }
+}
+@-webkit-keyframes countdown-container {
+    0%   { -webkit-transform: translateX(50%); }
+    100% { -webkit-transform: translateX(-50%); }
+}
+@keyframes countdown-container {
+    0%   {
+        -moz-transform: translateX(50%); /* Browser bug fix */
+        -webkit-transform: translateX(50%); /* Browser bug fix */
+        transform: translateX(50%);
+    }
+    100% {
+        -moz-transform: translateX(-50%); /* Browser bug fix */
+        -webkit-transform: translateX(-50%); /* Browser bug fix */
+        transform: translateX(-50%);
+    }
+}

@@ -1,0 +1,32 @@
+iframe {
+    -webkit-transform: scale(0.5);
+-moz-transform-scale(0.5);
+    margin: -185px -150px -150px -290px;
+
+    width: 1152px;
+    height: 648px;
+}
+
+iframe {
+    border: 4px solid gray;
+}
+
+html {
+    font-family: "oxygen";
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    padding: 25px;
+}
+body {
+    font-family: "oxygen";
+    background-color: #ffffff;
+    color: #666;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "prime";
+}
+
+ul {
+    font-size: 18px;
+}
