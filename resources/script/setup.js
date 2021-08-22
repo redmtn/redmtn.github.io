@@ -42,6 +42,22 @@ yamlResource("schools") // load schedules
                         scheduleSelect.on("change", () => updateSelected());
                     }
                 })
+
+                TaskQueue.add(() => {
+                    let time = calculateNextEvent(new Date());
+                    window.setInterval(() => {
+                        let currentDate = new Date();
+
+                        if(currentDate.getTime() >= time.date.getTime()) {
+                            time = calculateNextEvent(currentDate)
+                        }
+
+                        $("#countdown").html(prettyPrintDiff(splitDifference(currentDate, time.date)));
+                        $("#event").html(`Until ${time.event}`);
+                        $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
+                        $("#current_time").html(`Current Time: ${prettyDate(new Date())}`);
+                    }, 1000);
+                })
             });
         }
     );
@@ -78,12 +94,4 @@ TaskQueue.add(() => {
 
 
     MicroModal.init();
-
-    window.setInterval(() => {
-        let time = calculateNextEvent(new Date());
-        $("#countdown").html(time.timestamp);
-        $("#event").html(`Until ${time.event}`);
-        $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
-        $("#current_time").html(`Current Time: ${prettyDate(new Date())}`);
-    }, 1000);
 })

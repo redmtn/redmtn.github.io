@@ -69,7 +69,6 @@ function calculateNextEvent(currentDate) {
 
             if(currentDate.getTime() < futureDate.getTime()) {
                 return {
-                    timestamp: prettyPrintDiff(splitDifference(currentDate, futureDate)),
                     event: timeObj.name,
                     date: futureDate
                 }
