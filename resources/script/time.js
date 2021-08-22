@@ -45,7 +45,8 @@ function prettyPrintDiff(diff, long) {
     return result;
 }
 
-function calculateNextEvent(currentDate) {
+function calculateNextEvent() {
+    let currentDate = getCurrentDate();
     let futureDate = new Date(currentDate.getTime());
 
     let ohgodohfuck = 0;

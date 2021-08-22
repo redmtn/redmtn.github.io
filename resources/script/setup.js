@@ -44,21 +44,21 @@ yamlResource("schools") // load schedules
                 })
 
                 TaskQueue.add(() => {
-                    let time = calculateNextEvent(new Date());
+                    let time = calculateNextEvent();
                     window.setInterval(() => {
-                        let currentDate = new Date();
+                        let currentDate = getCurrentDate();
 
                         if(currentDate.getTime() >= time.date.getTime()) {
-                            time = calculateNextEvent(currentDate)
+                            time = calculateNextEvent()
                         }
 
                         $("#countdown").html(prettyPrintDiff(splitDifference(currentDate, time.date)));
                         $("#event").html(`Until ${time.event}`);
                         $("#event_time").html(`${time.event}: ${prettyDate(time.date)}`);
-                        $("#current_time").html(`Current Time: ${prettyDate(new Date())}`);
+                        $("#current_time").html(`Current Time: ${prettyDate(getCurrentDate())}`);
                     }, 1000);
                 })
-            });
+            }).catch(reason => console.log(reason));
         }
     );
 
