@@ -7,7 +7,7 @@ var iFramed = (window !== window.parent)
 $(document).ready(() => {
     if (css && !iFramed) {
         console.log("Applying custom CSS...")
-        if (window.localStorage.getItem("css_overwrite")) {
+        if (window.localStorage.getItem("css_overwrite") !== "false") {
             $("#main_style").remove();
             console.log("Overwriting CSS...")
         }

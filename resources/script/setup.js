@@ -77,6 +77,12 @@ $(document).ready(() => {
         window.localStorage.setItem("use_hms", hmsCheck.prop("checked"));
         hms = hmsCheck.prop("checked");
     });
+
+    let overrideCheck = $("#css_overwrite")
+    overrideCheck.prop("checked", window.localStorage.getItem("css_overwrite") !== "false");
+    overrideCheck.on("change", () => {
+        window.localStorage.setItem("css_overwrite", overrideCheck.prop("checked"));
+    });
 });
 
 
