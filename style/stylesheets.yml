@@ -23,4 +23,9 @@ sheets:
     description: "funny stylesheet"
     replace: true
     short-times: true
-
+  - url: "{THIS}/style/stylesheets/yandere/yandere.css"
+    id: yandere
+    name: "Superior Theme"
+    description: "For superior developers"
+    replace: true
+    short-times: true
