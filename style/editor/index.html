@@ -24,22 +24,31 @@
 
 </div>
 <script>
+    let iframe = $("#test");
+    function apply() {
+        console.log("Applying CSS...")
+        iframe.contents().find("#main_style").remove();
+        iframe.contents().find("#custom_style").remove();
+        iframe.contents().find("head").append(`<style id="custom_style">${editor.getValue()}</style>`)
+    }
+
     const editor = ace.edit("editor");
 
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/css");
 
-    fetch("/resources/style/default.css")
-        .then(css => css.text())
-        .then(css => {
-            editor.setValue(css, -1);
-        })
-    $("#setCss").on("click", () => {
-        let iframe = $("#test");
-        iframe.contents().find("#main_style").remove();
-        iframe.contents().find("#custom_style").remove();
-        iframe.contents().find("head").append(`<style id="custom_style">${editor.getValue()}</style>`)
-    })
+    if(!localStorage.getItem("css")) {
+        fetch("/resources/style/default.css")
+            .then(css => css.text())
+            .then(css => {
+                editor.setValue(css, -1);
+            })
+    } else {
+        editor.setValue(localStorage.getItem("css"))
+    }
+
+    $("#setCss").on("click", () => apply())
+    iframe.on("load", () => apply())
 </script>
 </body>
 </html>
