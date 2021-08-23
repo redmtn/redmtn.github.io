@@ -1,0 +1,55 @@
+body, html {
+  width: 100%;
+  height: 0px;
+  background-image: url('https://cdn.discordapp.com/attachments/521854848480575497/879209095910027314/yandere.png');
+  background-size: cover;
+
+}
+
+#settings {
+    text-align: right;
+    margin-right: 18px;
+    margin-top: 18px;
+}
+
+#settings>a>img {
+    opacity: 0.4;
+    filter: invert(1);
+    transition: opacity ease-in-out 0.25s;
+}
+
+#settings>a>img:hover {
+    opacity: 0.6;
+    text-align: right;
+}
+
+.countdown-container {
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    -ms-transform: translateY(-45%);
+    transform: translateY(-45%);
+    color: #fff;
+    text-align: center;
+    width: 100%;
+}
+
+#countdown {
+    font-weight: bold;
+    font-size: 5vw;
+}
+
+#time {
+    font-size: 2vw;
+}
+
+#event {
+    font-size: 2vw;
+    padding-bottom: 1.25%;
+    text-align: center;
+}
+#time, #countdown {
+    color: #fff;
+    position: relative;
+    text-align: center;
+}
