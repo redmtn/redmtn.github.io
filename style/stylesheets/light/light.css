@@ -1,4 +1,4 @@
-body, html {
+body {
     background-color: #fff;
     font-family: roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
 }
@@ -23,6 +23,7 @@ body, html {
     margin: 0;
     position: absolute;
     top: 45%;
+    left: 0;
     -ms-transform: translateY(-45%);
     transform: translateY(-45%);
     color: #d0d0d0;
