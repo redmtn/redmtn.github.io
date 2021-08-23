@@ -1,7 +1,7 @@
 body {
     background-color: #000;
     font-family: roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
-    background-image: url('https://cdn.discordapp.com/attachments/583774992962027532/879431990905032754/sus.png');
+    background-image: url('https://github.com/jawamencad/sus/blob/main/sus.png');
     background-size: cover;
 
 }
