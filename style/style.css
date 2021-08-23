@@ -12,19 +12,19 @@ iframe {
 }
 
 html {
-    font-family: "oxygen";
+    font-family: "oxygen", serif;
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     padding: 25px;
 }
 body {
-    font-family: "oxygen";
+    font-family: "oxygen", serif;
     background-color: #ffffff;
     color: #666;
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: "prime";
+    font-family: "prime", serif;
 }
 
 ul {

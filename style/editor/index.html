@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/resources/img/favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="/resources/script/lib/jquery.min.js"></script>
+    <link rel="stylesheet" href="/style/style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"
+            integrity="sha512-GZ1RIgZaSc8rnco/8CXfRdCpDxRCphenIiZ2ztLy3XQfCbQUSCuk8IudvNHxkRA3oUg6q0qejgN/qqyG1duv5Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>CSS Editor</title>
+</head>
+<body>
+<h1>Stylesheet Editor</h1>
+<p>Edit custom stylesheets. <a href="/">Back to main page</a></p>
+<br>
+<iframe id="test" src='/index.html'></iframe>
+<br>
+
+<input type="button" id="setCss" value="Apply CSS">
+<div id="editor" style="height: 500px;">
+
+</div>
+<script>
+    const editor = ace.edit("editor");
+
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/css");
+
+    fetch("/resources/style/default.css")
+        .then(css => css.text())
+        .then(css => {
+            editor.setValue(css, -1);
+        })
+    $("#setCss").on("click", () => {
+        let iframe = $("#test");
+        iframe.contents().find("#main_style").remove();
+        iframe.contents().find("#custom_style").remove();
+        iframe.contents().find("head").append(`<style id="custom_style">${editor.getValue()}</style>`)
+    })
+</script>
+</body>
+</html>
