@@ -57,12 +57,13 @@ function parseSchedule(schoolID, scheduleID) {
         });
 }
 
-function parseTimestamp(time) {
+function parseTimestamp(time, offset) {
     let arr = time.split(":").map(str => parseInt(str, 10));
+    let offsetArr = offset.split(":").map(str => parseInt(str));
     return {
-        hours: arr[0],
-        minutes: arr[1],
-        seconds: arr[2]
+        hours: arr[0] + offsetArr[0],
+        minutes: arr[1] + offsetArr[1],
+        seconds: arr[2] + offsetArr[2]
     };
 }
 
@@ -73,13 +74,12 @@ function getTimes(schoolID, scheduleID, timesID) {
 
             let parsedSchedule = {};
 
-            parsedSchedule.offset = parseTimestamp(scheduleObj.offset);
             parsedSchedule.times = {};
 
             for(const time in scheduleObj.times) {
                 parsedSchedule.times[time] = {
                     name: scheduleObj.times[time].name,
-                    time: parseTimestamp(scheduleObj.times[time].time)
+                    time: parseTimestamp(scheduleObj.times[time].time, scheduleObj.offset)
                 }
             }
 
