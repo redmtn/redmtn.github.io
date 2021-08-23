@@ -11,6 +11,12 @@ sheets:
     description: "A minimal light theme"
     replace: true
     short-times: true
+  - url: "{THIS}/style/stylesheets/true-dark/true-dark.css"
+    id: true-dark
+    name: "Minimal (True Dark)"
+    description: "A minimal black theme"
+    replace: true
+    short-times: true
   - url: "{THIS}/style/stylesheets/2000s/2000s.css"
     id: funny
     name: "The Early 2000s"
