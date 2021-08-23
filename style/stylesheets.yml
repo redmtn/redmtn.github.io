@@ -1,10 +1,4 @@
 sheets:
-  - url: "{THIS}/style/stylesheets/sus/SUS-theme.css"
-    id: sus
-    name: "SUS Theme"
-    description: "The official SUS theme"
-    replace: true
-    short-times: true
   - url: "{THIS}/resources/style/default.css"
     id: dark
     name: "Minimal (Dark)"
@@ -27,6 +21,12 @@ sheets:
     id: funny
     name: "The Early 2000s"
     description: "funny stylesheet"
+    replace: true
+    short-times: true
+  - url: "{THIS}/style/stylesheets/sus/sus.css"
+    id: sus
+    name: "SUS Theme"
+    description: "The official SUS theme"
     replace: true
     short-times: true
 
