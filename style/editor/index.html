@@ -20,6 +20,7 @@
 <br>
 
 <input type="button" id="setCss" value="Apply CSS">
+<input type="button" id="install" value="Install CSS">
 <div id="editor" style="height: 500px;">
 
 </div>
@@ -48,6 +49,13 @@
     }
 
     $("#setCss").on("click", () => apply())
+    $("#install").on("click", () => {
+        console.log("Installing...")
+        if(window.localStorage.getItem("css") && !confirm("Overwrite existing stylesheet?")) {
+            return;
+        }
+        window.localStorage.setItem("css", editor.getValue());
+    })
     iframe.on("load", () => apply())
 </script>
 </body>
