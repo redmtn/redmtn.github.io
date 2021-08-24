@@ -30,7 +30,7 @@ $(document).ready(() => {
             for(let scriptEntry of scriptsObj) {
                 if(scriptEntry.id === id) contains = true;
             }
-            if(window.localStorage.getItem("css") && !confirm("Overwrite existing script?")) {
+            if(contains && !confirm("Overwrite existing script?")) {
                 return;
             }
             scriptsObj = scriptsObj.filter(e => e.id !== id); // remove duplicates

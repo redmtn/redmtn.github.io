@@ -40,7 +40,7 @@ fetch("./scripts.yml")
                                 for(let scriptEntry of scriptsObj) {
                                     if(scriptEntry.id === scriptYaml.id) contains = true;
                                 }
-                                if(window.localStorage.getItem("css") && !confirm("Overwrite existing script?")) {
+                                if(contains && !confirm("Overwrite existing script?")) {
                                     return;
                                 }
                                 scriptsObj = scriptsObj.filter(e => e.id !== scriptYaml.id); // remove duplicates
