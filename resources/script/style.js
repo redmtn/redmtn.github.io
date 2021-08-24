@@ -4,8 +4,6 @@
 let css = window.localStorage.getItem("css");
 
 
-const iFramed = (window !== window.parent);
-
 $(document).ready(() => {
     if (css && !iFramed) {
         console.log("Applying custom CSS...")

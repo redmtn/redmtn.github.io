@@ -1,0 +1,5 @@
+scripts:
+  - url: "{THIS}/script/scripts/fuzzy.js"
+    id: fuzzy
+    name: "Fuzzy clock"
+    description: "Makes time fuzzy"
