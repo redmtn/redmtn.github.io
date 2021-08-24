@@ -42,9 +42,11 @@ $(document).ready(() => {
             return "A Few Hours"
         } else if(diff.hours === 1 || diff.minutes > 45) {
             return "An Hour"
-        } else if(diff.minutes > 20) {
+        } else if(diff.minutes > 15) {
             return "Half an Hour"
-        } else return "A Few Minutes"
+        } else if(diff.minutes > 1) {
+            return "A Few Minutes"
+        } else return "A Few Seconds"
     }
 
     prettyDate = function (date) {
