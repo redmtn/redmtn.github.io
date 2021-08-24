@@ -4,8 +4,29 @@ fetch("./scripts.yml")
         let sheetsObj = jsyaml.load(yaml);
         console.log(sheetsObj);
 
-        sheetsObj.scripts.forEach(scriptYaml => {
-            $(document).ready(() => {
+        $(document).ready(() => {
+            let scripts = window.localStorage.getItem("scripts");
+            let removeStuff = $("#remove_area");
+            if (scripts) {
+                let scriptsObj = JSON.parse(scripts);
+                if(scriptsObj.length === 0) {
+                    removeStuff.hide();
+                }
+                for (let scriptEntry of scriptsObj) {
+                    $("#scripts_remove").append(`<option value="${scriptEntry.id}">${scriptEntry.id}</option>`)
+                }
+            } else {
+                removeStuff.hide();
+            }
+
+            $("#remove_button").on("click", () => {
+                let scripts = window.localStorage.getItem("scripts");
+                let scriptsObj = JSON.parse(scripts);
+                scriptsObj = scriptsObj.filter(e => e.id !== $("#scripts_remove").val()); // remove duplicates
+                window.localStorage.setItem("scripts", JSON.stringify(scriptsObj));
+                window.location.href = window.location.href; // AKA: im too lazy to write proper logic
+            })
+            sheetsObj.scripts.forEach(scriptYaml => {
                 $("#content")
                     .append(`
 <div>
@@ -34,13 +55,13 @@ fetch("./scripts.yml")
                         .then(script => script.text())
                         .then(script => {
                             let scripts = window.localStorage.getItem("scripts");
-                            if(scripts) {
+                            if (scripts) {
                                 let scriptsObj = JSON.parse(scripts);
                                 let contains = false;
-                                for(let scriptEntry of scriptsObj) {
-                                    if(scriptEntry.id === scriptYaml.id) contains = true;
+                                for (let scriptEntry of scriptsObj) {
+                                    if (scriptEntry.id === scriptYaml.id) contains = true;
                                 }
-                                if(contains && !confirm("Overwrite existing script?")) {
+                                if (contains && !confirm("Overwrite existing script?")) {
                                     return;
                                 }
                                 scriptsObj = scriptsObj.filter(e => e.id !== scriptYaml.id); // remove duplicates
