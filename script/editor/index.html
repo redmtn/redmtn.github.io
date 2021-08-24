@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/resources/img/favicon.ico" type="image/x-icon"/>
+    <script type="text/javascript" src="/resources/script/lib/jquery.min.js"></script>
+    <link rel="stylesheet" href="/style/style.css">
+
+    <script type="text/javascript" src="editor.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"
+            integrity="sha512-GZ1RIgZaSc8rnco/8CXfRdCpDxRCphenIiZ2ztLy3XQfCbQUSCuk8IudvNHxkRA3oUg6q0qejgN/qqyG1duv5Q=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Script Editor</title>
+</head>
+<body>
+<h1>Script Editor</h1>
+<p>Edit custom scripts. <a href="/">Back to main page</a></p>
+<br>
+<iframe id="test" src='/index.html'></iframe>
+<br>
+<label for="script_id">Script ID:</label>
+<input type="text" id="script_id" value="custom_script">
+<input type="button" id="setScript" value="Apply Script">
+<input type="button" id="install" value="Install Script">
+<div id="editor" style="height: 500px;">$(document).ready(() => {
+    // Script goes here
+});
+</div>
+</body>
+</html>
