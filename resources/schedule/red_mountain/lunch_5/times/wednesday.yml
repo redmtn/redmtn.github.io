@@ -45,4 +45,6 @@
   "sixthE":
     "name": "Seventh Hour Ends"
     "time": "12:45:0"
-
+  "lunchE":
+    "name": "Lunch Ends"
+    "time": "1:15:0"
