@@ -1,5 +1,9 @@
 @font-face {
     font-family: "amogus";
+    src: url("/resources/font/imposter.ttf");
+}
+@font-face {
+    font-family: "sub sus";
     src: url("/resources/font/sus.ttf");
 }
 
@@ -41,15 +45,17 @@ body {
 
 #countdown {
     font-weight: bold;
-    font-size: 5vw;
+    font-size: 4.5vw;
 }
 
 #time {
-    font-size: 2vw;
+    font-size: 3vw;
+    font-family: "sub sus", "amogus", roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
 }
 
 #event {
-    font-size: 2vw;
+    font-size: 3vw;
+    font-family: "sub sus", "amogus", roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
     padding-bottom: 1.25%;
     text-align: center;
 }
