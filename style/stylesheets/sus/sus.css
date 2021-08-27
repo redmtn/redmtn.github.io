@@ -1,9 +1,13 @@
+@font-face {
+    font-family: "amogus";
+    src: url("/resources/font/sus.ttf");
+}
+
 body {
     background-color: #000;
-    font-family: roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
+    font-family: "amogus", roboto, -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, sans-serif;
     background-image: url('https://github.com/jawamencad/sus/blob/729647374ffe4589010651b1a4692ac08a118e93/sus.png?raw=true');
     background-size: cover;
-
 }
 
 #settings {
