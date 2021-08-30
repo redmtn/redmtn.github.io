@@ -1,5 +1,8 @@
 name: "4th Hour Lunch"
 rules:
+  - type: date
+    date: "6/9"
+    schedule: "dayOff"
   - type: weekly
     days: [ "SAT", "SUN" ]
     schedule: "dayOff"
