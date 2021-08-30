@@ -95,15 +95,23 @@ function parseRules(rulesObj, schoolID, scheduleID) {
 }
 
 function parseRule(ruleObj, schoolID, scheduleID) {
-    switch (ruleObj.type) {
-        case "weekly":
-            return getTimes(schoolID, scheduleID, ruleObj.schedule)
-                .then(times => {
+    return getTimes(schoolID, scheduleID, ruleObj.schedule)
+        .then(times => {
+            switch (ruleObj.type) {
+                case "weekly":
                     let args = ruleObj.days;
                     args.unshift(times)
                     return Rule.weekDays.apply(Rule, args);
-                })
-        default:
-            throw new Error("Unknown rule type: " + ruleObj.type)
-    }
+                case "date":
+                    let date = new Date();
+                    let strDate = ruleObj.date;
+                    date.setDate(parseInt(strDate.split("/")[0]))
+                    date.setMonth(parseInt(strDate.split("/")[1])-1)
+                    return Rule.date(times, date)
+                default:
+                    throw new Error("Unknown rule type: " + ruleObj.type)
+            }
+
+        })
+
 }
