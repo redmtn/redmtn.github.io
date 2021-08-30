@@ -52,19 +52,18 @@ yamlResource("schools") // load schedules
 
                     scheduleSelect.on("change", () => updateSelected());
 
-                    $(document).ready(() => {
-                        let time = calculateNextEvent();
-                        update(time);
-                        window.setInterval(() => {
-                            let currentDate = getCurrentDate();
+                    let time = calculateNextEvent();
+                    update(time);
+                    window.setInterval(() => {
+                        let currentDate = getCurrentDate();
 
-                            if(currentDate.getTime() >= time.date.getTime() || jankyWayToExpireTime) {
-                                time = calculateNextEvent();
-                                jankyWayToExpireTime = false;
-                            }
-                            update(time);
-                        }, 1000);
-                    })
+                        if (currentDate.getTime() >= time.date.getTime() || jankyWayToExpireTime) {
+                            time = calculateNextEvent();
+                            jankyWayToExpireTime = false;
+                        }
+                        update(time);
+                    }, 1000);
+
                 })
 
             });

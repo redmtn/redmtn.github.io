@@ -10,7 +10,11 @@ function fuzzyRawDate(date) {
     } else return "Night";
 }
 
-const oneDay = 1000 * 60 * 60 * 24;
+const oneDay =
+    1000
+    * 60
+    * 60
+    * 24;
 
 function getMidnight(day){
     const date = new Date(day);
@@ -32,8 +36,10 @@ $(document).ready(() => {
     prettyPrintDiff = function (diff, long) {
         if(diff.days > 7) {
             return "More Than a Week"
-        } else if(diff.days > 1) {
+        } else if(diff.days > 4) {
             return "One Week"
+        } else if(diff.days > 1) {
+            return "A Few Days"
         } else if(diff.days === 1 || diff.hours > 12) {
             return "One Day"
         } else if(diff.hours > 6) {
