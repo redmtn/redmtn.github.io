@@ -3,3 +3,7 @@ scripts:
     id: fuzzy
     name: "Fuzzy clock"
     description: "Makes time fuzzy"
+  - url: "{THIS}/script/scripts/lowercase.js"
+    id: lower
+    name: "Lowercase"
+    description: "Makes time indicators lowercase"
