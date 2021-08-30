@@ -16,6 +16,12 @@ class Rule {
         throw new Error("Invalid day: " + day);
     }
 
+    static #datesAreOnSameDay = (first, second) =>
+        first.getFullYear() === second.getFullYear() &&
+        first.getMonth() === second.getMonth() &&
+        first.getDate() === second.getDate();
+
+
     constructor(match, schedule) {
         this.#match = match;
         this.schedule = schedule;
@@ -37,5 +43,9 @@ class Rule {
         days.forEach(day => numericDays.push(Rule.#toNumericDay(day)));
 
         return new Rule(date => numericDays.includes(date.getDay()), schedule);
+    }
+
+    static date(schedule, date) {
+        return new Rule(current => this.#datesAreOnSameDay(current, date), schedule);
     }
 }
