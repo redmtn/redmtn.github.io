@@ -16,10 +16,18 @@ class Rule {
         throw new Error("Invalid day: " + day);
     }
 
-    static #datesAreOnSameDay = (first, second) =>
+    static #datesAreOnSameDay(first, second) {
         // first.getFullYear() === second.getFullYear() &&
-        first.getMonth() === second.getMonth() &&
-        first.getDate() === second.getDate();
+        return first.getMonth() === second.getMonth() &&
+            first.getDate() === second.getDate();
+    }
+
+    static #dateBetween(first, test, second) {
+        return test.getMonth() >= first.getMonth() &&
+        test.getDate() >= first.getDate() &&
+        test.getMonth() <= second.getMonth() &&
+        test.getDate() <= second.getDate();
+    }
 
 
     constructor(match, schedule) {
@@ -47,5 +55,9 @@ class Rule {
 
     static date(schedule, date) {
         return new Rule(current => this.#datesAreOnSameDay(current, date), schedule);
+    }
+
+    static range(schedule, first, second) {
+        return new Rule(current => this.#dateBetween(first, current, second));
     }
 }
