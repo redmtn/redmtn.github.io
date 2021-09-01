@@ -104,10 +104,24 @@ function parseRule(ruleObj, schoolID, scheduleID) {
                     return Rule.weekDays.apply(Rule, args);
                 case "date":
                     let date = new Date();
-                    let strDate = ruleObj.date;
-                    date.setDate(parseInt(strDate.split("/")[0]))
-                    date.setMonth(parseInt(strDate.split("/")[1])-1)
+                    let strDate = ruleObj.date.split("/");
+                    date.setDate(parseInt(strDate[0]))
+                    date.setMonth(parseInt(strDate[1])-1)
                     return Rule.date(times, date)
+                case "range":
+                    let first = new Date();
+                    let second = new Date();
+
+                    let firstString = ruleObj.start.split("/");
+
+                    let secondString = ruleObj.end.split("/");
+
+                    first.setDate(firstString[0])
+                    first.setMonth(firstString[1])
+
+                    second.setDate(secondString[0])
+                    second.setMonth(secondString[1])
+                    return Rule.range(times, first, second)
                 default:
                     throw new Error("Unknown rule type: " + ruleObj.type)
             }
