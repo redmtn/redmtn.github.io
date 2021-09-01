@@ -40,9 +40,7 @@ class Rule {
     }
 
     static default(schedule) {
-        return new Rule(() => {
-            return true
-        }, schedule);
+        return new Rule(() => true, schedule);
     }
 
     static weekDays(schedule, ...days) {
@@ -58,6 +56,6 @@ class Rule {
     }
 
     static range(schedule, first, second) {
-        return new Rule(current => this.#dateBetween(first, current, second));
+        return new Rule(current => this.#dateBetween(first, current, second), schedule);
     }
 }

@@ -117,10 +117,10 @@ function parseRule(ruleObj, schoolID, scheduleID) {
                     let secondString = ruleObj.end.split("/");
 
                     first.setDate(firstString[0])
-                    first.setMonth(firstString[1])
+                    first.setMonth(firstString[1]-1)
 
                     second.setDate(secondString[0])
-                    second.setMonth(secondString[1])
+                    second.setMonth(secondString[1]-1)
                     return Rule.range(times, first, second)
                 default:
                     throw new Error("Unknown rule type: " + ruleObj.type)
