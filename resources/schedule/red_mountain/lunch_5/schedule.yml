@@ -3,6 +3,13 @@ rules:
   - type: date
     date: "6/9"
     schedule: "dayOff"
+  - type: date
+    date: "1/10"
+    schedule: "wednesday"
+  - type: range
+    start: "4/10"
+    end: "8/10"
+    schedule: "dayOff"
   - type: weekly
     days: [ "SAT", "SUN" ]
     schedule: "dayOff"
