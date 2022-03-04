@@ -6,6 +6,9 @@ rules:
   - type: date
     date: "1/10"
     schedule: "wednesday"
+  - type: date
+    date: "4/3"
+    schedule: "wednesday"
   - type: range
     start: "4/10"
     end: "8/10"
