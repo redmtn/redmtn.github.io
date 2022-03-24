@@ -17,24 +17,24 @@
   "firstE":
     "name": "First Hour Ends"
     "time": "10:3:0"
-  "secondS":
+  "lunchE":
     "name": "Lunch Ends"
     "time": "10:45:0"
-  "secondE":
+  "thirdS":
     "name": "Third Hour Starts"
     "time": "10:51:0"
-  "thirdS":
+  "thirdE":
     "name": "Third Hour Ends"
     "time": "12:39:0"
-  "thirdE":
+  "fifthS":
     "name": "Fifth Hour Starts"
     "time": "12:45:0"
-  "lunchE":
+  "fifthE":
     "name": "Fifth Hour Ends"
     "time": "13:21:0"
-  "fifthS":
+  "seventhS":
     "name": "Seventh Hour Starts"
     "time": "13:27:0"
-  "fifthE":
+  "seventhE":
     "name": "Seventh Hour Ends"
     "time": "15:15:0"
