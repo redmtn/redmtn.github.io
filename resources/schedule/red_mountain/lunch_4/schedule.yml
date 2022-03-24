@@ -4,6 +4,12 @@ rules:
     date: "6/9"
     schedule: "dayOff"
   - type: date
+    date: "24/3"
+    schedule: "block1_3_5_7"
+  - type: date
+    date: "28/3"
+    schedule: "block1_3_5_7"
+  - type: date
     date: "1/10"
     schedule: "wednesday"
   - type: date
