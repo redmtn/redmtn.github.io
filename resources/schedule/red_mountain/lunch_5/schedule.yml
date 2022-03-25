@@ -10,6 +10,12 @@ rules:
     date: "28/3"
     schedule: "block1_3_5_7"
   - type: date
+    date: "25/3"
+    schedule: "block2_4_5_6"
+  - type: date
+    date: "29/3"
+    schedule: "block2_4_5_6"
+  - type: date
     date: "1/10"
     schedule: "wednesday"
   - type: date
