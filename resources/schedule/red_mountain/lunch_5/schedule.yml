@@ -1,6 +1,12 @@
 name: "5th Hour Lunch"
 rules:
   - type: date
+    date: "18/3"
+    schedule: "finalsWednesday"
+  - type: date
+    date: "19/3"
+    schedule: "finalsThursday"
+  - type: date
     date: "6/9"
     schedule: "dayOff"
   - type: date
