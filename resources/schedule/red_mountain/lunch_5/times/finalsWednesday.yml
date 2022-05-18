@@ -1,0 +1,26 @@
+"offset": "0:0:0"
+"times":
+  "bell1":
+    "name": "First Bell Rings"
+    "time": "8:6:0"
+  "firstS":
+    "name": "First Hour Starts"
+    "time": "8:15:0"
+  "firstE":
+    "name": "First Hour Ends"
+    "time": "9:35:0"
+  "secondS":
+    "name": "Second Hour Starts"
+    "time": "9:46:0"
+  "secondE":
+    "name": "Second Hour Ends"
+    "time": "11:6:0"
+  "thirdS":
+    "name": "Third Hour Starts"
+    "time": "11:17:0"
+  "thirdE":
+    "name": "Third Hour Ends"
+    "time": "12:37:0"
+  "lunchE":
+    "name": "Buses Leave"
+    "time": "13:0:0"
