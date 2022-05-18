@@ -1,10 +1,10 @@
 name: "5th Hour Lunch"
 rules:
   - type: date
-    date: "18/3"
+    date: "18/5"
     schedule: "finalsWednesday"
   - type: date
-    date: "19/3"
+    date: "19/5"
     schedule: "finalsThursday"
   - type: date
     date: "6/9"
