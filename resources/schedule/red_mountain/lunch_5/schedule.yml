@@ -31,6 +31,10 @@ rules:
     start: "4/10"
     end: "8/10"
     schedule: "dayOff"
+  - type: "range"
+    start: "20/5"
+    end: "3/8"
+    schedule: "dayOff"
   - type: weekly
     days: [ "SAT", "SUN" ]
     schedule: "dayOff"
