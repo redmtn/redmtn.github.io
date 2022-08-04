@@ -1,26 +1,9 @@
 name: "4th Hour Lunch"
 rules:
-  - type: date
-    date: "18/5"
-    schedule: "finalsWednesday"
-  - type: date
-    date: "19/5"
-    schedule: "finalsThursday"
+
   - type: date
     date: "6/9"
     schedule: "dayOff"
-  - type: date
-    date: "24/3"
-    schedule: "block1_3_5_7"
-  - type: date
-    date: "28/3"
-    schedule: "block1_3_5_7"
-  - type: date
-    date: "25/3"
-    schedule: "block2_4_5_6"
-  - type: date
-    date: "29/3"
-    schedule: "block2_4_5_6"
   - type: date
     date: "1/10"
     schedule: "wednesday"
@@ -33,7 +16,7 @@ rules:
     schedule: "dayOff"
   - type: "range"
     start: "20/5"
-    end: "3/8"
+    end: "4/8"
     schedule: "dayOff"
   - type: weekly
     days: [ "SAT", "SUN" ]

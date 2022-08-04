@@ -51,7 +51,7 @@ function calculateNextEvent() {
 
     let ohgodohfuck = 0;
     while(true) {
-        if(ohgodohfuck > 100) throw new Error("oh god oh fuck");
+        if(ohgodohfuck > 730) throw new Error("oh god oh fuck");
 
         let chosen;
         for (let currentRule of schedule.rules) {
@@ -62,15 +62,14 @@ function calculateNextEvent() {
         }
 
 
-        for (let time in chosen.times) {
-            let timeObj = chosen.times[time];
-            futureDate.setHours(timeObj.time.hours);
-            futureDate.setMinutes(timeObj.time.minutes);
-            futureDate.setSeconds(timeObj.time.seconds);
+        for (let time of chosen) {
+            futureDate.setHours(time.time.hours);
+            futureDate.setMinutes(time.time.minutes);
+            futureDate.setSeconds(time.time.seconds);
 
             if(currentDate.getTime() < futureDate.getTime()) {
                 return {
-                    event: timeObj.name,
+                    event: time.name,
                     date: futureDate
                 }
             }

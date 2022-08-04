@@ -72,15 +72,14 @@ function getTimes(schoolID, scheduleID, timesID) {
         .then(yaml => {
             let scheduleObj = jsyaml.load(yaml)
 
-            let parsedSchedule = {};
+            let parsedSchedule = [];
 
-            parsedSchedule.times = {};
 
             for(const time in scheduleObj.times) {
-                parsedSchedule.times[time] = {
-                    name: scheduleObj.times[time].name,
-                    time: parseTimestamp(scheduleObj.times[time].time, scheduleObj.offset)
-                }
+                parsedSchedule.push({
+                    name: scheduleObj.times[time],
+                    time: parseTimestamp(time, scheduleObj.offset)
+                });
             }
 
             return parsedSchedule;
