@@ -1,4 +1,4 @@
-# Wednesday schedule (4th hour is lunch)
+# Wednesday schedule (6th hour is lunch)
 
 "offset": "0:0:0"
 "times":
@@ -8,11 +8,11 @@
   "8:51:0": "First Hour Ends"
   "8:57:0": "Second Hour Starts"
   "9:33:0": "Second Hour Ends"
-  "10:15:0": "Lunch Ends"
+  "9:39:0": "Fourth Hour Starts"
+  "10:15:0": "Fourth Hour Ends"
   "10:21:0": "Fifth Hour Starts"
   "11:03:0": "Fifth Hour Ends"
-  "11:9:0": "Sixth Hour Starts"
-  "11:51:0": "Sixth Hour Ends"
+  "11:51:0": "Lunch Ends"
   "11:57:0": "Seventh Hour Starts"
   "12:33:0": "Seventh Hour Ends"
   "12:39:0": "Eighth Hour Starts"
