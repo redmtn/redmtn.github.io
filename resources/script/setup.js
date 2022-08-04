@@ -50,6 +50,8 @@ yamlResource("schools") // load schedules
                         scheduleSelect.val(localStorage.getItem("schedule"))
                     }
 
+                    updateSelected();
+
                     scheduleSelect.on("change", () => updateSelected());
 
                     let time = calculateNextEvent();
